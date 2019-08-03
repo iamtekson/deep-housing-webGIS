@@ -1,5 +1,7 @@
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800');
 html, body {
+    width: 100%;
+    height: 100%;
     font: 14px/1.85em 'Open Sans', Arial, Helvetice Neue, sans-serif;
     color: #888888;
     font-weight: 300;
