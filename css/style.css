@@ -15,6 +15,7 @@ html, body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Open Sans', Arial, Helvetice Neue, sans-serif;
+    color: #087aa3;
 }
 
 h1 {
@@ -27,6 +28,15 @@ h1 {
     font-weight: bold;
 }
 
+.margin{
+    margin-top: 100px;
+}
+.padding{
+    padding-top: 30px;
+}
+img{
+    width: 100%;
+}
 /*--------------------------------------------------------------
 # Links
 --------------------------------------------------------------*/
@@ -50,11 +60,13 @@ a, a:hover, a:focus {
     position: fixed;
     top: 0;
     background: #fff;
-    box-shadow: 0 5px 20px#087aa3;
+    box-shadow: 0 5px 20px#000;
     font-size: 1.2rem;
 }
 .navbar-brand{
     font-size: 1.5rem;
 }
+
+
 
 
