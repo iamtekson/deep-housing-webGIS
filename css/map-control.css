@@ -63,7 +63,7 @@
     margin: 0 !important;
     position: fixed;
     top: 0;
-    left: 163px;
+    left: 160px;
     z-index: 1000;
 }
 .leaflet-control-geocoder input[type="text"], textarea {
