@@ -37,22 +37,22 @@ var mapBox = L.tileLayer('https://api.tiles.mapbox.com/styles/v1/{username}/{id}
 });
 
 var baselayer = {
-    "Open Street Map" : osm,
-    "Open Topo Map" : topo,
-    "Water Color" : watercolor,
-    "CartoDB map" : CartoDB,
-    "Custom Mapbox" : mapBox
+    "Open Street Map": osm,
+    "Open Topo Map": topo,
+    "Water Color": watercolor,
+    "CartoDB map": CartoDB,
+    "Custom Mapbox": mapBox
 }
-var layerControl = L.control.layers(baselayer,null, {
-    collapsed : false
+var layerControl = L.control.layers(baselayer, null, {
+    collapsed: false
 }).addTo(map);
 
 // OSM layer geocoding
 var searchLayer = L.Control.geocoder().addTo(map);
 $('.leaflet-control-geocoder-icon').replaceWith('<i class="fas fa-search"></i>');
 $('.leaflet-control-geocoder .fas').css({
-    'margin' : '0 !important',
-    'font-size' : '1.2rem',
+    'margin': '0 !important',
+    'font-size': '1.2rem',
     'padding': '15px',
     'background-color': '#087aa3',
     'color': '#ffffff',

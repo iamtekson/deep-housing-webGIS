@@ -9,14 +9,56 @@
     top: 0;
     left: 0;
     z-index: 1000;
+    background-color: #087aa3;
 }
 .nav-web .fas{
     font-size: 1.5rem;
     padding: 15px;
+    color: #ffffff;
+}
+.nav-web .fas:hover, .fas:active, .fas:focus{
+    background-color: #056172;
+}
+
+/* side-content */
+.option-content{
+    display: none;
+    text-transform: uppercase;
+    z-index: 1100;
+    position: fixed;
+    left: 0;
+    top: 55px;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+.option-content .title{
+    background-color: #087aa3;
+    padding: 10px;
+}
+
+/* side-bar control */
+.side-control{
+    margin: 0px;
+    position: fixed;
+    top: 25%;
+    left: 0;
+    z-index: 1000;
+}
+.side-control .fas, .side-control .far{
+    display: block;
+    font-size: 2rem;
+    padding: 10px;
+    margin: 1px 0 0 0;
+    cursor: pointer;
     background-color: #087aa3;
     color: #ffffff;
 }
+.side-control .fas:hover, .side-control .far:hover{
+    background-color: #056172;
+}
 
+/* osm geocoder */
 .leaflet-control-geocoder {
     margin: 0 !important;
     position: fixed;
@@ -26,4 +68,7 @@
 }
 .leaflet-control-geocoder input[type="text"], textarea {
     background-color : #fff; 
+  }
+  .leaflet-control-geocoder .fas:hover{
+      background-color: #056172;
   }
