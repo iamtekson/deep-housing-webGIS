@@ -2,3 +2,41 @@
     width: 100%;
     height: 100%;
 }
+
+/* navbar */
+.nav-web{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+.nav-web .fas{
+    font-size: 1.5rem;
+    padding: 15px;
+    background-color: #056172;
+    cursor: pointer;
+    color: #ffffff;
+}
+/* .search{
+    position: fixed;
+    top: 0;
+    left: 180px;
+    z-index: 1000;
+}
+.search .fa-search {
+    font-size: 1.5rem;
+    padding: 15px;
+    background-color: #056172;
+    color: #ffffff;
+} */
+
+.leaflet-control-geocoder {
+    margin: 0 !important;
+    position: fixed;
+    top: 0;
+    left: 163px;
+    z-index: 1000;
+}
+.leaflet-control-geocoder input[type="text"], textarea {
+    background-color : #fff; 
+  }

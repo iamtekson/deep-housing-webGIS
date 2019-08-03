@@ -1,5 +1,5 @@
 var map = L.map('map', {
-    zoomControl: false
+    // zoomControl: false
 }).setView([28.2521, 83.9774], 18);
 
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -45,3 +45,14 @@ var layerControl = L.control.layers(baselayer,null, {
 }).addTo(map);
 
 var scale = L.control.scale().addTo(map);
+
+var searchLayer = L.Control.geocoder().addTo(map);
+
+$('.leaflet-control-geocoder-icon').replaceWith('<i class="fas fa-search"></i>');
+$('.leaflet-control-geocoder .fas').css({
+    'margin' : '0 !important',
+    'font-size' : '1.2rem',
+    'padding': '15px',
+    'background-color': '#056172',
+    'color': '#ffffff',
+});
