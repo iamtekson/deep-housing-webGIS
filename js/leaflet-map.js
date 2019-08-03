@@ -1,7 +1,10 @@
+// var map declear
 var map = L.map('map', {
     zoomControl: false
 }).setView([28.2521, 83.9774], 18);
+var scale = L.control.scale().addTo(map); //scale contorl of the map
 
+// base layer (tilelayer as a variable)
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -44,10 +47,8 @@ var layerControl = L.control.layers(baselayer,null, {
     collapsed : false
 }).addTo(map);
 
-var scale = L.control.scale().addTo(map);
-
+// OSM layer geocoding
 var searchLayer = L.Control.geocoder().addTo(map);
-
 $('.leaflet-control-geocoder-icon').replaceWith('<i class="fas fa-search"></i>');
 $('.leaflet-control-geocoder .fas').css({
     'margin' : '0 !important',

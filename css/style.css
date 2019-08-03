@@ -69,6 +69,22 @@ a, a:hover, a:focus {
     font-size: 1.5rem;
 }
 
+/* side-content */
+.option-content{
+    display: none;
+    text-transform: uppercase;
+    z-index: 1100;
+    position: fixed;
+    left: 0;
+    top: 55px;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+.option-content .title{
+    background-color: #056172;
+    padding: 10px;
+}
 
 /* footer */
 .footer{
