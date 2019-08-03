@@ -68,5 +68,18 @@ a, a:hover, a:focus {
 }
 
 
+/* footer */
+.footer{
+    width: 100%;
+    height: 30px;  
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    /* box-shadow: 0 -2px 8px #777; */
+    padding-bottom: 10px;
+}
 
-
+.footer div{
+    text-align: center;
+    
+}
