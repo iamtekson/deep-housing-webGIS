@@ -30,14 +30,12 @@ h1 {
 /*--------------------------------------------------------------
 # Links
 --------------------------------------------------------------*/
-a {
+a{
     color: #087aa3;
 }
-
-a:visited {
+a:hover, a:active, a:focus{
     color: #056172;
 }
-
 a, a:hover, a:focus { 
 	text-decoration: none; 
 	-webkit-transition: all 150ms ease-in; 
@@ -45,3 +43,18 @@ a, a:hover, a:focus {
 	-o-transition: all 150ms ease-in; 
 	transition: all 150ms ease-in;
 }
+
+/* NavBar */
+.navbar{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background: #fff;
+    box-shadow: 0 5px 20px#087aa3;
+    font-size: 1.2rem;
+}
+.navbar-brand{
+    font-size: 1.5rem;
+}
+
+
