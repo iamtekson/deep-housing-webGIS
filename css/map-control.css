@@ -13,22 +13,9 @@
 .nav-web .fas{
     font-size: 1.5rem;
     padding: 15px;
-    background-color: #056172;
-    cursor: pointer;
+    background-color: #087aa3;
     color: #ffffff;
 }
-/* .search{
-    position: fixed;
-    top: 0;
-    left: 180px;
-    z-index: 1000;
-}
-.search .fa-search {
-    font-size: 1.5rem;
-    padding: 15px;
-    background-color: #056172;
-    color: #ffffff;
-} */
 
 .leaflet-control-geocoder {
     margin: 0 !important;

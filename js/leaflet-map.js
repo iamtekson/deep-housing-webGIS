@@ -54,6 +54,6 @@ $('.leaflet-control-geocoder .fas').css({
     'margin' : '0 !important',
     'font-size' : '1.2rem',
     'padding': '15px',
-    'background-color': '#056172',
+    'background-color': '#087aa3',
     'color': '#ffffff',
 });

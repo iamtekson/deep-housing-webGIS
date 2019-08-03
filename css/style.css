@@ -82,8 +82,27 @@ a, a:hover, a:focus {
     padding: 0;
 }
 .option-content .title{
-    background-color: #056172;
+    background-color: #087aa3;
     padding: 10px;
+}
+
+/* side-bar control */
+.side-control{
+    margin: 0px;
+    position: fixed;
+    top: 25%;
+    /*bottom: 50%;*/
+    left: 0;
+    z-index: 1000;
+}
+.side-control .fas, .zoom-control .far{
+    display: block;
+    font-size: 2rem;
+    padding: 10px;
+    margin: 1px 0 0 0;
+    cursor: pointer;
+    background-color: #087aa3;
+    color: #ffffff;
 }
 
 /* footer */
