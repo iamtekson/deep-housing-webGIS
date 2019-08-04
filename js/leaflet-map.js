@@ -47,7 +47,7 @@ var layerControl = L.control.layers(baselayer, null, {
     collapsed: false
 }).addTo(map);
 
-// OSM layer geocoding
+// OSM layer geocoding : leaflet-search
 var searchLayer = L.Control.geocoder().addTo(map);
 $('.leaflet-control-geocoder-icon').replaceWith('<i class="fas fa-search"></i>');
 $('.leaflet-control-geocoder .fas').css({
@@ -58,7 +58,7 @@ $('.leaflet-control-geocoder .fas').css({
     'color': '#ffffff',
 });
 
-//Leaflet map print
+//Leaflet map print : leaflet-browser-print
 L.control.browserPrint({
     title: 'Print current Layer',
     documentTitle: 'Utility Management System',
@@ -72,9 +72,71 @@ L.control.browserPrint({
     manualMode: false,
     closePopupsOnPrint: true, //default value
 }).addTo(map);
-
 $('.print').click(function () {
     $('.option-content').hide();
     var modeToUse = L.control.browserPrint.mode.landscape();
     map.printControl.print(modeToUse);
 });
+
+//Add vector layer function : leaflet-omnivore
+$('.addVectorLayer_btn').click(function () {
+    $('.addVectorLayer').toggle();
+});
+map.on('click', function () {
+    $('.addVectorLayer').hide();
+});
+var fileInput = document.getElementById('input_files');
+
+function geojsonData() {
+    fileInput.addEventListener('change', function (event) {
+        var file = fileInput.files[0],
+            fr = new FileReader();
+        fileInput.value = ''; // Clear the input.
+        fr.onload = function () {
+            console.log(fr.result);
+            var layer = omnivore.geojson(fr.result).addTo(map); // Executed synchronously, so no need to use the .on('ready') listener.
+            map.fitBounds(layer.getBounds());
+        };
+        fr.readAsDataURL(file);
+    });
+};
+
+function csvData() {
+    fileInput.addEventListener('change', function (event) {
+        var file = fileInput.files[0],
+            fr = new FileReader();
+        fileInput.value = ''; // Clear the input.
+        fr.onload = function () {
+            console.log(fr.result);
+            var layer = omnivore.csv.parse(fr.result).addTo(map); // Executed synchronously, so no need to use the .on('ready') listener.
+            map.fitBounds(layer.getBounds());
+        };
+        fr.readAsText(file);
+    });
+};
+
+function inputVector(){
+    if(fileName.endsWith('csv')){
+        csvData();
+    } else {
+        geojsonData();
+    }
+}
+//   $(fileInput).change(function(e){
+//     var fileName = e.target.files[0].name;
+//     console.log(fileName);
+//     if(fileName.endsWith("csv")) {
+//         csvData();
+//     } else {
+//         geojsonData();
+//     }
+// });
+geojsonData();
+
+// omnivore.csv('a.csv').addTo(map);
+// omnivore.gpx('a.gpx').addTo(map);
+// omnivore.kml('a.kml').addTo(map);
+// omnivore.wkt('a.wkt').addTo(map);
+// omnivore.topojson('a.topojson').addTo(map);
+// omnivore.geojson('data/try.geojson').addTo(map);
+// omnivore.polyline('a.txt').addTo(map);

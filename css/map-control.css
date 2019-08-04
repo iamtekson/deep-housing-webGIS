@@ -72,3 +72,21 @@
   .leaflet-control-geocoder .fas:hover{
       background-color: #056172;
   }
+
+/* Add vector layers */
+.addVectorLayer{
+    display: none;
+    z-index: 1100;
+    width: 350px;
+    height: 200px; /*160px */
+    background-color: #056172;
+    padding: 20px;
+    font-size: 1.4rem;
+    color: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
