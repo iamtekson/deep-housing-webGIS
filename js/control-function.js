@@ -22,7 +22,21 @@ function fullScreenTgl() {
 }
 $('.full-browser').click(fullScreenTgl); //View in full screen toggler
 
+
+
+
 //Zoom to layer
 $('.extend').click(function () {
    map.setView([28.2521, 83.9774], 18);
+});
+
+
+
+//Marker add function
+$('.marker-add').click(function () {
+   map.on('click', function (e) {
+      var popup = `<b>Lat: ${e.latlng.lat}</b> </br> <b> Lng: ${e.latlng.lng}</b>`,
+      marker = new L.Marker([e.latlng.lat, e.latlng.lng]),
+      m = marker.bindPopup(popup).openPopup().addTo(map);
+   })
 });
