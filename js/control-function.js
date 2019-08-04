@@ -169,3 +169,8 @@ function latlng() {
    setTimeout(latlng, 1000);
 }
 latlng();
+
+//share map function
+$('.share').dialog({
+   width:400
+});

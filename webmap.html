@@ -44,7 +44,7 @@
     <nav>
         <div class="nav-web">
             <a href="#"><i class="fas fa-bars options"></i></a>
-            <a href="#"><i class="fas fa-user-alt"></i></a>
+            <a href="login.html"><i class="fas fa-user-alt" data-toggle="tooltip" title="Login/Logout"></i></a>
             <a href="index.html"><i class="fas fa-home"></i></a>
         </div>
     </nav>
@@ -57,7 +57,8 @@
                 <li class="list-group-item print"><i class="fas fa-print"></i>Print</li>
             </a>
             <a href="#">
-                <li class="list-group-item addVectorLayer_btn"><i class="fas fa-arrow-circle-up"></i>Add vector files</li>
+                <li class="list-group-item addVectorLayer_btn"><i class="fas fa-arrow-circle-up"></i>Add vector files
+                </li>
             </a>
             <a href="#">
                 <li class="list-group-item"><i class="fas fa-folder-open"></i>Catalog</li>
@@ -113,11 +114,34 @@
         </form>
     </section>
 
+    <!-- share this map -->
+    <section class="share" title="Share">
+        <div>This is the Web-GIS of the Deep-Housing Utilities. If you want to share click one of following option.
+        </div>
+        <hr>
+        <h6>Share this link</h6>
+        <p class="col-12 share-link">https://deephousing.com/webgis</p>
+        <hr>
+        <h6>Share On</h6>
+        <div class="row">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-linkedin"></i>
+        </div>
+        <hr>
+
+
+
+
+
+    </section>
+
+
     <!-- show coordinate on mouse move -->
     <div class="coordinate container">
-            coordinate:
-            <span class="latlng"></span>
-        </div>
+        coordinate:
+        <span class="latlng"></span>
+    </div>
 
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -127,8 +151,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-        <!-- jquery ui js -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- jquery ui js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <!-- leaflet js -->
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"

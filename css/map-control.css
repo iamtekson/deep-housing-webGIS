@@ -15,7 +15,7 @@
     font-size: 1.5rem;
     padding: 15px;
     color: #ffffff;
-    border-left: 2px solid #056172;
+    border-right: 2px solid #fff;
 }
 .nav-web .fas:hover, .fas:active, .fas:focus{
     background-color: #056172;
@@ -123,14 +123,34 @@
     color: #fff;
     background-color: #087aa3;
     border: 1px solid #fff;
-    /* border-radius: 50px; */
 }
 .leaflet-control-attribution {
     color: #fff;
     background-color: #087aa3 !important;
     border: 1px solid #fff;
-    /* border-radius: 50px; */
 }
 .leaflet-control-attribution a{
     color: #fff;
+}
+
+/* Share map */
+.share .share-link {
+    color: #fff;
+    padding: 5px 10px;
+    background: #888;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+.share .fab{
+    font-size: 3rem;
+    color: #087aa3;
+    padding: 5px 10px;
+    /* background-color: #087aa3; */
+}
+.share .row{
+    text-align: center; 
+}
+.share .fab:hover{
+    color: #fff;
+    background-color: #056172;
 }
