@@ -93,3 +93,39 @@
 .leaflet-control-measure a{
     color: aliceblue;
 }
+
+/* Show coordinate on mousemove */
+.coordinate{
+    background-color: #087aa3;
+    color: #ffffff;
+    width: 380px;
+    text-align: center;
+    height: 27px;
+    font-size: 0.8rem;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    right: 0;
+    z-index: 1000;
+    padding: 2px 10px 2px 10px;
+    display: block;
+    border: 1px solid #fff;
+    border-radius: 50px;
+}
+
+/* Leaflet control scale  */
+.leaflet-control-scale-line{
+    color: #fff;
+    background-color: #087aa3;
+    border: 1px solid #fff;
+    /* border-radius: 50px; */
+}
+.leaflet-control-attribution {
+    color: #fff;
+    background-color: #087aa3 !important;
+    border: 1px solid #fff;
+    /* border-radius: 50px; */
+}
+.leaflet-control-attribution a{
+    color: #fff;
+}

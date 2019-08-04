@@ -161,3 +161,11 @@ $('.marker-add').click(function () {
    })
 });
 
+//show coordinate in footer
+function latlng() {
+   map.on('mousemove', function (e) {
+       return $('.latlng').html(`Lat : ${e.latlng.lat}, long: ${e.latlng.lng}`)
+   });
+   setTimeout(latlng, 1000);
+}
+latlng();
