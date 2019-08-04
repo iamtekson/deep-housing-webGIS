@@ -70,6 +70,11 @@ a, a:hover, a:focus {
     font-size: 1.5rem;
 }
 
+/* main body */
+.main-body{
+    padding-bottom: 50px;
+}
+
 /* footer */
 .footer{
     width: 100%;
