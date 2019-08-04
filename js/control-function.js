@@ -22,3 +22,7 @@ function fullScreenTgl() {
 }
 $('.full-browser').click(fullScreenTgl); //View in full screen toggler
 
+//Zoom to layer
+$('.extend').click(function () {
+   map.setView([28.2521, 83.9774], 18);
+});
