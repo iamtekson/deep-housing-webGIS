@@ -73,7 +73,7 @@
       background-color: #056172;
   }
 
-  /* jqeury ui  */
+  /* jqeury ui */
 .ui-dialog { 
     z-index: 1100 !important;
 }
@@ -81,3 +81,15 @@
     color: #087aa3;
 }
 
+/* Leaflet measure */
+.leaflet-control-measure {
+    display: none;
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    background-color: #d3e5e9;
+    color: #087aa3;
+}
+.leaflet-control-measure a{
+    color: aliceblue;
+}
