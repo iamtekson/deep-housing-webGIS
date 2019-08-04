@@ -15,6 +15,7 @@
     font-size: 1.5rem;
     padding: 15px;
     color: #ffffff;
+    border-left: 2px solid #056172;
 }
 .nav-web .fas:hover, .fas:active, .fas:focus{
     background-color: #056172;
@@ -35,6 +36,10 @@
 .option-content .title{
     background-color: #087aa3;
     padding: 10px;
+}
+.option-content .fas{
+    font-size: 1.3rem;
+    padding-right: 1em;
 }
 
 /* side-bar control */
@@ -63,7 +68,7 @@
     margin: 0 !important;
     position: fixed;
     top: 0;
-    left: 160px;
+    left: 165px;
     z-index: 1000;
 }
 .leaflet-control-geocoder input[type="text"], textarea {
