@@ -42,4 +42,6 @@ $('.marker-add').click(function () {
 });
 
 //Jquery-UI dialogbox
-$('.add-vector-layer').dialog();
+$('.add-vector-layer').dialog({
+   width : 400
+});

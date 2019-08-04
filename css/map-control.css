@@ -3,9 +3,6 @@
     height: 100%;
 }
 
-/* jqeury ui  */
-.ui-dialog { z-index: 1100 !important ;}
-
 /* navbar */
 .nav-web{
     position: fixed;
@@ -76,20 +73,11 @@
       background-color: #056172;
   }
 
-/* Add vector layers
-.add-vector-layer{
-    display: none;
-    z-index: 1100;
-    width: 350px;
-    height: 200px;
-    background-color: #056172;
-    padding: 20px;
-    font-size: 1.4rem;
-    color: #ffffff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-} */
+  /* jqeury ui  */
+.ui-dialog { 
+    z-index: 1100 !important;
+}
+.ui-dialog .ui-dialog-titlebar{
+    color: #087aa3;
+}
+
