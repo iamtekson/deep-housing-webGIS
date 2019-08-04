@@ -3,6 +3,9 @@
     height: 100%;
 }
 
+/* jqeury ui  */
+.ui-dialog { z-index: 1100 !important ;}
+
 /* navbar */
 .nav-web{
     position: fixed;
@@ -73,12 +76,12 @@
       background-color: #056172;
   }
 
-/* Add vector layers */
-.addVectorLayer{
+/* Add vector layers
+.add-vector-layer{
     display: none;
     z-index: 1100;
     width: 350px;
-    height: 200px; /*160px */
+    height: 200px;
     background-color: #056172;
     padding: 20px;
     font-size: 1.4rem;
@@ -89,4 +92,4 @@
     margin-right: -50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
-}
+} */

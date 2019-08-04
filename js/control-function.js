@@ -1,4 +1,4 @@
-// nav-web functional
+// nav-web function toggle
 $('.nav-web .options').click(function () {
    $('.option-content').toggle();
 });
@@ -40,3 +40,6 @@ $('.marker-add').click(function () {
       m = marker.bindPopup(popup).openPopup().addTo(map);
    })
 });
+
+//Jquery-UI dialogbox
+$('.add-vector-layer').dialog();

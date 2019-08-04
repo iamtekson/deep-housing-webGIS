@@ -86,7 +86,6 @@ map.on('click', function () {
     $('.addVectorLayer').hide();
 });
 var fileInput = document.getElementById('input_files');
-
 function geojsonData() {
     fileInput.addEventListener('change', function (event) {
         var file = fileInput.files[0],
@@ -100,7 +99,6 @@ function geojsonData() {
         fr.readAsDataURL(file);
     });
 };
-
 function csvData() {
     fileInput.addEventListener('change', function (event) {
         var file = fileInput.files[0],
@@ -114,14 +112,6 @@ function csvData() {
         fr.readAsText(file);
     });
 };
-
-function inputVector(){
-    if(fileName.endsWith('csv')){
-        csvData();
-    } else {
-        geojsonData();
-    }
-}
 //   $(fileInput).change(function(e){
 //     var fileName = e.target.files[0].name;
 //     console.log(fileName);
@@ -132,7 +122,6 @@ function inputVector(){
 //     }
 // });
 geojsonData();
-
 // omnivore.csv('a.csv').addTo(map);
 // omnivore.gpx('a.gpx').addTo(map);
 // omnivore.kml('a.kml').addTo(map);
