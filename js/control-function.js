@@ -249,6 +249,10 @@ $('.option-content .tutorial').click(function () {
             intro: "<h1>Nav bar</h1><ol><li>Options</li><ul><li>map printout</li><li>add vector layers</li><li>measure function</li<li>other many more functions</li></ul><li>User login</li><li>Home button</li></ol>."
          },
          {
+            element: '.leaflet-control-geocoder',
+            intro:'<h1>search</h1><p>The places names can be searched from here.</p>'
+         },
+         {
             element: document.querySelector('.side-control'),
             intro: "<h1> basic functionalities </h1><ul><li>Zoom in</li><li>Zoom out</li><li>Full browser</li><li>3D layer</li><li>Zoom to layer</li><li>Info about feature</li><li>Add marker</li</ul>",
             position: 'right'
@@ -260,6 +264,10 @@ $('.option-content .tutorial').click(function () {
          {
             element: '.coordinate',
             intro: "<h1>Coordinate</h1><p>This shows the coordinate of the mouse position while mouse is moving</p>",
+         },
+         {
+            element:'.layer-toggler',
+            intro: "<h1>Layer Group</h1><p>The selected layer from this menu will be displayed in map"
          },
          {
             element: '#sidebar-layer-control',
