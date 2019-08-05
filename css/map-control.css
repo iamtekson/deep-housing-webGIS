@@ -241,3 +241,6 @@ input[type='radio']:hover {
     color: #087aa3;
     font-size: 3.5rem;
 }
+.layer-toggler .fa-layer-group:hover, .layer-toggler .fa-layer-group:active, .layer-toggler .fa-layer-group.focus{
+    color:#056172;
+}
