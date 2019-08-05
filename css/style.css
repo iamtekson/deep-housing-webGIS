@@ -56,6 +56,10 @@ a, a:hover, a:focus {
 	transition: all 150ms ease-in;
 }
 
+/* ------------------------------------------------------------------
+main body
+------------------------------------------------------------------ */
+
 /* NavBar */
 .navbar{
     width: 100%;
@@ -85,7 +89,6 @@ a, a:hover, a:focus {
     /* box-shadow: 0 -2px 8px #777; */
     padding-bottom: 10px;
 }
-
 .footer div{
     text-align: center;    
 }

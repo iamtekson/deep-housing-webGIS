@@ -33,30 +33,19 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
         integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
+    <!-- required css files -->
     <link rel="stylesheet" href="css/map-control.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <!-- map view -->
-    <h1 class="title" leaflet-browser-print-content style="display: none;">Utility Management System</h1>
-    <h3 class="sub-content" leaflet-browser-print-content style="display: none;">Map prepared by Tekson</h3>
+    <h1 class="title" leaflet-browser-print-content style="display: none;">Utility Management System: Deep Housing</h1>
     <div id="map"></div>
 
     <!-- navbar in map -->
     <nav>
-        <div class="nav-web" data-intro="<h1>Nav bar</h1> 
-            <ol>
-                <li>Options</li>
-                <ul>
-                    <li>map printout</li>
-                    <li>add vector layers</li>
-                    <li>measure function</li>
-                    <li>other many more functions</li>
-                </ul>
-                <li>User login</li>
-                <li>Home button</li>
-            </ol>" data-step=1 data-hint='this is hint'>
+        <div class="nav-web">
             <a href="#"><i class="fas fa-bars options"></i></a>
             <a href="login.html"><i class="fas fa-user-alt" data-toggle="tooltip" title="Login/Logout"></i></a>
             <a href="index.html"><i class="fas fa-home"></i></a>
@@ -93,7 +82,7 @@
                 <li class="list-group-item"><i class="fas fa-question-circle"></i>Docs</li>
             </a>
             <a href="#">
-                <li class="list-group-item"><i class="fas fa-book-open"></i>Tutorial</li>
+                <li class="list-group-item tutorial"><i class="fas fa-book-open"></i>Tutorial</li>
             </a>
             <a href="#">
                 <li class="list-group-item about-btn"><i class="fas fa-info-circle"></i>About</li>
@@ -102,31 +91,19 @@
     </div>
 
     <!-- Side-bar controls -->
-    <div class="side-control" data-intro="<h1> basic functionalities </h1>
-        <ul>
-                <li>Zoom in</li>
-                <li>Zoom out</li>
-                <li>Full browser</li>
-                <li>3D layer</li>
-                <li>Zoom to layer</li>
-                <li>Info about feature</li>
-                <li>Add marker</li>
-            </ul>" data-step=3>
+    <div class="side-control">
         <a href="#"><i class="fas fa-plus zoom-in" data-toggle='tooltip' data-placement='top' title='Zoom In'></i></a>
         <a href="#"><i class="fas fa-minus zoom-out" data-toggle='tooltip' data-placement='right'
                 title='Zoom Out'></i></a>
-        <a href="#"><i class="fas fa-expand full-browser" data-toggle='tooltip' data-placement='right'
-                title='Expand the full browser'></i></a>
-        <a href="#"><i class="fas fa-filter" data-toggle='tooltip' data-placement='right' title='Filter data'></i></a>
         <a href="#"><i class="fas fa-compress extend" data-toggle='tooltip' data-placement='right'
                 title='Zoom to layer'></i></a>
-        <a href="#"><i class="fas fa-info-circle" data-toggle='tooltip' data-placement='right'
-                title='Info About Feature'></i></a>
+        <a href="#"><i class="fas fa-expand full-browser" data-toggle='tooltip' data-placement='right'
+                title='Expand the full browser'></i></a>
+        <a href="#"><i class="fas fa-cubes" data-toggle='tooltip' data-placement='right' title='view 3D layer'></i></a>
+        <a href="#"><i class="fas fa-ruler-horizontal measure-btn" data-toggle='tooltip' data-placement='right'
+                title='measure lenght and area of the feature'></i></a>
         <a href="#"><i class="fas fa-map-marker-alt marker-add" data-toggle='tooltip' data-placement='right'
-                title='Add a marker'></i></a>
-        <a href="#">
-            <div class="search-container" data-toggle='tooltip' data-placement='right' title='Search'></div>
-        </a>
+                title='Add a marker popup content as their respective lat and long'></i></a>
     </div>
 
     <!-- Add Vector Layer -->
@@ -162,40 +139,37 @@
     <section class="about-option" style="display: none" title="About">
         <h3>Utility Management System</h3>
         <div>
-                In developing countries like ours where cities are not properly planned and organized, mapping of
-                utilities sector can play a major role in the development of that country or place. Utilities like
-                water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
-                even if they are properly documented, they are in low quality maps. Reliable information regarding
-                them can be of great help which can help in efficient service delivery.
-            </div>
-            <div>
-                With the help of Geographic Information System (GIS) and other digital techniques, data can be
-                visualized easily which can make tasks easy. Repairing and maintaining of utility lines can be
-                carried efficiently in short period of time. Web based GIS contains information like building
-                boundaries, electric lines, solar lines, etc. and with the help of proper tools, it can be used to
-                visualize and maintain those information.
-            </div>
+            In developing countries like ours where cities are not properly planned and organized, mapping of
+            utilities sector can play a major role in the development of that country or place. Utilities like
+            water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
+            even if they are properly documented, they are in low quality maps. Reliable information regarding
+            them can be of great help which can help in efficient service delivery.
+        </div>
+        <div>
+            With the help of Geographic Information System (GIS) and other digital techniques, data can be
+            visualized easily which can make tasks easy. Repairing and maintaining of utility lines can be
+            carried efficiently in short period of time. Web based GIS contains information like building
+            boundaries, electric lines, solar lines, etc. and with the help of proper tools, it can be used to
+            visualize and maintain those information.
+        </div>
     </section>
 
     <!-- side-bar popup -->
     <section class="addsidebar-popup">
-            <div class="sidebar-header">
-                <i class="fas fa-info-circle"></i>
-                <h3>Informations</h3>
-                <i class="fas fa-times sidebar-close"></i>
-            </div>
-            <div class="clicked-coordinate">
-                <p class="lat">Latitude:34.2323</p>
-                <p class="long">Latitude:22.2324</p>
-            </div>
-            <div class="sidebar-info"></div>
-        </section>
+        <div class="sidebar-header">
+            <i class="fas fa-info-circle"></i>
+            <h3>Informations</h3>
+            <i class="fas fa-times sidebar-close"></i>
+        </div>
+        <div class="clicked-coordinate">
+            <p class="lat">Latitude:34.2323</p>
+            <p class="long">Latitude:22.2324</p>
+        </div>
+        <div class="sidebar-info"></div>
+    </section>
 
-<!-- sidebar layer control -->
-<section id="sidebar-layer-control" data-intro="<h1>sidebar layer control</h1> <ul>
-        <li>select one baselayer</li>
-        <li>select requred layers</li>
-    </ul>" data-step=2>
+    <!-- sidebar layer control -->
+    <section id="sidebar-layer-control">
         <div class="sidebar-header">
             <i class="fas fa-info-circle"></i>
             <h3>All Layers</h3>
@@ -203,23 +177,14 @@
         </div>
         <div class="sidebar-layer-control-main-body">
             <p>Here are the basic information of this housing</p>
-            <!-- <select name="baselayer" id="baselayer">
-                <option value="default">Select Base Layer</option>
-                <option class="osm" value="osm">Open Street Map</option>
-                <option value="topo">Open Topo Map</option>
-                <option class="water" value="water">Water Color Map</option>
-                <option class="mapbox" value="mapbox">MapBox Custom Map</option>
-            </select> -->
             <div><input class="osm" name="basemap" type="radio" checked>open street map</div>
             <div><input class="dark" name="basemap" type="radio">dark map</div>
             <div><input class="water" name="basemap" type="radio">water color map</div>
             <div><input class="mapbox" name="basemap" type="radio">mapbox</div>
-
-
             <input type="text" placeholder="Search layers">
             <h5>Other Layers</h5>
-            <div><input type="checkbox" class='street-light' id="">Street Light</div> 
-            <div><input type="checkbox" id="" checked>Road Network</div> 
+            <div><input type="checkbox" class='street-light' id="">Street Light</div>
+            <div><input type="checkbox" id="" checked>Road Network</div>
             <div><input type="checkbox" id="" checked>Drainage Network</div>
             <div><input type="checkbox" id="" checked>Water Supply</div>
             <div><input type="checkbox" id="" checked>Electrical Line</div>
@@ -228,8 +193,7 @@
     </section>
 
     <!-- show coordinate on mouse move -->
-    <div class="coordinate container" data-intro="<h1>Coordinate</h1>
-        <p>This shows the coordinate of the mouse position while mouse is moving</p>" data-step=4>
+    <div class="coordinate container">
         coordinate:
         <span class="latlng"></span>
     </div>
@@ -269,6 +233,8 @@
 
     <!-- Leaflet-Measure -->
     <script src="dist/leaflet-measure.js"></script>
+
+    <!-- main js files -->
     <script src="js/leaflet-map.js"></script>
     <script src="js/control-function.js"></script>
 </body>

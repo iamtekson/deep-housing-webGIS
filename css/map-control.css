@@ -3,6 +3,58 @@
     height: 100%;
 }
 
+  /* jqeury ui */
+  .ui-dialog { 
+    z-index: 1100 !important;
+}
+.ui-dialog .ui-dialog-titlebar{
+    color: #fff;
+    background: #087aa3;
+}
+
+/* Leaflet control scale  */
+.leaflet-control-scale-line{
+    color: #fff;
+    background-color: #087aa3;
+    border: 1px solid #fff;
+}
+.leaflet-control-attribution {
+    color: #fff;
+    background-color: #087aa3 !important;
+    border: 1px solid #fff;
+}
+.leaflet-control-attribution a{
+    color: #fff;
+}
+
+/* osm geocoder */
+.leaflet-control-geocoder {
+    margin: 0 !important;
+    position: fixed;
+    top: 0;
+    left: 165px;
+    z-index: 1000;
+}
+.leaflet-control-geocoder input[type="text"], textarea {
+    background-color : #fff; 
+  }
+  .leaflet-control-geocoder .fas:hover{
+      background-color: #056172;
+  }
+
+/* Leaflet measure */
+.leaflet-control-measure {
+    display: none;
+    position: fixed;
+    bottom: 50px;
+    left: 20px;
+    background-color: #d3e5e9;
+    color: #087aa3;
+}
+.leaflet-control-measure a{
+    color: aliceblue;
+}
+
 /* navbar */
 .nav-web{
     position: fixed;
@@ -18,6 +70,27 @@
     border-right: 2px solid #fff;
 }
 .nav-web .fas:hover, .fas:active, .fas:focus{
+    background-color: #056172;
+}
+
+/* side-bar control */
+.side-control{
+    margin: 0px;
+    position: fixed;
+    top: 25%;
+    left: 0;
+    z-index: 1000;
+}
+.side-control .fas, .side-control .far{
+    display: block;
+    font-size: 2rem;
+    padding: 10px;
+    margin: 1px 0 0 0;
+    cursor: pointer;
+    background-color: #087aa3;
+    color: #ffffff;
+}
+.side-control .fas:hover, .side-control .far:hover{
     background-color: #056172;
 }
 
@@ -42,62 +115,24 @@
     padding-right: 1em;
 }
 
-/* side-bar control */
-.side-control{
-    margin: 0px;
-    position: fixed;
-    top: 25%;
-    left: 0;
-    z-index: 1000;
-}
-.side-control .fas, .side-control .far{
-    display: block;
-    font-size: 2rem;
-    padding: 10px;
-    margin: 1px 0 0 0;
-    cursor: pointer;
-    background-color: #087aa3;
-    color: #ffffff;
-}
-.side-control .fas:hover, .side-control .far:hover{
-    background-color: #056172;
-}
-
-/* osm geocoder */
-.leaflet-control-geocoder {
-    margin: 0 !important;
-    position: fixed;
-    top: 0;
-    left: 165px;
-    z-index: 1000;
-}
-.leaflet-control-geocoder input[type="text"], textarea {
-    background-color : #fff; 
-  }
-  .leaflet-control-geocoder .fas:hover{
-      background-color: #056172;
-  }
-
-  /* jqeury ui */
-.ui-dialog { 
-    z-index: 1100 !important;
-}
-.ui-dialog .ui-dialog-titlebar{
+/* Share map */
+.share .share-link {
     color: #fff;
-    background: #087aa3;
+    padding: 5px 10px;
+    background: #888;
+    border: 1px solid #fff;
+    border-radius: 5px;
 }
-
-/* Leaflet measure */
-.leaflet-control-measure {
-    display: none;
-    position: fixed;
-    bottom: 50px;
-    right: 20px;
-    background-color: #d3e5e9;
+.share .fab{
+    font-size: 3rem;
     color: #087aa3;
+    margin: 5px 10px;
 }
-.leaflet-control-measure a{
-    color: aliceblue;
+.share .share-social-media {
+    text-align: center; 
+}
+.share .fab:hover{
+    color: #d5d5d5;
 }
 
 /* Show coordinate on mousemove */
@@ -117,43 +152,6 @@
     display: block;
     border: 1px solid #fff;
     border-radius: 50px;
-}
-
-/* Leaflet control scale  */
-.leaflet-control-scale-line{
-    color: #fff;
-    background-color: #087aa3;
-    border: 1px solid #fff;
-}
-.leaflet-control-attribution {
-    color: #fff;
-    background-color: #087aa3 !important;
-    border: 1px solid #fff;
-}
-.leaflet-control-attribution a{
-    color: #fff;
-}
-
-/* Share map */
-.share .share-link {
-    color: #fff;
-    padding: 5px 10px;
-    background: #888;
-    border: 1px solid #fff;
-    border-radius: 5px;
-}
-.share .fab{
-    font-size: 3rem;
-    color: #087aa3;
-    margin: 5px 10px;
-    /* padding: 5px 10px; */
-    /* background-color: #087aa3; */
-}
-.share .share-social-media {
-    text-align: center; 
-}
-.share .fab:hover{
-    color: #d5d5d5;
 }
 
 /* Sidebar popup */

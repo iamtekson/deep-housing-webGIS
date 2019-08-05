@@ -74,37 +74,7 @@ function getDataFromInputFile() {
       }
    });
 };
-function csvData() {
-   fileInput.addEventListener('change', function (event) {
-      var file = fileInput.files[0],
-         fr = new FileReader();
-      fileInput.value = ''; // Clear the input.
-      fr.onload = function () {
-         console.log(fr.result);
-         var layer = omnivore.csv.parse(fr.result).addTo(map); // Executed synchronously, so no need to use the .on('ready') listener.
-         map.fitBounds(layer.getBounds());
-      };
-      fr.readAsText(file);
-   });
-};
-//   $(fileInput).change(function(e){
-//     var fileName = e.target.files[0].name;
-//     console.log(fileName);
-//     if(fileName.endsWith("csv")) {
-//         csvData();
-//     } else {
-//         geojsonData();
-//     }
-// });
 getDataFromInputFile();
-
-// omnivore.gpx('a.gpx').addTo(map);
-// omnivore.kml('a.kml').addTo(map);
-// omnivore.wkt('a.wkt').addTo(map);
-// omnivore.topojson('a.topojson').addTo(map);
-// omnivore.geojson('data/try.geojson').addTo(map);
-// omnivore.polyline('a.txt').addTo(map);
-
 
 // Measure distance and area : leaflet-measure
 $(".measure-btn").click(function () {
@@ -148,6 +118,11 @@ $('.zoom-out').click(function () {
    map.setZoom(map.getZoom() - 1)
 });
 
+//Zoom to layer
+$('.extend').click(function () {
+   map.setView([28.2521, 83.9774], 18);
+});
+
 //Toggle full layer
 function fullScreenTgl() {
    let doc = document, elm = doc.documentElement;
@@ -158,16 +133,6 @@ function fullScreenTgl() {
    else { console.log("Fullscreen support not detected."); }
 }
 $('.full-browser').click(fullScreenTgl); //View in full screen toggler
-
-
-
-
-//Zoom to layer
-$('.extend').click(function () {
-   map.setView([28.2521, 83.9774], 18);
-});
-
-
 
 //Marker add function
 var useMarker = true
@@ -185,16 +150,6 @@ $('.marker-add').click(function () {
    useMarker = !useMarker
 });
 
-
-//show coordinate in footer
-function latlng() {
-   map.on('mousemove', function (e) {
-      return $('.latlng').html(`Lat : ${e.latlng.lat}, long: ${e.latlng.lng}`)
-   });
-   setTimeout(latlng, 1000);
-}
-latlng();
-
 // share map function
 $('.share-btn').click(function () {
    $('.share').dialog({
@@ -209,7 +164,6 @@ $('.about-btn').click(function () {
    });
 });
 
-
 // sidebar-popup - sidebar layer control
 map.on('click', function () {
    $('.addsidebar-popup').show()
@@ -219,25 +173,11 @@ $('.sidebar-close').click(function () {
    $('#sidebar-layer-control').hide();
 });
 
-//sidebar-layer-control ::street light
-$(".street-light").click(function () {
-   if ($(this).prop('checked') == true) {
-      map.addLayer(light);
-   } else if ($(this).prop('checked') == false) {
-      map.removeLayer(light);
-   }
-});
+// ===================================
+// sidebar-layrer and sidebar popup control
+// ===================================
 
-//street light layer control
-$(".street-light").click(function () {
-   if ($(this).prop('checked') == true) {
-      map.addLayer(light);
-   } else if ($(this).prop('checked') == false) {
-      map.removeLayer(light);
-   }
-});
-
-//basemap layer control
+//basemap layer control : side layer
 $(".osm").click(function () {
    osm.addTo(map);
    mapBox.remove()
@@ -263,12 +203,35 @@ $(".dark").click(function () {
    mapBox.remove()
 });
 
-// $('.side-control .fa-info-circle').click(function(){
-//    introJs().start();
-// })
+//sidebar-layer-control ::street light
+$(".street-light").click(function () {
+   if ($(this).prop('checked') == true) {
+      map.addLayer(light);
+   } else if ($(this).prop('checked') == false) {
+      map.removeLayer(light);
+   }
+});
+
+//layer control : street light
+$(".street-light").click(function () {
+   if ($(this).prop('checked') == true) {
+      map.addLayer(light);
+   } else if ($(this).prop('checked') == false) {
+      map.removeLayer(light);
+   }
+});
+
+//show coordinate in footer
+function latlng() {
+   map.on('mousemove', function (e) {
+      return $('.latlng').html(`Lat : ${e.latlng.lat}, long: ${e.latlng.lng}`)
+   });
+   setTimeout(latlng, 1000);
+}
+latlng();
 
 //Tutorial of this web-gis : introjs
-$('.side-control .fa-info-circle').click(function () {
+$('.option-content .tutorial').click(function () {
    var intro = introJs();
    intro.setOptions({
       steps: [
