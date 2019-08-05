@@ -51,18 +51,18 @@ function getDataFromInputFile() {
       fileInput.value = ''; // Clear the input.
       extention = file.name.split('.')[1]
       console.log(extention)
-      if(extention === 'geojson') {
+      if (extention === 'geojson') {
          fr.onload = function () {
             console.log(file);
-               var layer = omnivore.geojson(fr.result).addTo(map);
-               map.fitBounds(layer.getBounds());
+            var layer = omnivore.geojson(fr.result).addTo(map);
+            map.fitBounds(layer.getBounds());
             // } else if () {
-          
+
             // }
             console.log(extention)
          };
          fr.readAsDataURL(file);
-      } else if (extention  === 'csv') {
+      } else if (extention === 'csv') {
          fr.onload = function () {
             console.log(file);
             console.log(fr.result);
@@ -196,14 +196,14 @@ function latlng() {
 latlng();
 
 // share map function
-$('.share-btn').click(function() {
+$('.share-btn').click(function () {
    $('.share').dialog({
       width: 400
    });
 });
 
 //about section in webmap
-$('.about-btn').click(function(){
+$('.about-btn').click(function () {
    $('.about-option').dialog({
       width: 500
    });
@@ -211,50 +211,92 @@ $('.about-btn').click(function(){
 
 
 // sidebar-popup - sidebar layer control
-map.on('click', function() {
+map.on('click', function () {
    $('.addsidebar-popup').show()
 });
-$('.sidebar-close').click(function(){
+$('.sidebar-close').click(function () {
    $('.addsidebar-popup').hide();
    $('#sidebar-layer-control').hide();
 });
 
 //sidebar-layer-control ::street light
-$(".street-light").click(function(){
-   if( $(this).prop('checked') == true ) {
+$(".street-light").click(function () {
+   if ($(this).prop('checked') == true) {
       map.addLayer(light);
-   } else if( $(this).prop('checked') == false ){
+   } else if ($(this).prop('checked') == false) {
       map.removeLayer(light);
    }
 });
 
 //street light layer control
-$(".street-light").click(function(){
-   if( $(this).prop('checked') == true ) {
+$(".street-light").click(function () {
+   if ($(this).prop('checked') == true) {
       map.addLayer(light);
-   } else if( $(this).prop('checked') == false ){
+   } else if ($(this).prop('checked') == false) {
       map.removeLayer(light);
    }
 });
 
 //basemap layer control
-$(".osm").click(function(){
-   console.log(map)
+$(".osm").click(function () {
    osm.addTo(map);
    mapBox.remove()
    watercolor.remove()
    CartoDB.remove()
 });
-$(".mapbox").click(function(){
-   console.log(map)
+$(".mapbox").click(function () {
    mapBox.addTo(map);
+   watercolor.remove()
+   osm.remove()
+   CartoDB.remove()
 });
-$(".water").click(function(){
-   console.log(map)
+$(".water").click(function () {
    watercolor.addTo(map);
+   mapBox.remove()
+   CartoDB.remove()
+   osm.remove()
 });
-$(".dark").click(function(){
-   console.log(map)
+$(".dark").click(function () {
    CartoDB.addTo(map);
+   watercolor.remove()
+   osm.remove()
+   mapBox.remove()
 });
 
+// $('.side-control .fa-info-circle').click(function(){
+//    introJs().start();
+// })
+
+//Tutorial of this web-gis : introjs
+$('.side-control .fa-info-circle').click(function () {
+   var intro = introJs();
+   intro.setOptions({
+      steps: [
+         {
+            intro: "<h1>Tutorial</h1>"
+         },
+         {
+            element: document.querySelector('.nav-web'),
+            intro: "<h1>Nav bar</h1><ol><li>Options</li><ul><li>map printout</li><li>add vector layers</li><li>measure function</li<li>other many more functions</li></ul><li>User login</li><li>Home button</li></ol>."
+         },
+         {
+            element: document.querySelector('.side-control'),
+            intro: "<h1> basic functionalities </h1><ul><li>Zoom in</li><li>Zoom out</li><li>Full browser</li><li>3D layer</li><li>Zoom to layer</li><li>Info about feature</li><li>Add marker</li</ul>",
+            position: 'right'
+         },
+         {
+            element: document.querySelector('.leaflet-control-scale'),
+            intro: '<h1>Scale</h1> <p> This shows the map-scale in both unit meter and feet.</p>',
+         },
+         {
+            element: '.coordinate',
+            intro: "<h1>Coordinate</h1><p>This shows the coordinate of the mouse position while mouse is moving</p>",
+         },
+         {
+            element: '#sidebar-layer-control',
+            intro: '<h1>sidebar layer control</h1> <ul><li>select one baselayer</li><li>select requred layers</li></ul>'
+         }
+      ]
+   });
+   intro.start();
+});

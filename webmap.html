@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="dist/MarkerCluster.css">
     <link rel="stylesheet" href="dist/MarkerCluster.Default.css">
 
+    <!-- introjs css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css">
+
     <!-- Leaflet-measure css -->
     <link rel="stylesheet" href="dist/leaflet-measure.css">
 
@@ -42,7 +45,18 @@
 
     <!-- navbar in map -->
     <nav>
-        <div class="nav-web">
+        <div class="nav-web" data-intro="<h1>Nav bar</h1> 
+            <ol>
+                <li>Options</li>
+                <ul>
+                    <li>map printout</li>
+                    <li>add vector layers</li>
+                    <li>measure function</li>
+                    <li>other many more functions</li>
+                </ul>
+                <li>User login</li>
+                <li>Home button</li>
+            </ol>" data-step=1 data-hint='this is hint'>
             <a href="#"><i class="fas fa-bars options"></i></a>
             <a href="login.html"><i class="fas fa-user-alt" data-toggle="tooltip" title="Login/Logout"></i></a>
             <a href="index.html"><i class="fas fa-home"></i></a>
@@ -88,7 +102,16 @@
     </div>
 
     <!-- Side-bar controls -->
-    <div class="side-control">
+    <div class="side-control" data-intro="<h1> basic functionalities </h1>
+        <ul>
+                <li>Zoom in</li>
+                <li>Zoom out</li>
+                <li>Full browser</li>
+                <li>3D layer</li>
+                <li>Zoom to layer</li>
+                <li>Info about feature</li>
+                <li>Add marker</li>
+            </ul>" data-step=3>
         <a href="#"><i class="fas fa-plus zoom-in" data-toggle='tooltip' data-placement='top' title='Zoom In'></i></a>
         <a href="#"><i class="fas fa-minus zoom-out" data-toggle='tooltip' data-placement='right'
                 title='Zoom Out'></i></a>
@@ -169,7 +192,10 @@
         </section>
 
 <!-- sidebar layer control -->
-<section id="sidebar-layer-control">
+<section id="sidebar-layer-control" data-intro="<h1>sidebar layer control</h1> <ul>
+        <li>select one baselayer</li>
+        <li>select requred layers</li>
+    </ul>" data-step=2>
         <div class="sidebar-header">
             <i class="fas fa-info-circle"></i>
             <h3>All Layers</h3>
@@ -185,7 +211,7 @@
                 <option class="mapbox" value="mapbox">MapBox Custom Map</option>
             </select> -->
             <div><input class="osm" name="basemap" type="radio" checked>open street map</div>
-            <div><input class="night" name="basemap" type="radio">dark map</div>
+            <div><input class="dark" name="basemap" type="radio">dark map</div>
             <div><input class="water" name="basemap" type="radio">water color map</div>
             <div><input class="mapbox" name="basemap" type="radio">mapbox</div>
 
@@ -202,7 +228,8 @@
     </section>
 
     <!-- show coordinate on mouse move -->
-    <div class="coordinate container">
+    <div class="coordinate container" data-intro="<h1>Coordinate</h1>
+        <p>This shows the coordinate of the mouse position while mouse is moving</p>" data-step=4>
         coordinate:
         <span class="latlng"></span>
     </div>
@@ -221,6 +248,8 @@
     <!-- jquery ui js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
+    <!-- intro js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
     <!-- leaflet js -->
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
         integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
