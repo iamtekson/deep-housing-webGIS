@@ -1,3 +1,6 @@
+/* ---------------------------------------------------
+main parts
+--------------------------------------------------- */
 #map{
     width: 100%;
     height: 100%;
@@ -12,6 +15,59 @@
     background: #087aa3;
 }
 
+/* input type radio default */
+input[type='radio'] {
+    margin-right: 15px;
+    -webkit-appearance:none;
+    width:20px;
+    height:20px;
+    border:1px solid darkgray;
+    border-radius:50%;
+    outline:none;
+    box-shadow:0 0 5px 0px gray inset;
+}
+input[type='radio']:hover {
+    box-shadow:0 0 5px 0px orange inset;
+}
+input[type='radio']:before {
+    content:'';
+    display:block;
+    width:60%;
+    height:60%;
+    margin: 20% auto;    
+    border-radius:50%;    
+}
+input[type='radio']:checked:before {
+    background: #056172;
+}
+
+/* input type checkbox default */
+input[type='checkbox'] {
+    margin-right: 15px;
+    -webkit-appearance:none;
+    width:20px;
+    height:20px;
+    border:1px solid darkgray;
+    outline:none;
+    box-shadow:0 0 5px 0px gray inset;
+}
+input[type='checkbox']:hover {
+    box-shadow:0 0 5px 0px orange inset;
+}
+input[type='checkbox']:before {
+    content:'';
+    display:block;
+    width:60%;
+    height:60%;
+    margin: 20% auto;    
+}
+input[type='checkbox']:checked:before {
+    background: #056172;
+}
+
+/* --------------------------------------------
+Other options
+-------------------------------------------- */
 /* Leaflet control scale  */
 .leaflet-control-scale-line{
     color: #fff;
@@ -236,15 +292,6 @@
 .sidebar-layer-control-main-body select, .sidebar-layer-control-main-body input[type=text] {
     width: 80%;
     margin: 0 20px 10px 0;
-}
-
-input[type='radio'] {
-    font-size: 1.5rem;
-    color: #087aa3;
-    background: #056172;
-}
-input[type='radio']:hover {
-    color:#ccc;
 }
 .layer-toggler{
     position: fixed;
