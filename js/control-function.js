@@ -44,17 +44,34 @@ map.on('click', function () {
    $('.add-vector-layer').hide();
 });
 var fileInput = document.getElementById('input_files');
-function geojsonData() {
+function getDataFromInputFile() {
    fileInput.addEventListener('change', function (event) {
       var file = fileInput.files[0],
          fr = new FileReader();
       fileInput.value = ''; // Clear the input.
-      fr.onload = function () {
-         console.log(fr.result);
-         var layer = omnivore.geojson(fr.result).addTo(map); // Executed synchronously, so no need to use the .on('ready') listener.
-         map.fitBounds(layer.getBounds());
-      };
-      fr.readAsDataURL(file);
+      extention = file.name.split('.')[1]
+      console.log(extention)
+      if(extention === 'geojson') {
+         fr.onload = function () {
+            console.log(file);
+               var layer = omnivore.geojson(fr.result).addTo(map);
+               map.fitBounds(layer.getBounds());
+            // } else if () {
+          
+            // }
+            console.log(extention)
+         };
+         fr.readAsDataURL(file);
+      } else if (extention  === 'csv') {
+         fr.onload = function () {
+            console.log(file);
+            console.log(fr.result);
+            console.log('i am here')
+            var layer = omnivore.csv.parse(fr.result).addTo(map);
+            map.fitBounds(layer.getBounds());
+         };
+         fr.readAsText(file);
+      }
    });
 };
 function csvData() {
@@ -79,8 +96,8 @@ function csvData() {
 //         geojsonData();
 //     }
 // });
-geojsonData();
-// omnivore.csv('a.csv').addTo(map);
+getDataFromInputFile();
+
 // omnivore.gpx('a.gpx').addTo(map);
 // omnivore.kml('a.kml').addTo(map);
 // omnivore.wkt('a.wkt').addTo(map);
@@ -153,13 +170,21 @@ $('.extend').click(function () {
 
 
 //Marker add function
+var useMarker = true
 $('.marker-add').click(function () {
-   map.on('click', function (e) {
-      var popup = `<b>Lat: ${e.latlng.lat}</b> </br> <b> Lng: ${e.latlng.lng}</b>`,
-         marker = new L.Marker([e.latlng.lat, e.latlng.lng]),
-         m = marker.bindPopup(popup).openPopup().addTo(map);
-   })
+   if (useMarker) {
+      console.log('run')
+      map.on('click', function (e) {
+         var popup = `<b>Lat: ${e.latlng.lat}</b> </br> <b> Lng: ${e.latlng.lng}</b>`,
+            marker = new L.Marker([e.latlng.lat, e.latlng.lng]),
+            m = marker.bindPopup(popup).openPopup().addTo(map);
+      })
+   } else {
+      map.off('click')
+   }
+   useMarker = !useMarker
 });
+
 
 //show coordinate in footer
 function latlng() {
@@ -214,31 +239,22 @@ $(".street-light").click(function(){
 
 //basemap layer control
 $(".osm").click(function(){
-   if( $(this).prop('checked') == true ) {
-      osm.addTo(map);
-   } else if( $(this).prop('checked') == false ){
-      CartoDB.addTo(map);
-   }
+   console.log(map)
+   osm.addTo(map);
+   mapBox.remove()
+   watercolor.remove()
+   CartoDB.remove()
 });
 $(".mapbox").click(function(){
-   if( $(this).prop('checked') == true ) {
-      mapBox.addTo(map);
-   } else if( $(this).prop('checked') == false ){
-      CartoDB.addTo(map);
-   }
+   console.log(map)
+   mapBox.addTo(map);
 });
 $(".water").click(function(){
-   if( $(this).prop('checked') == true ) {
-      watercolor.addTo(map);
-   } else if( $(this).prop('checked') == false ){
-      CartoDB.addTo(map);
-   }
+   console.log(map)
+   watercolor.addTo(map);
 });
 $(".dark").click(function(){
-   if( $(this).prop('checked') == true ) {
-      CartoDB.addTo(map);
-   } else if( $(this).prop('checked') == false ){
-      osm.addTo(map);
-   }
+   console.log(map)
+   CartoDB.addTo(map);
 });
 
