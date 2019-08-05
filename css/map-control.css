@@ -83,7 +83,8 @@
     z-index: 1100 !important;
 }
 .ui-dialog .ui-dialog-titlebar{
-    color: #087aa3;
+    color: #fff;
+    background: #087aa3;
 }
 
 /* Leaflet measure */
