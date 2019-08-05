@@ -144,13 +144,13 @@
 .share .fab{
     font-size: 3rem;
     color: #087aa3;
-    padding: 5px 10px;
+    margin: 5px 10px;
+    /* padding: 5px 10px; */
     /* background-color: #087aa3; */
 }
-.share .row{
+.share .share-social-media {
     text-align: center; 
 }
 .share .fab:hover{
-    color: #fff;
-    background-color: #056172;
+    color: #d5d5d5;
 }
