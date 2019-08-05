@@ -255,7 +255,7 @@ $(".street-light").click(function () {
 //show coordinate in footer
 function latlng() {
    map.on('mousemove', function (e) {
-      return $('.latlng').html(`Lat : ${e.latlng.lat}, long: ${e.latlng.lng}`)
+      return $('.latlng').html(`Lat : ${e.latlng.lat}, Long: ${e.latlng.lng}`)
    });
    setTimeout(latlng, 1000);
 }
@@ -272,7 +272,7 @@ var intro = introJs();
          },
          {
             element: document.querySelector('.nav-web'),
-            intro: "<h1>Nav bar</h1><ol><li>Options</li><ul><li>map printout</li><li>add vector layers</li><li>measure function</li<li>other many more functions</li></ul><li>User login</li><li>Home button</li></ol>."
+            intro: "<h1>Nav bar</h1><ol><li>Options</li><ul><li>Map printout</li><li>Add vector layers</li><li>Measure function</li><li>Other many more actions</li></ul><li>User login</li><li>Home button</li></ol>."
          },
          {
             element: '.leaflet-control-geocoder',
@@ -280,7 +280,7 @@ var intro = introJs();
          },
          {
             element: document.querySelector('.side-control'),
-            intro: "<h1> basic functionalities </h1><ul><li>Zoom in</li><li>Zoom out</li><li>Full browser</li><li>3D layer</li><li>Zoom to layer</li><li>Info about feature</li><li>Add marker</li</ul>",
+            intro: "<h1> basic functionalities </h1><ul><li>Zoom in</li><li>Zoom out</li><li>Zoom to layer</li><li>Full browser</li><li>3D layer</li><li>Info about feature</li><li>Add marker</li</ul>",
             position: 'right'
          },
          {
@@ -297,7 +297,7 @@ var intro = introJs();
          },
          {
             element: '#sidebar-layer-control',
-            intro: '<h1>sidebar layer control</h1> <ul><li>select one baselayer</li><li>select requred layers</li></ul>'
+            intro: '<h1>sidebar layer control</h1> <ul><li>Select one baselayer</li><li>select requred layers</li></ul>'
          }
       ]
    });
