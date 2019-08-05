@@ -177,4 +177,9 @@ $('.share-btn').click(function() {
    });
 });
 
-
+//about section in webmap
+$('.about-btn').click(function(){
+   $('.about-option').dialog({
+      width: 500
+   });
+});
