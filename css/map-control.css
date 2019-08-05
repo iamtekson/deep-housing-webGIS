@@ -255,6 +255,11 @@ Other options
     margin: 20px;
 }
 
+/* base layer selection : side options */
+.layer-selection{
+    color: #333;
+}
+
 /*sidebar layer-control*/
 #sidebar-layer-control{
     /* display: none; */

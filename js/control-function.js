@@ -201,13 +201,17 @@ $('.sidebar-layer-control-main-body .remove-all-layer').click(clearAllLayer);
 
 //basemap layer control : side layer
 function defaultLyr(){
+   $('.osm').prop('checked', true);
    osm.addTo(map);
    mapBox.remove()
    watercolor.remove()
    CartoDB.remove()
 }
 function clearAllLayer(){
-   console.log('called')
+   $('.osm').prop('checked', false);
+   $('.dark').prop('checked', false);
+   $('.water').prop('checked', false);
+   $('.mapbox').prop('checked', false);
    mapBox.remove()
    watercolor.remove()
    CartoDB.remove()
