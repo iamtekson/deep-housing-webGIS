@@ -207,14 +207,15 @@
     right: 0;
     top: 0;
     width: 500px;
-    height: 95%;
+    height: 97%;
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 2000;
     border: 0.2px solid #000;
-    -moz-box-shadow:    -2px 0 2px 0 #999;
-    -webkit-box-shadow: -2px 0 2px 0 #999;
-    box-shadow:         -2px 0 2px 0 #999;
+    border-radius: 0 0 0 50px;
+    -moz-box-shadow:    -5px 3px 20px 0 #999;
+    -webkit-box-shadow: -5px 3px 20px 0 #999;
+    box-shadow:         -5px 3px 20px 0 #999;
 }
 .sidebar-layer-control-main-body{
     padding-right: 30px;

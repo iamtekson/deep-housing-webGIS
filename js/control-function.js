@@ -168,7 +168,7 @@ $('.about-btn').click(function () {
 // ===================================
 // sidebar-layrer and sidebar popup control
 // ===================================
-
+ 
 // sidebar-popup
 map.on('click', function () {
    $('.addsidebar-popup').show()
@@ -183,13 +183,38 @@ $('.layer-toggler .fa-layer-group').click(function(){
    $('#sidebar-layer-control').toggle();
 });
 
+
+//how to use button function : side option
+$('.sidebar-layer-control-main-body .tutorial').click(tutorial);
+
+//add default baselayer : side option
+$('.sidebar-layer-control-main-body .add-default-baselayer').click(defaultLyr);
+
+//remove all baselayer : side option
+$('.sidebar-layer-control-main-body .remove-all-baselayer').click(clearAllLayer);
+
+//add default layers : side option 
+$('.sidebar-layer-control-main-body .add-default-layer').click(clearAllLayer);
+
+//remove all layers : side option
+$('.sidebar-layer-control-main-body .remove-all-layer').click(clearAllLayer);
+
 //basemap layer control : side layer
-$(".osm").click(function () {
+function defaultLyr(){
    osm.addTo(map);
    mapBox.remove()
    watercolor.remove()
    CartoDB.remove()
-});
+}
+function clearAllLayer(){
+   console.log('called')
+   mapBox.remove()
+   watercolor.remove()
+   CartoDB.remove()
+   osm.remove()
+}
+
+$(".osm").click(defaultLyr);
 $(".mapbox").click(function () {
    mapBox.addTo(map);
    watercolor.remove()
@@ -237,8 +262,9 @@ function latlng() {
 latlng();
 
 //Tutorial of this web-gis : introjs
-$('.option-content .tutorial').click(function () {
-   var intro = introJs();
+$('.option-content .tutorial').click(tutorial);
+function tutorial(){
+var intro = introJs();
    intro.setOptions({
       steps: [
          {
@@ -276,4 +302,4 @@ $('.option-content .tutorial').click(function () {
       ]
    });
    intro.start();
-});
+}
