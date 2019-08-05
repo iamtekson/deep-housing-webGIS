@@ -231,3 +231,13 @@ input[type='radio'] {
 input[type='radio']:hover {
     color:#ccc;
 }
+.layer-toggler{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+.layer-toggler .fa-layer-group {
+    color: #087aa3;
+    font-size: 3.5rem;
+}

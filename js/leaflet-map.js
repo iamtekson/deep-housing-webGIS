@@ -91,17 +91,17 @@ var light = L.markerClusterGroup().addLayer(light1);
 
 
 // map.addLayer(light);
-var streetLight = new L.layerGroup().addLayer(light);
-var overlays = {
-    'Street Lights': streetLight,
-    'drainage network': streetLight,
-    'Water supply': streetLight,
-    'building': streetLight,
-    'road': streetLight,
-    'building boundry': streetLight,
-    'electrical line': streetLight
-}
+// var streetLight = new L.layerGroup().addLayer(light);
+// var overlays = {
+//     'Street Lights': streetLight,
+//     'drainage network': streetLight,
+//     'Water supply': streetLight,
+//     'building': streetLight,
+//     'road': streetLight,
+//     'building boundry': streetLight,
+//     'electrical line': streetLight
+// }
 
-var layerControl = L.control.layers(baselayer, overlays, {
-    collapsed: false
-}).addTo(map);
+// var layerControl = L.control.layers(baselayer, overlays, {
+//     collapsed: false
+// }).addTo(map);

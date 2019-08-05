@@ -164,7 +164,12 @@ $('.about-btn').click(function () {
    });
 });
 
-// sidebar-popup - sidebar layer control
+
+// ===================================
+// sidebar-layrer and sidebar popup control
+// ===================================
+
+// sidebar-popup
 map.on('click', function () {
    $('.addsidebar-popup').show()
 });
@@ -173,9 +178,10 @@ $('.sidebar-close').click(function () {
    $('#sidebar-layer-control').hide();
 });
 
-// ===================================
-// sidebar-layrer and sidebar popup control
-// ===================================
+//layer-toggler
+$('.layer-toggler .fa-layer-group').click(function(){
+   $('#sidebar-layer-control').toggle();
+});
 
 //basemap layer control : side layer
 $(".osm").click(function () {
