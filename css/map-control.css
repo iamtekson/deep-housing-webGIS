@@ -155,3 +155,48 @@
 .share .fab:hover{
     color: #d5d5d5;
 }
+
+/* Sidebar popup */
+.addsidebar-popup{
+    display: none;
+    background: #ffffff;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 400px;
+    height: 100%;
+    z-index: 2000;
+    border: 0.2px solid #000;
+    -moz-box-shadow:    -2px 0 2px 0 #999;
+    -webkit-box-shadow: -2px 0 2px 0 #999;
+    box-shadow:         -2px 0 2px 0 #999;
+}
+.sidebar-header{
+    position: relative;
+    background: #087aa3;
+    color: #fff;
+    padding: 10px 5px;
+}
+.sidebar-header i.fa-times{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+}
+.sidebar-header h3{
+    text-align: center;
+    color: #fff;
+}
+.sidebar-header i.fa-info-circle {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 2rem;
+}
+.clicked-coordinate{
+    text-align: center;
+    padding: 30px;
+}
+.sidebar-info{
+    margin: 20px;
+}

@@ -183,3 +183,12 @@ $('.about-btn').click(function(){
       width: 500
    });
 });
+
+
+// sidebar-popup
+map.on('click', function() {
+   $('.addsidebar-popup').show()
+});
+$('.sidebar-close').click(function(){
+   $('.addsidebar-popup').hide();
+});
