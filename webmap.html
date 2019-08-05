@@ -168,6 +168,39 @@
             <div class="sidebar-info"></div>
         </section>
 
+<!-- sidebar layer control -->
+<section id="sidebar-layer-control">
+        <div class="sidebar-header">
+            <i class="fas fa-info-circle"></i>
+            <h3>All Layers</h3>
+            <i class="fas fa-times sidebar-close" id="layer-close"></i>
+        </div>
+        <div class="sidebar-layer-control-main-body">
+            <p>Here are the basic information of this housing</p>
+            <!-- <select name="baselayer" id="baselayer">
+                <option value="default">Select Base Layer</option>
+                <option class="osm" value="osm">Open Street Map</option>
+                <option value="topo">Open Topo Map</option>
+                <option class="water" value="water">Water Color Map</option>
+                <option class="mapbox" value="mapbox">MapBox Custom Map</option>
+            </select> -->
+            <div><input class="osm" name="basemap" type="radio">open street map</div>
+            <div><input class="night" name="basemap" type="radio">dark map</div>
+            <div><input class="water" name="basemap" type="radio">water color map</div>
+            <div><input class="mapbox" name="basemap" type="radio">mapbox</div>
+
+
+            <input type="text" placeholder="Search layers">
+            <h5>Other Layers</h5>
+            <div><input type="checkbox" class='street-light' id="">Street Light</div> 
+            <div><input type="checkbox" id="" checked>Road Network</div> 
+            <div><input type="checkbox" id="" checked>Drainage Network</div>
+            <div><input type="checkbox" id="" checked>Water Supply</div>
+            <div><input type="checkbox" id="" checked>Electrical Line</div>
+            <div><input type="checkbox" id="" checked>Building</div>
+        </div>
+    </section>
+
     <!-- show coordinate on mouse move -->
     <div class="coordinate container">
         coordinate:

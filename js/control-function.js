@@ -185,10 +185,60 @@ $('.about-btn').click(function(){
 });
 
 
-// sidebar-popup
+// sidebar-popup - sidebar layer control
 map.on('click', function() {
    $('.addsidebar-popup').show()
 });
 $('.sidebar-close').click(function(){
    $('.addsidebar-popup').hide();
+   $('#sidebar-layer-control').hide();
 });
+
+//sidebar-layer-control ::street light
+$(".street-light").click(function(){
+   if( $(this).prop('checked') == true ) {
+      map.addLayer(light);
+   } else if( $(this).prop('checked') == false ){
+      map.removeLayer(light);
+   }
+});
+
+//street light layer control
+$(".street-light").click(function(){
+   if( $(this).prop('checked') == true ) {
+      map.addLayer(light);
+   } else if( $(this).prop('checked') == false ){
+      map.removeLayer(light);
+   }
+});
+
+//basemap layer control
+$(".osm").click(function(){
+   if( $(this).prop('checked') == true ) {
+      osm.addTo(map);
+   } else if( $(this).prop('checked') == false ){
+      CartoDB.addTo(map);
+   }
+});
+$(".mapbox").click(function(){
+   if( $(this).prop('checked') == true ) {
+      mapBox.addTo(map);
+   } else if( $(this).prop('checked') == false ){
+      CartoDB.addTo(map);
+   }
+});
+$(".water").click(function(){
+   if( $(this).prop('checked') == true ) {
+      watercolor.addTo(map);
+   } else if( $(this).prop('checked') == false ){
+      CartoDB.addTo(map);
+   }
+});
+$(".dark").click(function(){
+   if( $(this).prop('checked') == true ) {
+      CartoDB.addTo(map);
+   } else if( $(this).prop('checked') == false ){
+      osm.addTo(map);
+   }
+});
+

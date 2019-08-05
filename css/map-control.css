@@ -200,3 +200,27 @@
 .sidebar-info{
     margin: 20px;
 }
+
+/*sidebar layer-control*/
+#sidebar-layer-control{
+    /* display: none; */
+    background: #ffffff;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 400px;
+    height: 100%;
+    z-index: 2000;
+    border: 0.2px solid #000;
+    -moz-box-shadow:    -2px 0 2px 0 #999;
+    -webkit-box-shadow: -2px 0 2px 0 #999;
+    box-shadow:         -2px 0 2px 0 #999;
+}
+.sidebar-layer-control-main-body{
+    width: 100%;
+    margin-left: 20px;
+}
+.sidebar-layer-control-main-body select, .sidebar-layer-control-main-body input[type=text] {
+    width: 80%;
+    margin: 0 20px 10px 0;
+}
