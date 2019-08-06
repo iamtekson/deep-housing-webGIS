@@ -74,6 +74,14 @@ main body
     font-size: 1.5rem;
 }
 
+/* nav button */
+.nav-button .btn-web-map a{
+    color:#fff !important;
+}
+.nav-button .btn-log-in a:hover{
+    color: #fff;
+}
+
 /* main body */
 .main-body{
     padding-bottom: 50px;
