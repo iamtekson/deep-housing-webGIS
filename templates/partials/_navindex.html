@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="{% url 'index' %}"><i class="fas fa-users-cog"></i> <span
+            class="nav-header">Utility
+            Management
+            System</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-button">
+            <li class="nav-item pr-2">
+                <button type="button" class="btn btn-info btn-web-map"><a class="nav-link"
+                        href="{% url 'webmap' %}">View
+                        Web-Map</a></button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-outline-info btn-log-in"><a class="nav-link"
+                        href="{% url 'login' %}">Log
+                        In</a></button>
+            </li>
+        </ul>
+    </div>
+</nav>
