@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'pages',
     'django.contrib.gis',
     'leaflet',
+    'account',
+    'shapefiles',
 ]
 
 MIDDLEWARE = [
