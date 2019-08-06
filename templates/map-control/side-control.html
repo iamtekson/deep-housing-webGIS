@@ -1,0 +1,64 @@
+<!-- layer toggler -->
+<section class="layer-toggler">
+    <i class="fas fa-layer-group"></i>
+</section>
+
+<!-- sidebar layer control -->
+<section id="sidebar-layer-control">
+    <div class="sidebar-header">
+        <i class="fas fa-info-circle"></i>
+        <h5>Options</h5>
+        <i class="fas fa-times sidebar-close" id="layer-close"></i>
+    </div>
+    <div class="clicked-coordinate">
+        <p class="lat"></p>
+        <p class="long"></p>
+    </div>
+    <div class="sidebar-info"></div>
+    <button class="btn btn-info m-4 go-back-to-options" style="display: none">Go back to Options</button>
+    <div class="sidebar-layer-control-main-body">
+        <div>
+            <p>We present you the utility system of Deep Housing, Pokhara managed by Roadshow Real Estate</p>
+            <button type="button" class="tutorial btn btn-success btn-lg btn-block">HOW TO USE</button>
+        </div>
+        <hr>
+
+        <div>
+            <h5 align=center>Base Layers</h5>
+            <input class="col-8" type="text" placeholder="Choose Your Layers..."> <i class="fas fa-search"></i>
+            <div class="layer-selection">
+                <div>
+                    <input class="osm" name="basemap" type="radio" checked>Open Street Map
+                </div>
+                <div>
+                    <input class="dark" name="basemap" type="radio">Dark Map
+                </div>
+                <div>
+                    <input class="water" name="basemap" type="radio">Water Color Map
+                </div>
+                <div>
+                    <input class="mapbox" name="basemap" type="radio">Mapbox
+                </div>
+            </div>
+            <button type="button" class="btn btn-success col-5 add-default-baselayer">Add Default Base Layer</button>
+            <button type="button" class="btn btn-outline-danger col-5 remove-all-baselayer">Remove All Base
+                Layers</button>
+        </div>
+        <hr>
+        <div>
+            <h5 align=center>Utility Layers</h5>
+            <div class="layer-selection">
+                <div><input type="checkbox" class='street-light' id="">Street Light</div>
+                <div><input type="checkbox" id="" checked>Road Network</div>
+                <div><input type="checkbox" id="" checked>Drainage Network</div>
+                <div><input type="checkbox" id="" checked>Water Supply</div>
+                <div><input type="checkbox" id="" checked>Electrical Line</div>
+                <div><input type="checkbox" id="" checked>Building</div>
+            </div>
+
+            <button type="button" class="btn btn-success col-5">Add Default Layers</button>
+            <button type="button" class="btn btn-outline-danger col-5">Remove All Layers</button>
+        </div>
+        <hr>
+    </div>
+</section>

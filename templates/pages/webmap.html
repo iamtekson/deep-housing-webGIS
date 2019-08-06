@@ -3,114 +3,22 @@
 {% block title %} Webmap {% endblock title %}
 
 {% block content %}
-  <!-- map view -->
-  <h1 class="title" leaflet-browser-print-content style="display: none;">Utility Management System: Deep Housing</h1>
-  <div id="map"></div>
+<!-- map view -->
+<h1 class="title" leaflet-browser-print-content style="display: none;">Utility Management System: Deep Housing</h1>
+<div id="map"></div>
 
-  {% include "mapPartials/_navbar.html" %}
+{% include "map-control/_navbar.html" %}
 
-  <!-- option content in side -->
-  <div class="option-content col-2">
-      <h5 class="title text-center text-light">Options</h5>
-      <ul class="list-group">
-          <a href="#">
-              <li class="list-group-item print"><i class="fas fa-print"></i>Print</li>
-          </a>
-          <a href="#">
-              <li class="list-group-item addVectorLayer_btn"><i class="fas fa-plus-square"></i>Add vector files
-              </li>
-          </a>
-          <a href="#">
-              <li class="list-group-item"><i class="fas fa-folder-open"></i>Catalog</li>
-          </a>
-          <a href="#">
-              <li class="list-group-item measure-btn"><i class="fas fa-ruler-horizontal"></i>Measure</li>
-          </a>
-          <a href="#">
-              <li class="list-group-item"><i class="fas fa-comment-alt"></i>Annotation</li>
-          </a>
-          <a href="#">
-              <li class="list-group-item"><i class="fas fa-cog"></i>Settings</li>
-          </a>
-          <a href="#">
-              <li class="list-group-item share-btn"><i class="fas fa-share-alt-square"></i>Share</li>
-          </a>
-          <a href="https://github.com/iamtekson/deep-housing-webGIS" target="_blank">
-              <li class="list-group-item"><i class="fas fa-question-circle"></i>Docs</li>
-          </a>
-          <a href="#">
-              <li class="list-group-item tutorial"><i class="fas fa-book-open"></i>Tutorial</li>
-          </a>
-          <a href="#">
-              <li class="list-group-item about-btn"><i class="fas fa-info-circle"></i>About</li>
-          </a>
-      </ul>
-  </div>
+{% include "map-control/functions.html" %}
 
-  <!-- Side-bar controls -->
-  <div class="side-control">
-      <a href="#"><i class="fas fa-plus zoom-in" data-toggle='tooltip' data-placement='top' title='Zoom In'></i></a>
-      <a href="#"><i class="fas fa-minus zoom-out" data-toggle='tooltip' data-placement='right'
-              title='Zoom Out'></i></a>
-      <a href="#"><i class="fas fa-compress extend" data-toggle='tooltip' data-placement='right'
-              title='Zoom to layer'></i></a>
-      <a href="#"><i class="fas fa-expand full-browser" data-toggle='tooltip' data-placement='right'
-              title='Expand the full browser'></i></a>
-      <a href="#"><i class="fas fa-cubes" data-toggle='tooltip' data-placement='right' title='view 3D layer'></i></a>
-      <a href="#"><i class="fas fa-ruler-horizontal measure-btn" data-toggle='tooltip' data-placement='right'
-              title='Measure length and area of the feature'></i></a>
-      <a href="#"><i class="fas fa-map-marker-alt marker-add" data-toggle='tooltip' data-placement='right'
-              title='Add a marker popup along with their respective lat and long'></i></a>
-  </div>
+{% include "map-control/add-vector.html" %}
 
-  <!-- Add Vector Layer -->
-  <section class="add-vector-layer" style="display: none" title="Add Vector Layer">
-      <form action="" method="POST" class="vector">
-          Click to add your vector layer. It support Json, Geojson, csv, gpx and kml formats.
-          <input type="file" name="files" id="input_files">
-      </form>
-  </section>
+{% include "map-control/share.html" %}
 
-  <!-- share this map -->
-  <section class="share" style="display: none" title="Share">
-      <div>This is the Utility Management System of Deep Housing, Pokhara. If you want to share on any of the following platform, feel free!!!</div>
-      <hr>
-      <h6>Share this link</h6>
-      <p class="col-12 share-link">https://deephousing.com/webgis</p>
-      <hr>
-      <h6>Share On</h6>
-      <div class="share-social-media">
-          <a href="#" onclick="window.open('http://www.facebook.com/share.php?u=' +
-              encodeURIComponent(location.href))"><i class="fab fa-facebook"></i></a>
-          <a href="#" onclick="window.open('https://twitter.com/intent/tweet' + encodeURIComponent(location.href))"><i
-                  class="fab fa-twitter"></i></a>
-          <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://chillyfacts.com/create-linkedin-share-button-on-website-webpages&title=Create LinkedIn Share button on Website Webpages&summary=chillyfacts.com&source=Chillyfacts"
-              onclick="window.open(this.href, 'mywin',
-'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fab fa-linkedin"></i></a>
-      </div>
-      <hr>
-  </section>
+{% include "map-control/about.html" %}
 
-  <!-- about section -->
-  <section class="about-option" style="display: none" title="About">
-      <h3>Utility Management System</h3>
-      <div>
-          In developing countries like ours where cities are not properly planned and organized, mapping of
-          utilities sector can play a major role in the development of that country or place. Utilities like
-          water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
-          even if they are properly documented, they are in low quality maps. Reliable information regarding
-          them can be of great help which can help in efficient service delivery.
-      </div>
-      <div>
-          With the help of Geographic Information System (GIS) and other digital techniques, data can be
-          visualized easily which can make tasks easy. Repairing and maintaining of utility lines can be
-          carried efficiently in short period of time. Web based GIS contains information like building
-          boundaries, electric lines, solar lines, etc. and with the help of proper tools, it can be used to
-          visualize and maintain those information.
-      </div>
-  </section>
+{% include "map-control/side-control.html" %}
 
-{% include "mapPartials/side-control.html" %}
-{% include "mapPartials/coordinate.html" %}
+{% include "map-control/coordinate.html" %}
 
 {% endblock content %}

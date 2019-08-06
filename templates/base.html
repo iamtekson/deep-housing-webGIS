@@ -34,17 +34,17 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
         integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
-        <link rel="stylesheet" href="{% static 'css/map-control.css' %}">
+    <link rel="stylesheet" href="{% static 'css/map-control.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block css %}
-      
+
     {% endblock css %}
 </head>
 
 <body>
-    {% block content %}    {% endblock content %}
+    {% block content %} {% endblock content %}
 
-    {% block js %}          {% endblock js %}
+    {% block js %} {% endblock js %}
 
     <!-- data -->
     <script src="{% static 'data/street_light.js' %}"></script>
@@ -57,8 +57,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-        <!-- jquery-ui -->
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- jquery-ui -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- leaflet js -->
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
