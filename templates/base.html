@@ -21,6 +21,12 @@
     <!-- Leaflet-measure css -->
     <link rel="stylesheet" href="{% static 'dist/leaflet-measure.css' %}">
 
+    <!-- introjs css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css">
+
+    <!-- leaflet-search css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
     <!-- jquery css -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -39,14 +45,20 @@
     {% block content %}    {% endblock content %}
 
     {% block js %}          {% endblock js %}
+
+    <!-- data -->
+    <script src="{% static 'data/street_light.js' %}"></script>
+
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- bootstrap js -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+        <!-- jquery-ui -->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- leaflet js -->
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
@@ -56,8 +68,17 @@
     <!-- marker cluster -->
     <script src="{% static 'dist/leaflet.markercluster.js' %}"></script>
 
+    <!-- intro js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
+
+    <!-- font-awesome -->
+    <script src="https://kit.fontawesome.com/5b944da866.js"></script>
+
     <!-- leaflet browser print js -->
     <script src="{% static 'dist/leaflet.browser.print.min.js' %}"></script>
+
+    <!-- leaflet-search js -->
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
     <!-- Leaflet-Omnivore -->
     <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
