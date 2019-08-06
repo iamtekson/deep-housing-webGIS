@@ -170,16 +170,31 @@ $('.about-btn').click(function () {
 // ===================================
  
 // sidebar-popup
-map.on('click', function () {
-   $('.addsidebar-popup').show()
-});
 $('.sidebar-close').click(function () {
+   $('.lat').hide();
+   $('.long').hide();
+   $('.sidebar-info').hide();
    $('.addsidebar-popup').hide();
    $('#sidebar-layer-control').hide();
 });
+//Go back to options
+function goBackToOptions (){
+   $(this).hide();
+   $('.lat').hide();
+   $('.long').hide();
+   $('.sidebar-info').hide();
+   $('.addsidebar-popup').hide();
+   console.log('clicked go back to functions');
+   $('#sidebar-layer-control').show();
+   $('.sidebar-header h5').html('Options');
+   $('.sidebar-layer-control-main-body').show();
+};
 
+$('.go-back-to-options').click(goBackToOptions);
 //layer-toggler
 $('.layer-toggler .fa-layer-group').click(function(){
+   $('.sidebar-header h5').html('Options');
+   $('.sidebar-layer-control-main-body').show();
    $('#sidebar-layer-control').toggle();
 });
 

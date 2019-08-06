@@ -210,21 +210,7 @@ Other options
     border-radius: 50px;
 }
 
-/* Sidebar popup */
-.addsidebar-popup{
-    display: none;
-    background: #ffffff;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 400px;
-    height: 100%;
-    z-index: 2000;
-    border: 0.2px solid #000;
-    -moz-box-shadow:    -2px 0 2px 0 #999;
-    -webkit-box-shadow: -2px 0 2px 0 #999;
-    box-shadow:         -2px 0 2px 0 #999;
-}
+/* sidebar- defaults */
 .sidebar-header{
     position: relative;
     background: #087aa3;
@@ -249,7 +235,7 @@ Other options
 }
 .clicked-coordinate{
     text-align: center;
-    padding: 30px;
+    /* padding: 30px; */
 }
 .sidebar-info{
     margin: 20px;

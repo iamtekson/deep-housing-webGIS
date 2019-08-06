@@ -44,6 +44,16 @@ var baselayer = {
     "Custom Mapbox": mapBox
 }
 
+// default popup features
+function popupContents(e){
+    $('#sidebar-layer-control').slideDown();
+    $('.sidebar-header h5').html('<h5>Information about the feature</h5>');
+    $('.sidebar-layer-control-main-body').hide();
+    $('.lat').show().html('<b>Latitude : </b>'+ e.latlng.lat);
+    $('.long').show().html('<b>longitude : </b>' + e.latlng.lng);
+    $('.sidebar-info').show();
+    $('#sidebar-layer-control .btn-info').show();
+}
 
 //Street light control
 var s_light_style = {
@@ -68,9 +78,7 @@ var light1 = L.geoJSON(street, {
         // layer.bindPopup(popupContent),
         layer.on({
             click: function(e) {
-                $('.addsidebar-popup').slideDown();
-                $('.lat').html('<b>Latitude : </b>'+ e.latlng.lat);
-                $('.long').html('<b>longitude : </b>' + e.latlng.lng);
+                popupContents(e);
                 $('.sidebar-info').html('<h4 class = "text-primary">Street Light</h4>' +
                 '<div class="container"><table class="table table-striped">' +
                 '<thead><tr><th>Properties</th><th>Value</th></tr></thead>' +
@@ -79,6 +87,7 @@ var light1 = L.geoJSON(street, {
                 '<tr><td> Power (watt) </td><td>' + feature.properties.Power_Watt + '</td></tr>' +
                 '<tr><td> Pole Height </td><td>' + feature.properties.pole_hgt + '</td></tr>' +
                 '<tr><td> Time </td><td>' + feature.properties.time + '</td></tr>');
+                
             }
         }); 
     },
@@ -90,18 +99,3 @@ var light1 = L.geoJSON(street, {
 var light = L.markerClusterGroup().addLayer(light1);
 
 
-// map.addLayer(light);
-// var streetLight = new L.layerGroup().addLayer(light);
-// var overlays = {
-//     'Street Lights': streetLight,
-//     'drainage network': streetLight,
-//     'Water supply': streetLight,
-//     'building': streetLight,
-//     'road': streetLight,
-//     'building boundry': streetLight,
-//     'electrical line': streetLight
-// }
-
-// var layerControl = L.control.layers(baselayer, overlays, {
-//     collapsed: false
-// }).addTo(map);
