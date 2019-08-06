@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
         integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
+        <link rel="stylesheet" href="{% static 'css/map-control.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block css %}
       
@@ -63,6 +64,11 @@
 
     <!-- Leaflet-Measure -->
     <script src="{% static 'dist/leaflet-measure.js' %}"></script>
+
+    <!-- main js -->
+    <script src="{% static 'js/leaflet-map.js' %}"></script>
+    <script src="{% static 'js/control-function.js' %}"></script>
+
 </body>
 
 </html>

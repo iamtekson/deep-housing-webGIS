@@ -1,5 +1,189 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %} Webmap {% endblock title %}
+
 {% block content %}
-  <h3>webmap</h3>
+  <!-- map view -->
+  <h1 class="title" leaflet-browser-print-content style="display: none;">Utility Management System: Deep Housing</h1>
+  <div id="map"></div>
+
+  <!-- navbar in map -->
+  <nav>
+      <div class="nav-web">
+          <a href="#"><i class="fas fa-bars options"></i></a>
+          <a href="{% url 'login' %}"><i class="fas fa-user-alt" data-toggle="tooltip" title="Login/Logout"></i></a>
+          <a href="{% url 'index' %}"><i class="fas fa-home"></i></a>
+      </div>
+  </nav>
+
+  <!-- option content in side -->
+  <div class="option-content col-2">
+      <h5 class="title text-center text-light">Options</h5>
+      <ul class="list-group">
+          <a href="#">
+              <li class="list-group-item print"><i class="fas fa-print"></i>Print</li>
+          </a>
+          <a href="#">
+              <li class="list-group-item addVectorLayer_btn"><i class="fas fa-plus-square"></i>Add vector files
+              </li>
+          </a>
+          <a href="#">
+              <li class="list-group-item"><i class="fas fa-folder-open"></i>Catalog</li>
+          </a>
+          <a href="#">
+              <li class="list-group-item measure-btn"><i class="fas fa-ruler-horizontal"></i>Measure</li>
+          </a>
+          <a href="#">
+              <li class="list-group-item"><i class="fas fa-comment-alt"></i>Annotation</li>
+          </a>
+          <a href="#">
+              <li class="list-group-item"><i class="fas fa-cog"></i>Settings</li>
+          </a>
+          <a href="#">
+              <li class="list-group-item share-btn"><i class="fas fa-share-alt-square"></i>Share</li>
+          </a>
+          <a href="https://github.com/iamtekson/deep-housing-webGIS" target="_blank">
+              <li class="list-group-item"><i class="fas fa-question-circle"></i>Docs</li>
+          </a>
+          <a href="#">
+              <li class="list-group-item tutorial"><i class="fas fa-book-open"></i>Tutorial</li>
+          </a>
+          <a href="#">
+              <li class="list-group-item about-btn"><i class="fas fa-info-circle"></i>About</li>
+          </a>
+      </ul>
+  </div>
+
+  <!-- Side-bar controls -->
+  <div class="side-control">
+      <a href="#"><i class="fas fa-plus zoom-in" data-toggle='tooltip' data-placement='top' title='Zoom In'></i></a>
+      <a href="#"><i class="fas fa-minus zoom-out" data-toggle='tooltip' data-placement='right'
+              title='Zoom Out'></i></a>
+      <a href="#"><i class="fas fa-compress extend" data-toggle='tooltip' data-placement='right'
+              title='Zoom to layer'></i></a>
+      <a href="#"><i class="fas fa-expand full-browser" data-toggle='tooltip' data-placement='right'
+              title='Expand the full browser'></i></a>
+      <a href="#"><i class="fas fa-cubes" data-toggle='tooltip' data-placement='right' title='view 3D layer'></i></a>
+      <a href="#"><i class="fas fa-ruler-horizontal measure-btn" data-toggle='tooltip' data-placement='right'
+              title='Measure length and area of the feature'></i></a>
+      <a href="#"><i class="fas fa-map-marker-alt marker-add" data-toggle='tooltip' data-placement='right'
+              title='Add a marker popup along with their respective lat and long'></i></a>
+  </div>
+
+  <!-- Add Vector Layer -->
+  <section class="add-vector-layer" style="display: none" title="Add Vector Layer">
+      <form action="" method="POST" class="vector">
+          Click to add your vector layer. It support Json, Geojson, csv, gpx and kml formats.
+          <input type="file" name="files" id="input_files">
+      </form>
+  </section>
+
+  <!-- share this map -->
+  <section class="share" style="display: none" title="Share">
+      <div>This is the Utility Management System of Deep Housing, Pokhara. If you want to share on any of the following platform, feel free!!!</div>
+      <hr>
+      <h6>Share this link</h6>
+      <p class="col-12 share-link">https://deephousing.com/webgis</p>
+      <hr>
+      <h6>Share On</h6>
+      <div class="share-social-media">
+          <a href="#" onclick="window.open('http://www.facebook.com/share.php?u=' +
+              encodeURIComponent(location.href))"><i class="fab fa-facebook"></i></a>
+          <a href="#" onclick="window.open('https://twitter.com/intent/tweet' + encodeURIComponent(location.href))"><i
+                  class="fab fa-twitter"></i></a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://chillyfacts.com/create-linkedin-share-button-on-website-webpages&title=Create LinkedIn Share button on Website Webpages&summary=chillyfacts.com&source=Chillyfacts"
+              onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <hr>
+  </section>
+
+  <!-- about section -->
+  <section class="about-option" style="display: none" title="About">
+      <h3>Utility Management System</h3>
+      <div>
+          In developing countries like ours where cities are not properly planned and organized, mapping of
+          utilities sector can play a major role in the development of that country or place. Utilities like
+          water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
+          even if they are properly documented, they are in low quality maps. Reliable information regarding
+          them can be of great help which can help in efficient service delivery.
+      </div>
+      <div>
+          With the help of Geographic Information System (GIS) and other digital techniques, data can be
+          visualized easily which can make tasks easy. Repairing and maintaining of utility lines can be
+          carried efficiently in short period of time. Web based GIS contains information like building
+          boundaries, electric lines, solar lines, etc. and with the help of proper tools, it can be used to
+          visualize and maintain those information.
+      </div>
+  </section>
+
+  <!-- layer toggler -->
+  <section class="layer-toggler">
+      <i class="fas fa-layer-group"></i>
+  </section>
+
+  <!-- sidebar layer control -->
+  <section id="sidebar-layer-control">
+      <div class="sidebar-header">
+          <i class="fas fa-info-circle"></i>
+          <h5>Options</h5>
+          <i class="fas fa-times sidebar-close" id="layer-close"></i>
+      </div>
+      <div class="clicked-coordinate">
+          <p class="lat"></p>
+          <p class="long"></p>
+      </div>
+      <div class="sidebar-info"></div>
+      <button class="btn btn-info m-4 go-back-to-options" style="display: none">Go back to Options</button>
+      <div class="sidebar-layer-control-main-body">
+          <div>
+              <p>We present you the utility system of Deep Housing, Pokhara managed by Roadshow Real Estate</p>
+              <button type="button" class="tutorial btn btn-success btn-lg btn-block">HOW TO USE</button>
+          </div>
+          <hr>
+
+          <div>
+              <h5 align=center>Base Layers</h5>
+              <input class="col-8" type="text" placeholder="Choose Your Layers..."> <i class="fas fa-search"></i>
+              <div class="layer-selection">
+                      <div>
+                              <input class="osm" name="basemap" type="radio" checked>Open Street Map
+                          </div>
+                          <div>
+                              <input class="dark" name="basemap" type="radio">Dark Map
+                          </div>
+                          <div>
+                              <input class="water" name="basemap" type="radio">Water Color Map
+                          </div>
+                          <div>
+                              <input class="mapbox" name="basemap" type="radio">Mapbox
+                          </div>
+              </div>
+              <button type="button" class="btn btn-success col-5 add-default-baselayer">Add Default Base Layer</button>
+              <button type="button" class="btn btn-outline-danger col-5 remove-all-baselayer">Remove All Base Layers</button>
+          </div>
+          <hr>
+          <div>
+              <h5 align=center>Utility Layers</h5>
+              <div class="layer-selection">
+                      <div><input type="checkbox" class='street-light' id="">Street Light</div>
+                      <div><input type="checkbox" id="" checked>Road Network</div>
+                      <div><input type="checkbox" id="" checked>Drainage Network</div>
+                      <div><input type="checkbox" id="" checked>Water Supply</div>
+                      <div><input type="checkbox" id="" checked>Electrical Line</div>
+                      <div><input type="checkbox" id="" checked>Building</div>
+              </div>
+              
+              <button type="button" class="btn btn-success col-5">Add Default Layers</button>
+              <button type="button" class="btn btn-outline-danger col-5">Remove All Layers</button>
+          </div>
+          <hr>
+      </div>
+  </section>
+
+  <!-- show coordinate on mouse move -->
+  <div class="coordinate container">
+      Coordinates:
+      <span class="latlng"></span>
+  </div>
 {% endblock content %}
