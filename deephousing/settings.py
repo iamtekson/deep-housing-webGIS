@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'deephousing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'OPTIONS': {
-            'options': '-c search-path=data,public'
-        },
-        'NAME': 'deephousing',
+        # 'OPTIONS': {
+        #     'options': '-c search-path=data,public'
+        # },
+        'NAME': 'utilities',
         'HOST': 'localhost',
         'PORT': '5432',
         'USER': 'postgres',
