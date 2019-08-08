@@ -1,8 +1,8 @@
 from django.contrib import admin
 from leaflet.admin import LeafletGeoAdmin
-from .models import Sewer
+from .models import Boundary
 
-class sewerAdmin(LeafletGeoAdmin):
-    list_display = ('gid', 'type')
+class BoundaryAdmin(LeafletGeoAdmin):
+    list_display = ('gid', 'area')
     
-admin.site.register(Sewer, sewerAdmin)
+admin.site.register(Boundary, BoundaryAdmin)
