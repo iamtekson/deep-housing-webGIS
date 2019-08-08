@@ -43,27 +43,40 @@
             L.geoJSON(data).addTo(map);
         });
     }
-// otherLayers()
+    // otherLayers()
 
-function waterLayer(){
-    $.getJSON("{% url 'waternetwork' %}", function(data){
-        L.geoJSON(data, {
-            onEachFeature : function(feature, layer){
-                layer.on({
-                    click: function(e) {
-                        popupContents(e);
-                        $('.sidebar-info').html(`<h4>Water Network</h4>
+    function waterLayer() {
+        $.getJSON("{% url 'waternetwork' %}", function (data) {
+            var waterNetwork1 = L.geoJSON(data, {
+                onEachFeature: function (feature, layer) {
+                    layer.on({
+                        click: function (e) {
+                            popupContents(e);
+                            $('.sidebar-info').html(`<h4>Water Network</h4>
                 <div class="container"><table class="table table-striped">
                 <thead><tr><th>Properties</th><th>Value</th></tr></thead>
                 <tbody><tr><td> Type </td><td> ${feature.properties.line_type}</td></tr>
                 '<tr><td> Pipe diameter(cm) </td><td>${feature.properties.pip_dia_in}</td></tr>`)
-                    }
-                })
+                        }
+                    })
+                },
+            }).addTo(map);
+            var waterNetwork = L.addLayer(waterNetwork1)
+            checkWaterNetwork()
+        })
+    }
+    waterLayer()
+
+    function checkWaterNetwork() {
+        $(".water-supply").click(function () {
+            if ($(this).prop('checked') == true) {
+                map.addLayer(waterNetwork);
+            } else if ($(this).prop('checked') == false) {
+                map.removeLayer(waterNetwork);
             }
-        }).addTo(map);
-    })
-}
- waterLayer()
+        });
+    }
+
 
 
 
