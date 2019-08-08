@@ -22,8 +22,8 @@ class Boundarybuilding(models.Model):
 
 class Drainage(models.Model):
     gid = models.AutoField(primary_key=True)
-    geom = models.MultiLineStringField(blank=True, null=True)
-    widht_mm = gis_model.IntegerField(blank=True, null=True)
+    geom = gis_model.MultiLineStringField(blank=True, null=True)
+    widht_mm = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
