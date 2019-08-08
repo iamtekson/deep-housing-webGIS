@@ -322,9 +322,11 @@
       </div>
 
       <!-- Login Form -->
-      <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="Login">
-        <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password">
+      <form action="{% url 'signin' %}" method="POST">
+        {% csrf_token %}
+
+        <input type="text" id="login" class="fadeIn second" name="username" placeholder="Login">
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
         <input type="submit" class="fadeIn fourth" value="Log In">
       </form>
 

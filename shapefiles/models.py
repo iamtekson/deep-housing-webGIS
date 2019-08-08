@@ -139,7 +139,7 @@ class WaterNetwork(models.Model):
     gid = models.AutoField(primary_key=True)
     line_type = models.CharField(max_length=50, blank=True, null=True)
     pip_dia_in = models.FloatField(blank=True, null=True)
-    geom = gis_model.MultiLineStringField(dim=4, blank=True, null=True)
+    geom = gis_model.MultiLineStringField(blank=True, null=True)
 
     class Meta:
         managed = False
