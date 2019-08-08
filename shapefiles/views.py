@@ -35,14 +35,6 @@ def sanitaryJunctionPoint(request):
     sanitaryJunctionPointData = serialize('geojson', SanitaryJunctionPoint.objects.all())
     return HttpResponse(sanitaryJunctionPointData, content_type='geojson')
 
-def sewer(request):
-    sewerData = serialize('geojson', Sewer.objects.all())
-    return HttpResponse(sewerData, content_type='geojson')
-
-def sewerJunctionPoints(request):
-    sewerJunctionPointsData = serialize('geojson', SewerJunctionPoints.objects.all())
-    return HttpResponse(sewerJunctionPointsData, content_type='geojson')
-
 def street(request):
     streetData = serialize('geojson', Street.objects.all())
     return HttpResponse(streetData, content_type='geojson')

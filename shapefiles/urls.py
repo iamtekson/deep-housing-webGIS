@@ -9,8 +9,6 @@ urlpatterns = [
     path('road', views.road, name="road"),
     path('sanitary', views.sanitary, name="samotary"),
     path('sanitaryjunctionpoint', views.sanitaryJunctionPoint, name='sanitaryjunctionpoint'),
-    path('sewer', views.sewer),
-    path('sewerjunctionpoints', views.sewerJunctionPoints),
     path('street', views.street, name="street"),
     path('swimmingpool', views.swimmingpool, name="swimmingpool"),
     path('temple', views.temple, name="temple"),
