@@ -1,6 +1,12 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from leaflet.admin import LeafletGeoAdmin
 from .models import Boundary, Boundarybuilding, Drainage, DrainageOutletValve, Park, Road, Sanitary, SanitaryJunctionPoint, Sewer, SewerJunctionPoints, Street, Swimmingpool, Temple, WaterNetwork
+
+admin.site.unregister(Group)
+admin.site.site_header = 'Utility Management System'
+
+
 
 class BoundaryAdmin(LeafletGeoAdmin):
     list_display = ('gid', 'area')
