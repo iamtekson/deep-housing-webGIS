@@ -44,8 +44,6 @@
 <body>
     {% block content %} {% endblock content %}
 
-    {% block js %} {% endblock js %}
-
     <!-- data -->
     <script src="{% static 'data/street_light.js' %}"></script>
 
@@ -89,6 +87,8 @@
     <!-- main js -->
     <script src="{% static 'js/leaflet-map.js' %}"></script>
     <script src="{% static 'js/control-function.js' %}"></script>
+
+    {% block js %} {% endblock js %}
 
 </body>
 

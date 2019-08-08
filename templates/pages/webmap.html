@@ -22,3 +22,31 @@
 {% include "map-control/coordinate.html" %}
 
 {% endblock content %}
+
+{% block js %}
+<script>
+
+    function otherLayers() {
+        $.getJSON("{% url 'boundary' %}", function (data) {
+            L.geoJSON(data).addTo(map);
+        });
+        $.getJSON("{% url 'boundarybuilding' %}", function (data) {
+            L.geoJSON(data).addTo(map);
+        });
+        $.getJSON("{% url 'park' %}", function (data) {
+            L.geoJSON(data).addTo(map);
+        });
+        $.getJSON("{% url 'swimmingpool' %}", function (data) {
+            L.geoJSON(data).addTo(map);
+        });
+        $.getJSON("{% url 'temple' %}", function (data) {
+            L.geoJSON(data).addTo(map);
+        });
+    }
+otherLayers()
+
+
+
+
+</script>
+{% endblock js %}
