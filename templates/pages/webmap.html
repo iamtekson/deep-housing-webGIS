@@ -52,7 +52,11 @@ function waterLayer(){
                 layer.on({
                     click: function(e) {
                         popupContents(e);
-                        $('.sidebar-info').html('i am popedup')
+                        $('.sidebar-info').html(`<h4>Water Network</h4>
+                <div class="container"><table class="table table-striped">
+                <thead><tr><th>Properties</th><th>Value</th></tr></thead>
+                <tbody><tr><td> Type </td><td> ${feature.properties.line_type}</td></tr>
+                '<tr><td> Pipe diameter(cm) </td><td>${feature.properties.pip_dia_in}</td></tr>`)
                     }
                 })
             }
