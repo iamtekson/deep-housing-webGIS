@@ -60,22 +60,18 @@
                         }
                     })
                 },
-            }).addTo(map);
-            var waterNetwork = L.addLayer(waterNetwork1)
-            checkWaterNetwork()
+            });
+            var waterNetwork = new L.layerGroup().addLayer(waterNetwork1)
+            $(".water-supply").click(function () {
+                if ($(this).prop('checked') == true) {
+                    map.addLayer(waterNetwork);
+                } else if ($(this).prop('checked') == false) {
+                    map.removeLayer(waterNetwork);
+                }
+            });
         })
     }
     waterLayer()
-
-    function checkWaterNetwork() {
-        $(".water-supply").click(function () {
-            if ($(this).prop('checked') == true) {
-                map.addLayer(waterNetwork);
-            } else if ($(this).prop('checked') == false) {
-                map.removeLayer(waterNetwork);
-            }
-        });
-    }
 
 
 
