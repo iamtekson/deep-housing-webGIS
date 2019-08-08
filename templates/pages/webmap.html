@@ -43,8 +43,23 @@
             L.geoJSON(data).addTo(map);
         });
     }
-otherLayers()
+// otherLayers()
 
+function waterLayer(){
+    $.getJSON("{% url 'waternetwork' %}", function(data){
+        L.geoJSON(data, {
+            onEachFeature : function(feature, layer){
+                layer.on({
+                    click: function(e) {
+                        popupContents(e);
+                        $('.sidebar-info').html('i am popedup')
+                    }
+                })
+            }
+        }).addTo(map);
+    })
+}
+ waterLayer()
 
 
 
