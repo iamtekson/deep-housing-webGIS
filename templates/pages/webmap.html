@@ -323,21 +323,11 @@
             }
         });
     }
-
-    // remove all utilities layers
+    
+    //Clear utilities layers
     function removeAllUtilitiesLayer(layer) {
-        $('.remove-all-utilities-layers').click(clearUtilityLayer)
         $('.remove-all-utilities-layers').click(function () {
             map.removeLayer(layer)
-        })
-    }
-
-
-
-
-
-    //Clear utilities layers
-    function clearUtilityLayer() {
         $('.street-light').prop('checked', false)
         $('.road-network').prop('checked', false)
         $('.drainage-line').prop('checked', false)
@@ -351,6 +341,7 @@
         $('.swimming-pool').prop('checked', false)
         $('.park').prop('checked', false)
         $('.temple').prop('checked', false)
+    })
     }
 
     // add default utilities layers
