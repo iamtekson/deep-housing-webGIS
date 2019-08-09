@@ -20,7 +20,7 @@ def outletValve(request):
     return HttpResponse(outletValveData, content_type='geojson')
 
 def manhole(request):
-    manholeData - serialize('geojson', ManHole.objects.all())
+    manholeData = serialize('geojson', ManHole.objects.all())
     return HttpResponse(manholeData, content_type='geojson')
 
 def park(request):

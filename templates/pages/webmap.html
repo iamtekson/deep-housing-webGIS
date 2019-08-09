@@ -273,7 +273,7 @@
             $.getJSON("{% url 'manhole' %}", function (data) {
             let manhole = L.geoJSON(data, {
                 pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, manhole);
+                    return L.circleMarker(latlng, manholeStyle);
                 }
             }).addTo(map);
             manhole.addTo(drainage)
