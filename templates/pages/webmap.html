@@ -257,26 +257,34 @@
                             <tr><td> Pipe Material </td><td>${feature.properties.pipe_mat}</td></tr>
                             <tr><td> Diameter of Pipe (cm) </td><td>${feature.properties.diamr_mm_field}</td></tr>
                             <tr><td> Trench Depth </td><td>${feature.properties.trench_dep}</td></tr>`)
-
                     }
                 })
             }
-        });
+        }).addTo(map);
         //sanitary junction point
-        $.getJSON("{% url 'sanitaryjunctionpoint' %}", function (data) {
-            let sanitaryjunctionpoint = L.geoJSON(data, {
+        $.getJSON("{% url 'outletvalve' %}", function (data) {
+            let outletvalve = L.geoJSON(data, {
                 pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, sanitaryjunctionpointStyle);
+                    return L.circleMarker(latlng, outletValveStyle);
                 }
-            });
-            sanitaryjunctionpoint.addTo(sanitary)
-            var layer = new L.layerGroup().addLayer(sanitary),
-                selector = $('.sanitary')
+            }).addTo(map);
+
+            //man hole
+            $.getJSON("{% url 'manhole' %}", function (data) {
+            let manhole = L.geoJSON(data, {
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng, manhole);
+                }
+            }).addTo(map);
+            manhole.addTo(drainage)
+            outletvalve.addTo(drainage)
+            var layer = new L.layerGroup().addLayer(drainage),
+                selector = $('.drainage-line')
             layerToggler(selector, layer)
             removeAllUtilitiesLayer(layer)
-            addDefaultUtilitiesLayer(layer)
         })
     })
+})
 
     //Road Network
     $.getJSON("{% url 'road' %}", function (data) {
