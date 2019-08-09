@@ -144,8 +144,8 @@ class House(models.Model):
     area_sq_m_field = models.BigIntegerField(db_column='area_sq_m_', blank=True, null=True)  # Field renamed because it ended with '_'.
     curr_resid = models.CharField(max_length=50, blank=True, null=True)
     permanent = models.CharField(max_length=50, blank=True, null=True)
-    plot_no = models.IntegerField(blank=True, null=True)
-    geom = gis_model.MultiPolygonField(dim=4, blank=True, null=True)
+    plot_no = models.BigIntegerField(blank=True, null=True)
+    geom = gis_model.MultiPolygonField(blank=True, null=True)
 
     class Meta:
         managed = False
