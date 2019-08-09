@@ -15,4 +15,5 @@ urlpatterns = [
     path('waternetwork', views.waterNetwork, name="waternetwork"),
     path('house', views.house, name="house"),
     path('electrical', views.house, name='elecctrical'),
+    path('telephoneinternet', views.telephoneInternet, name='telephoneinternet')
 ]

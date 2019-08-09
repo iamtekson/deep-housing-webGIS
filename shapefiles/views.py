@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.serializers import serialize
 from django.http import HttpResponse
-from .models import Boundary, Boundarybuilding, Drainage, DrainageOutletValve, Park, Road, Sanitary, SanitaryJunctionPoint, Street, Swimmingpool, Temple, WaterNetwork, House, Electrical
+from .models import Boundary, Boundarybuilding, Drainage, DrainageOutletValve, Park, Road, Sanitary, SanitaryJunctionPoint, Street, Swimmingpool, Temple, WaterNetwork, House, Electrical, TelephoneInternet
 
 def boundary(request):
     boundaryData = serialize('geojson', Boundary.objects.all())
@@ -58,3 +58,7 @@ def house(request):
 def electrical(request):
     electricalData = serialize('geojson', electrical.objects.all())
     return HttpResponse(electricalData, content_type='geojson')
+
+def telephoneInternet(request):
+    telephoneInternetData = serialize('geojson', TelephoneInternet.objects.all())
+    return HttpResponse(telephoneInternetData, content_type='geojson')
