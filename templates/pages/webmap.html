@@ -26,31 +26,66 @@
 {% block js %}
 <script>
 
+var waterNetworkStyle = {
+        stroke: '#452',
+        color: '#579fbe',
+        weight: 1
+    },
+    boundaryStyle = {
+        color: '#777',
+        weight: .7,
+        fill: false
+    },
+    boundarybuildingStyle = {
+        color: 'red',
+        weight: 0.5,
+    },
+    parkStyle = {
+        color:'green',
+        weight: 1,
+        fill: 'green',
+    },
+    swimmingpollStyle = {
+        color: 'blue',
+        weight: .5,
+        fill: 'blue'
+    },
+    templeStyle = {
+        color: 'red',
+        weight: .5,
+        fill: 'red',
+    }
+
     function otherLayers() {
         $.getJSON("{% url 'boundary' %}", function (data) {
-            L.geoJSON(data).addTo(map);
+            L.geoJSON(data, {
+                style: boundaryStyle,
+            }).addTo(map);
         });
         $.getJSON("{% url 'boundarybuilding' %}", function (data) {
-            L.geoJSON(data).addTo(map);
+            L.geoJSON(data, {
+                style: boundarybuildingStyle
+            }).addTo(map);
         });
         $.getJSON("{% url 'park' %}", function (data) {
-            L.geoJSON(data).addTo(map);
+            L.geoJSON(data, {
+                style: parkStyle
+            }).addTo(map);
         });
         $.getJSON("{% url 'swimmingpool' %}", function (data) {
-            L.geoJSON(data).addTo(map);
+            L.geoJSON(data, {
+                style: swimmingpollStyle
+            }).addTo(map);
         });
         $.getJSON("{% url 'temple' %}", function (data) {
-            L.geoJSON(data).addTo(map);
+            L.geoJSON(data, {
+                style: templeStyle
+            }).addTo(map);
         });
     }
-    // otherLayers()
+    otherLayers()
 
     // Water layer manage
-    var waterNetworkStyle = {
-        stroke: '#452',
-        color: '#aaa',
-        weight: 1
-    }
     function waterLayer() {
         $.getJSON("{% url 'waternetwork' %}", function (data) {
             var waterNetwork1 = L.geoJSON(data, {

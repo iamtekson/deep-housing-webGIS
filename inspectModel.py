@@ -156,6 +156,35 @@ class DrainageOutletValve(models.Model):
         db_table = 'drainage_outlet_valve'
 
 
+class Electrical(models.Model):
+    gid = models.AutoField(primary_key=True)
+    line_type = models.CharField(max_length=50, blank=True, null=True)
+    material = models.CharField(max_length=50, blank=True, null=True)
+    diameter = models.IntegerField(blank=True, null=True)
+    phase_c_field = models.FloatField(db_column='phase_c_', blank=True, null=True)  # Field renamed because it ended with '_'.
+    diameter_c = models.IntegerField(blank=True, null=True)
+    material_c = models.CharField(max_length=50, blank=True, null=True)
+    geom = models.MultiLineStringField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'electrical'
+
+
+class House(models.Model):
+    gid = models.AutoField(primary_key=True)
+    house_type = models.CharField(max_length=50, blank=True, null=True)
+    area_sq_m_field = models.BigIntegerField(db_column='area_sq_m_', blank=True, null=True)  # Field renamed because it ended with '_'.
+    curr_resid = models.CharField(max_length=50, blank=True, null=True)
+    permanent = models.CharField(max_length=50, blank=True, null=True)
+    plot_no = models.IntegerField(blank=True, null=True)
+    geom = models.MultiPolygonField(dim=4, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'house'
+
+
 class Park(models.Model):
     gid = models.AutoField(primary_key=True)
     geom = models.MultiPolygonField(blank=True, null=True)
