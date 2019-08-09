@@ -263,7 +263,7 @@ $.getJSON("{% url 'electrical' %}", function (data) {
                             <tr><td> Line Type </td><td>${feature.properties.line_type}</td></tr>
                             <tr><td> Cable Type </td><td>${feature.properties.cable_type}</td></tr>
                             <tr><td> Pipe Cons. Material </td><td>${feature.properties.p_material}</td></tr>
-                            <tr><td> Pipe Diameter </td><td>${feature.properties.p_dia_mm}</td></tr>
+                            <tr><td> Pipe Diameter(mm) </td><td>${feature.properties.p_dia_mm}</td></tr>
                             <tr><td> Phase Line </td><td>${feature.properties.phase_c}</td></tr>
                             <tr><td> Diameter of Electrical Conductor </td><td>${feature.properties.c_dia_mm}</td></tr>
                             <tr><td> Electrical Conductor Material </td><td>${feature.properties.c_material}</td></tr>`)
@@ -285,12 +285,14 @@ $.getJSON("{% url 'electrical' %}", function (data) {
                 layer.on({
                     click: function (e) {
                         popupContents(e);
-                        $('.sidebar-info').html(`<h4>Road</h4>
+                        $('.sidebar-info').html(`<h4>Telephone/Internet Layer</h4>
                             <div class="container"><table class="table table-striped">
                             <thead><tr><th>Properties</th><th>Value</th></tr></thead>
                             <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
-                            <tr><td> Current Road Type </td><td>${feature.properties.road_type}</td></tr>
-                            <tr><td> Road Segment </td><td>${feature.properties.road_typ_1}</td></tr>`)
+                            <tr><td> Line Type </td><td>${feature.properties.line_type}</td></tr>
+                            <tr><td> Cable Type </td><td>${feature.properties.cable_type}</td></tr>
+                            <tr><td> Pipe Material </td><td>${feature.properties.p_material}</td></tr>
+                            <tr><td> Pipe Diameter(mm) </td><td>${feature.properties.p_dia_mm}</td></tr>`)
                     }
                 })
             }
