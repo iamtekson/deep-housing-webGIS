@@ -26,46 +26,54 @@
 {% block js %}
 <script>
 
-var waterNetworkStyle = {
+    var waterNetworkStyle = {
         stroke: '#452',
         color: '#579fbe',
         weight: 1
     },
-    boundaryStyle = {
-        color: '#777',
-        weight: .7,
-        fill: false
-    },
-    boundarybuildingStyle = {
-        color: 'red',
-        weight: 0.5,
-    },
-    parkStyle = {
-        color:'green',
-        weight: 1,
-        fill: 'green',
-    },
-    swimmingpollStyle = {
-        color: 'blue',
-        weight: .5,
-        fill: 'blue'
-    },
-    templeStyle = {
-        color: 'red',
-        weight: .5,
-        fill: 'red',
-    },
-    houseStyle = {
-        color:'green',
-        fill: 'red',
-        weight: 3,
-    }
+        boundaryStyle = {
+            color: '#777',
+            weight: .7,
+            fill: false
+        },
+        boundarybuildingStyle = {
+            color: 'red',
+            weight: 0.5,
+        },
+        parkStyle = {
+            color: 'green',
+            weight: 1,
+            fill: 'green',
+        },
+        swimmingpollStyle = {
+            color: 'blue',
+            weight: .5,
+            fill: 'blue'
+        },
+        templeStyle = {
+            color: 'red',
+            weight: .5,
+            fill: 'red',
+        },
+        houseStyle = {
+            color: 'green',
+            fill: 'red',
+            weight: 3,
+        }
 
     function otherLayers() {
         $.getJSON("{% url 'boundary' %}", function (data) {
-            L.geoJSON(data, {
+            var boundary1 = L.geoJSON(data, {
                 style: boundaryStyle,
             }).addTo(map);
+            var boundary = new L.layerGroup().addLayer(boundary1)
+            $(".boundary").click(function () {
+                if ($(this).prop('checked') == true) {
+                    map.addLayer(boundary);
+                } else if ($(this).prop('checked') == false) {
+                    map.removeLayer(boundary);
+                }
+            });
         });
         $.getJSON("{% url 'boundarybuilding' %}", function (data) {
             L.geoJSON(data, {
@@ -120,14 +128,16 @@ var waterNetworkStyle = {
     }
     waterLayer()
 
-$.getJSON("{% url 'house' %}", function(data){
-    var houselayer1 = L.geoJSON(data, {
-        style: houseStyle,
-        onEachFeature: function(feature, layer) {
-            layer.on({
-                click: function(e){
-                    popupContents(e);
-                    $('.sidebar-info').html(`<h4>Building</h4>
+
+    //house dataset
+    $.getJSON("{% url 'house' %}", function (data) {
+        var houselayer1 = L.geoJSON(data, {
+            style: houseStyle,
+            onEachFeature: function (feature, layer) {
+                layer.on({
+                    click: function (e) {
+                        popupContents(e);
+                        $('.sidebar-info').html(`<h4>Building</h4>
                             <div class="container"><table class="table table-striped">
                             <thead><tr><th>Properties</th><th>Value</th></tr></thead>
                             <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
@@ -137,22 +147,25 @@ $.getJSON("{% url 'house' %}", function(data){
                             <tr><td> Permanent </td><td>${feature.properties.permanent}</td></tr>
                             <tr><td> Plot number </td><td>${feature.properties.plot_no}</td></tr>`)
 
-                }
-            })
-        }
-    });
-    var houselayer = new L.layerGroup().addLayer(houselayer1)
-    $(".building").click(function () {
-                if ($(this).prop('checked') == true) {
-                    map.addLayer(houselayer);
-                } else if ($(this).prop('checked') == false) {
-                    map.removeLayer(houselayer);
-                }
-            });
+                    }
+                })
+            }
+        });
+        var layer = new L.layerGroup().addLayer(houselayer1),
+            selector = $('.building')
+        layerToggler(selector, layer)
 
-})
+    })
 
-
+    function layerToggler(selector, layer) {
+        selector.click(function () {
+            if ($(this).prop('checked') == true) {
+                map.addLayer(layer);
+            } else if ($(this).prop('checked') == false) {
+                map.removeLayer(layer);
+            }
+        });
+    }
 
 
 </script>
