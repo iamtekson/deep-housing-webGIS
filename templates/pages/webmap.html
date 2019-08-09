@@ -127,7 +127,7 @@ $.getJSON("{% url 'house' %}", function(data){
             layer.on({
                 click: function(e){
                     popupContents(e);
-                    $('.sidebar-info').html(`<h4>House</h4>
+                    $('.sidebar-info').html(`<h4>Building</h4>
                             <div class="container"><table class="table table-striped">
                             <thead><tr><th>Properties</th><th>Value</th></tr></thead>
                             <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
@@ -140,7 +140,16 @@ $.getJSON("{% url 'house' %}", function(data){
                 }
             })
         }
-    }).addTo(map);
+    });
+    var houselayer = new L.layerGroup().addLayer(houselayer1)
+    $(".building").click(function () {
+                if ($(this).prop('checked') == true) {
+                    map.addLayer(houselayer);
+                } else if ($(this).prop('checked') == false) {
+                    map.removeLayer(houselayer);
+                }
+            });
+
 })
 
 
