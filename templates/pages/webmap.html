@@ -71,94 +71,92 @@
             weight: 1,
             opacity: 1,
             fillOpacity: .8,
-        }, 
+        },
         roadStyle = {
             color: 'red',
             weight: 2,
             dashArray: '5,10'
         },
-        electricalLine={
+        electricalLine = {
             color: 'blue',
             weight: 1,
         },
         telephoneStyle = {
             color: 'green',
-            weight:1
+            weight: 1
         }
 
     function otherLayers() {
         $.getJSON("{% url 'boundary' %}", function (data) {
             var boundary1 = L.geoJSON(data, {
                 style: boundaryStyle,
-            }).addTo(map);
+            });
             var layer = new L.layerGroup().addLayer(boundary1),
                 selector = $('.boundary')
             layerToggler(selector, layer)
+            removeAllUtilitiesLayer(layer)
         });
         $.getJSON("{% url 'boundarybuilding' %}", function (data) {
             var boundarybuilding1 = L.geoJSON(data, {
                 style: boundarybuildingStyle
-            }).addTo(map);
+            });
             var layer = new L.layerGroup().addLayer(boundarybuilding1)
             selector = $('.boundary-building')
             layerToggler(selector, layer)
+            removeAllUtilitiesLayer(layer)
         });
         $.getJSON("{% url 'park' %}", function (data) {
             let park = L.geoJSON(data, {
                 style: parkStyle
-            }).addTo(map);
+            });
             let selector = $('.park'),
                 layer = new L.layerGroup().addLayer(park)
             layerToggler(selector, layer)
+            removeAllUtilitiesLayer(layer)
         });
         $.getJSON("{% url 'swimmingpool' %}", function (data) {
             let swimmingpool = L.geoJSON(data, {
                 style: swimmingpollStyle
-            }).addTo(map);
+            });
             let selector = $('.swimming-pool'),
                 layer = new L.layerGroup().addLayer(swimmingpool)
             layerToggler(selector, layer)
+            removeAllUtilitiesLayer(layer)
         });
         $.getJSON("{% url 'temple' %}", function (data) {
             let temple = L.geoJSON(data, {
                 style: templeStyle
-            }).addTo(map);
+            });
             let selector = $('.temple'),
                 layer = new L.layerGroup().addLayer(temple)
             layerToggler(selector, layer)
+            removeAllUtilitiesLayer(layer)
         });
     }
     otherLayers()
 
     // Water layer manage
-    function waterLayer() {
-        $.getJSON("{% url 'waternetwork' %}", function (data) {
-            var waterNetwork1 = L.geoJSON(data, {
-                style: waterNetworkStyle,
-                onEachFeature: function (feature, layer) {
-                    layer.on({
-                        click: function (e) {
-                            popupContents(e);
-                            $('.sidebar-info').html(`<h4>Water Network</h4>
+    $.getJSON("{% url 'waternetwork' %}", function (data) {
+        var waterNetwork1 = L.geoJSON(data, {
+            style: waterNetworkStyle,
+            onEachFeature: function (feature, layer) {
+                layer.on({
+                    click: function (e) {
+                        popupContents(e);
+                        $('.sidebar-info').html(`<h4>Water Network</h4>
                             <div class="container"><table class="table table-striped">
                             <thead><tr><th>Properties</th><th>Value</th></tr></thead>
                             <tbody><tr><td> Type </td><td> ${feature.properties.line_type}</td></tr>
                             <tr><td> Pipe diameter(cm) </td><td>${feature.properties.pip_dia_in}</td></tr>`)
-                        }
-                    })
-                },
-            });
-            var waterNetwork = new L.layerGroup().addLayer(waterNetwork1)
-            $(".water-supply").click(function () {
-                if ($(this).prop('checked') == true) {
-                    map.addLayer(waterNetwork);
-                } else if ($(this).prop('checked') == false) {
-                    map.removeLayer(waterNetwork);
-                }
-            });
-        })
-    }
-    waterLayer()
+                    }
+                })
+            },
+        });
+        var layer = new L.layerGroup().addLayer(waterNetwork1),
+            selector = $('.water-supply')
+            layerToggler(selector, layer)
+        removeAllUtilitiesLayer(layer)
+    })
 
 
     //house dataset
@@ -182,10 +180,11 @@
                     }
                 })
             }
-        }).addTo(map);
+        });
         var layer = new L.layerGroup().addLayer(houselayer1),
             selector = $('.building')
         layerToggler(selector, layer)
+        removeAllUtilitiesLayer(layer)
     })
 
 
@@ -209,22 +208,23 @@
                     }
                 })
             }
-        }).addTo(map);
+        });
         //sanitary junction point
         $.getJSON("{% url 'sanitaryjunctionpoint' %}", function (data) {
             let sanitaryjunctionpoint = L.geoJSON(data, {
                 pointToLayer: function (feature, latlng) {
                     return L.circleMarker(latlng, sanitaryjunctionpointStyle);
                 }
-            }).addTo(map);
+            });
             sanitaryjunctionpoint.addTo(sanitary)
             var layer = new L.layerGroup().addLayer(sanitary),
                 selector = $('.sanitary')
             layerToggler(selector, layer)
+            removeAllUtilitiesLayer(layer)
         })
     })
 
-//Road Network
+    //Road Network
     $.getJSON("{% url 'road' %}", function (data) {
         var road = L.geoJSON(data, {
             style: roadStyle,
@@ -242,14 +242,15 @@
                     }
                 })
             }
-        }).addTo(map);
+        });
         var layer = new L.layerGroup().addLayer(road),
             selector = $('.road-network')
         layerToggler(selector, layer)
+        removeAllUtilitiesLayer(layer)
     })
 
-//electrical line
-$.getJSON("{% url 'electrical' %}", function (data) {
+    //electrical line
+    $.getJSON("{% url 'electrical' %}", function (data) {
         var electrical = L.geoJSON(data, {
             style: electricalLine,
             onEachFeature: function (feature, layer) {
@@ -270,10 +271,11 @@ $.getJSON("{% url 'electrical' %}", function (data) {
                     }
                 })
             }
-        }).addTo(map);
+        });
         var layer = new L.layerGroup().addLayer(electrical),
             selector = $('.electrical-line')
         layerToggler(selector, layer)
+        removeAllUtilitiesLayer(layer)
     })
 
 
@@ -296,10 +298,11 @@ $.getJSON("{% url 'electrical' %}", function (data) {
                     }
                 })
             }
-        }).addTo(map);
+        });
         var layer = new L.layerGroup().addLayer(telephone),
             selector = $('.telephone')
-        layerToggler(selector, layer)
+        layerToggler(selector, layer);
+        removeAllUtilitiesLayer(layer)
     })
 
 
@@ -308,12 +311,37 @@ $.getJSON("{% url 'electrical' %}", function (data) {
     // layer layerToggler
     function layerToggler(selector, layer) {
         selector.click(function () {
-            if ($(this).prop('checked') == true) {
+            if ($(this).prop('checked') === true) {
                 map.addLayer(layer);
-            } else if ($(this).prop('checked') == false) {
+            } else if ($(this).prop('checked') === false) {
                 map.removeLayer(layer);
             }
         });
+    }
+
+    function removeAllUtilitiesLayer(layer) {
+        $('.remove-all-utilities-layers').click(clearUtilityLayer)
+        $('.remove-all-utilities-layers').click(function () {
+            map.removeLayer(layer)
+        })
+    }
+
+
+    //Clear utilities layers
+    function clearUtilityLayer() {
+        $('.street-light').prop('checked', false)
+        $('.road-network').prop('checked', false)
+        $('.drainage-line').prop('checked', false)
+        $('.water-supply').prop('checked', false)
+        $('.electrical-line').prop('checked', false)
+        $('.telephone').prop('checked', false)
+        $('.building').prop('checked', false)
+        $('.sanitary').prop('checked', false)
+        $('.boundary-building').prop('checked', false)
+        $('.boundary').prop('checked', false)
+        $('.swimming-pool').prop('checked', false)
+        $('.park').prop('checked', false)
+        $('.temple').prop('checked', false)
     }
 
 </script>
