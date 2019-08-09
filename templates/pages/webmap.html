@@ -79,19 +79,28 @@
                 layerToggler(selector, layer)
         });
         $.getJSON("{% url 'park' %}", function (data) {
-            L.geoJSON(data, {
+            let park = L.geoJSON(data, {
                 style: parkStyle
             }).addTo(map);
+            let selector = $('.park'),
+                layer = new L.layerGroup().addLayer(park)
+            layerToggler(selector, layer)
         });
         $.getJSON("{% url 'swimmingpool' %}", function (data) {
-            L.geoJSON(data, {
+            let swimmingpool = L.geoJSON(data, {
                 style: swimmingpollStyle
             }).addTo(map);
+            let selector = $('.swimming-pool'),
+                layer = new L.layerGroup().addLayer(swimmingpool)
+            layerToggler(selector, layer)
         });
         $.getJSON("{% url 'temple' %}", function (data) {
-            L.geoJSON(data, {
+            let temple = L.geoJSON(data, {
                 style: templeStyle
             }).addTo(map);
+            let selector = $('.temple'),
+                layer = new L.layerGroup().addLayer(temple)
+            layerToggler(selector, layer)
         });
     }
     otherLayers()
