@@ -7,6 +7,7 @@ urlpatterns = [
     path('outletvalve', views.outletValve, name="outletvalve"),
     path('manhole', views.manhole, name='manhole'),
     path('park', views.park, name="park"),
+    path('street', views.street, name='street'),
     path('road', views.road, name="road"),
     path('sanitary', views.sanitary, name="sanitary"),
     path('sanitaryjunctionpoint', views.sanitaryJunctionPoint, name='sanitaryjunctionpoint'),
