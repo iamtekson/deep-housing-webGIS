@@ -45,9 +45,16 @@
     }
     // otherLayers()
 
+    // Water layer manage
+    var waterNetworkStyle = {
+        stroke: '#452',
+        color: '#aaa',
+        weight: 1
+    }
     function waterLayer() {
         $.getJSON("{% url 'waternetwork' %}", function (data) {
             var waterNetwork1 = L.geoJSON(data, {
+                style: waterNetworkStyle,
                 onEachFeature: function (feature, layer) {
                     layer.on({
                         click: function (e) {
