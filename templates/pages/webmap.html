@@ -66,19 +66,17 @@
             var boundary1 = L.geoJSON(data, {
                 style: boundaryStyle,
             }).addTo(map);
-            var boundary = new L.layerGroup().addLayer(boundary1)
-            $(".boundary").click(function () {
-                if ($(this).prop('checked') == true) {
-                    map.addLayer(boundary);
-                } else if ($(this).prop('checked') == false) {
-                    map.removeLayer(boundary);
-                }
-            });
+            var layer = new L.layerGroup().addLayer(boundary1),
+            selector = $('.boundary')
+            layerToggler(selector, layer)
         });
         $.getJSON("{% url 'boundarybuilding' %}", function (data) {
-            L.geoJSON(data, {
+            var boundarybuilding1 = L.geoJSON(data, {
                 style: boundarybuildingStyle
             }).addTo(map);
+            var layer = new L.layerGroup().addLayer(boundarybuilding1)
+                selector= $('.boundary-building')
+                layerToggler(selector, layer)
         });
         $.getJSON("{% url 'park' %}", function (data) {
             L.geoJSON(data, {
@@ -157,7 +155,9 @@
 
     })
 
-    function layerToggler(selector, layer) {
+
+        // layer layerToggler
+        function layerToggler(selector, layer) {
         selector.click(function () {
             if ($(this).prop('checked') == true) {
                 map.addLayer(layer);
@@ -166,7 +166,6 @@
             }
         });
     }
-
 
 </script>
 {% endblock js %}
