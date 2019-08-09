@@ -154,7 +154,7 @@
         });
         var layer = new L.layerGroup().addLayer(waterNetwork1),
             selector = $('.water-supply')
-            layerToggler(selector, layer)
+        layerToggler(selector, layer)
         removeAllUtilitiesLayer(layer)
     })
 
@@ -185,6 +185,7 @@
             selector = $('.building')
         layerToggler(selector, layer)
         removeAllUtilitiesLayer(layer)
+        addDefaultUtilitiesLayer(layer)
     })
 
 
@@ -221,6 +222,7 @@
                 selector = $('.sanitary')
             layerToggler(selector, layer)
             removeAllUtilitiesLayer(layer)
+            addDefaultUtilitiesLayer(layer)
         })
     })
 
@@ -247,6 +249,7 @@
             selector = $('.road-network')
         layerToggler(selector, layer)
         removeAllUtilitiesLayer(layer)
+        addDefaultUtilitiesLayer(layer)
     })
 
     //electrical line
@@ -276,6 +279,7 @@
             selector = $('.electrical-line')
         layerToggler(selector, layer)
         removeAllUtilitiesLayer(layer)
+        addDefaultUtilitiesLayer(layer)
     })
 
 
@@ -303,6 +307,7 @@
             selector = $('.telephone')
         layerToggler(selector, layer);
         removeAllUtilitiesLayer(layer)
+        addDefaultUtilitiesLayer(layer)
     })
 
 
@@ -319,12 +324,16 @@
         });
     }
 
+    // remove all utilities layers
     function removeAllUtilitiesLayer(layer) {
         $('.remove-all-utilities-layers').click(clearUtilityLayer)
         $('.remove-all-utilities-layers').click(function () {
             map.removeLayer(layer)
         })
     }
+
+
+
 
 
     //Clear utilities layers
@@ -342,6 +351,19 @@
         $('.swimming-pool').prop('checked', false)
         $('.park').prop('checked', false)
         $('.temple').prop('checked', false)
+    }
+
+    // add default utilities layers
+    function addDefaultUtilitiesLayer(layer) {
+        $('.add-default-utilities-layer').click(function () {
+            $('.building').prop('checked', true)
+            $('.road-network').prop('checked', true)
+            $('.water-supply').prop('checked', true)
+            $('.sanitary').prop('checked', true)
+            $('.electrical-line').prop('checked', true)
+            $('.telephone').prop('checked', true)
+            layer.addTo(map)
+        })
     }
 
 </script>
