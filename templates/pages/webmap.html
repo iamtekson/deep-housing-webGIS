@@ -191,12 +191,9 @@
                             <div class="container"><table class="table table-striped">
                             <thead><tr><th>Properties</th><th>Value</th></tr></thead>
                             <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
-                            <tr><td> Current Resident </td><td>${feature.properties.curr_resid}</td></tr>
-                            <tr><td> House type </td><td>${feature.properties.house_type}</td></tr>
-                            <tr><td> Area (sq.m) </td><td>${feature.properties.area_sq_m_field}</td></tr>
-                            <tr><td> Permanent </td><td>${feature.properties.permanent}</td></tr>
-                            <tr><td> Plot number </td><td>${feature.properties.plot_no}</td></tr>`)
-
+                                <tr><td> Name </td><td>${feature.properties.name}</td></tr>
+                            <tr><td> Pole Height (M) </td><td>${feature.properties.pol_height}</td></tr>
+                            <tr><td> Power (watt) </td><td>${feature.properties.power_watt}</td></tr>`)
                     }
                 })
             },
@@ -208,7 +205,6 @@
             selector = $('.street-light')
         layerToggler(selector, layer)
         removeAllUtilitiesLayer(layer)
-        addDefaultUtilitiesLayer(layer)
     })
 
 
