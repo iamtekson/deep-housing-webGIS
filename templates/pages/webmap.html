@@ -59,6 +59,18 @@
             color: 'green',
             fill: 'red',
             weight: 3,
+        },
+        sanitaryStyle = {
+            color: 'yellow',
+            weight: 1
+        },
+        sanitaryjunctionpointStyle = {
+            radius: 4,
+            color: 'black',
+            fillColor: 'red',
+            weight: 1,
+            opacity: 1,
+            fillOpacity: .8,
         }
 
     function otherLayers() {
@@ -67,7 +79,7 @@
                 style: boundaryStyle,
             }).addTo(map);
             var layer = new L.layerGroup().addLayer(boundary1),
-            selector = $('.boundary')
+                selector = $('.boundary')
             layerToggler(selector, layer)
         });
         $.getJSON("{% url 'boundarybuilding' %}", function (data) {
@@ -75,8 +87,8 @@
                 style: boundarybuildingStyle
             }).addTo(map);
             var layer = new L.layerGroup().addLayer(boundarybuilding1)
-                selector= $('.boundary-building')
-                layerToggler(selector, layer)
+            selector = $('.boundary-building')
+            layerToggler(selector, layer)
         });
         $.getJSON("{% url 'park' %}", function (data) {
             let park = L.geoJSON(data, {
@@ -157,16 +169,52 @@
                     }
                 })
             }
-        });
+        }).addTo(map);
         var layer = new L.layerGroup().addLayer(houselayer1),
             selector = $('.building')
         layerToggler(selector, layer)
-
     })
 
 
-        // layer layerToggler
-        function layerToggler(selector, layer) {
+    //sanitary layer
+    $.getJSON("{% url 'sanitary' %}", function (data) {
+        var sanitary = L.geoJSON(data, {
+            style: sanitaryStyle,
+            onEachFeature: function (feature, layer) {
+                layer.on({
+                    click: function (e) {
+                        popupContents(e);
+                        $('.sidebar-info').html(`<h4>Sanitary</h4>
+                            <div class="container"><table class="table table-striped">
+                            <thead><tr><th>Properties</th><th>Value</th></tr></thead>
+                            <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
+                            <tr><td> Type </td><td>${feature.properties.type}</td></tr>
+                            <tr><td> Pipe Material </td><td>${feature.properties.pipe_mat}</td></tr>
+                            <tr><td> Diameter of Pipe (cm) </td><td>${feature.properties.diamr_mm_field}</td></tr>
+                            <tr><td> Trench Depth </td><td>${feature.properties.trench_dep}</td></tr>`)
+
+                    }
+                })
+            }
+        }).addTo(map);
+        //sanitary junction point
+    $.getJSON("{% url 'sanitaryjunctionpoint' %}", function (data) {
+        let sanitaryjunctionpoint = L.geoJSON(data, {
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, sanitaryjunctionpointStyle);
+            }
+        }).addTo(map);
+        sanitaryjunctionpoint.addTo(sanitary)
+        var layer = new L.layerGroup().addLayer(sanitary),
+            selector = $('.sanitary')
+        layerToggler(selector, layer)
+    })
+    })
+
+    
+
+    // layer layerToggler
+    function layerToggler(selector, layer) {
         selector.click(function () {
             if ($(this).prop('checked') == true) {
                 map.addLayer(layer);
