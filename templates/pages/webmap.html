@@ -54,6 +54,11 @@ var waterNetworkStyle = {
         color: 'red',
         weight: .5,
         fill: 'red',
+    },
+    houseStyle = {
+        color:'green',
+        fill: 'red',
+        weight: 3,
     }
 
     function otherLayers() {
@@ -95,10 +100,10 @@ var waterNetworkStyle = {
                         click: function (e) {
                             popupContents(e);
                             $('.sidebar-info').html(`<h4>Water Network</h4>
-                <div class="container"><table class="table table-striped">
-                <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                <tbody><tr><td> Type </td><td> ${feature.properties.line_type}</td></tr>
-                '<tr><td> Pipe diameter(cm) </td><td>${feature.properties.pip_dia_in}</td></tr>`)
+                            <div class="container"><table class="table table-striped">
+                            <thead><tr><th>Properties</th><th>Value</th></tr></thead>
+                            <tbody><tr><td> Type </td><td> ${feature.properties.line_type}</td></tr>
+                            <tr><td> Pipe diameter(cm) </td><td>${feature.properties.pip_dia_in}</td></tr>`)
                         }
                     })
                 },
@@ -114,6 +119,29 @@ var waterNetworkStyle = {
         })
     }
     waterLayer()
+
+$.getJSON("{% url 'house' %}", function(data){
+    var houselayer1 = L.geoJSON(data, {
+        style: houseStyle,
+        onEachFeature: function(feature, layer) {
+            layer.on({
+                click: function(e){
+                    popupContents(e);
+                    $('.sidebar-info').html(`<h4>House</h4>
+                            <div class="container"><table class="table table-striped">
+                            <thead><tr><th>Properties</th><th>Value</th></tr></thead>
+                            <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
+                            <tr><td> Current Resident </td><td>${feature.properties.curr_resid}</td></tr>
+                            <tr><td> House type </td><td>${feature.properties.house_type}</td></tr>
+                            <tr><td> Area (sq.m) </td><td>${feature.properties.area_sq_m_field}</td></tr>
+                            <tr><td> Permanent </td><td>${feature.properties.permanent}</td></tr>
+                            <tr><td> Plot number </td><td>${feature.properties.plot_no}</td></tr>`)
+
+                }
+            })
+        }
+    }).addTo(map);
+})
 
 
 
