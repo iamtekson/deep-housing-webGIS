@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from leaflet.admin import LeafletGeoAdmin
-from .models import Boundary, Boundarybuilding, Drainage, DrainageOutletValve, Park, Road, Sanitary, SanitaryJunctionPoint, Sewer, SewerJunctionPoints, Street, Swimmingpool, Temple, WaterNetwork
+from .models import Boundary, Boundarybuilding, Drainage, DrainageOutletValve, Park, Road, Sanitary, SanitaryJunctionPoint, Street, Swimmingpool, Temple, WaterNetwork
 
 admin.site.unregister(Group)
 admin.site.site_header = 'Utility Management System'
@@ -19,8 +19,6 @@ admin.site.register(Park, LeafletGeoAdmin)
 admin.site.register(Road,LeafletGeoAdmin)
 admin.site.register(Sanitary, LeafletGeoAdmin)
 admin.site.register(SanitaryJunctionPoint, LeafletGeoAdmin)
-admin.site.register(Sewer, LeafletGeoAdmin)
-admin.site.register(SewerJunctionPoints, LeafletGeoAdmin)
 admin.site.register(Street, LeafletGeoAdmin)
 admin.site.register(Swimmingpool, LeafletGeoAdmin)
 admin.site.register(Temple, LeafletGeoAdmin)
