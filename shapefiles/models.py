@@ -160,8 +160,35 @@ class TelephoneInternet(models.Model):
     p_dia_mm = models.IntegerField(blank=True, null=True)
     geom = gis_model.MultiLineStringField(blank=True, null=True)
 
+class Meta:
+    managed = False
+    db_table = 'telephone_internet'
+
+class Drainage(models.Model):
+    gid = models.AutoField(primary_key=True)
+    line_type = models.CharField(max_length=50, blank=True, null=True)
+    p_dia_mm = models.IntegerField(blank=True, null=True)
+    geom = gis_model.MultiLineStringField(blank=True, null=True)
+
     class Meta:
         managed = False
-        db_table = 'telephone_internet'
+        db_table = 'drainage'
+
+class ManHole(models.Model):
+    gid = models.AutoField(primary_key=True)
+    geom = gis_model.PointField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'man hole'
+
+class OutletValve(models.Model):
+    gid = models.AutoField(primary_key=True)
+    field_gid = models.IntegerField(db_column='__gid', blank=True, null=True)  # Field renamed because it contained more than one '_' in a row. Field renamed because it started with '_'.
+    geom = gis_model.PointField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'outlet_valve'
 
         

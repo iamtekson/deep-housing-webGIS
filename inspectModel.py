@@ -139,21 +139,13 @@ class DjangoSession(models.Model):
 
 class Drainage(models.Model):
     gid = models.AutoField(primary_key=True)
+    line_type = models.CharField(max_length=50, blank=True, null=True)
+    p_dia_mm = models.IntegerField(blank=True, null=True)
     geom = models.MultiLineStringField(blank=True, null=True)
-    widht_mm = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'drainage'
-
-
-class DrainageOutletValve(models.Model):
-    gid = models.AutoField(primary_key=True)
-    geom = models.PointField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'drainage_outlet_valve'
 
 
 class Electrical(models.Model):
@@ -184,6 +176,25 @@ class House(models.Model):
     class Meta:
         managed = False
         db_table = 'house'
+
+
+class ManHole(models.Model):
+    gid = models.AutoField(primary_key=True)
+    geom = models.PointField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'man hole'
+
+
+class OutletValve(models.Model):
+    gid = models.AutoField(primary_key=True)
+    field_gid = models.IntegerField(db_column='__gid', blank=True, null=True)  # Field renamed because it contained more than one '_' in a row. Field renamed because it started with '_'.
+    geom = models.PointField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'outlet_valve'
 
 
 class Park(models.Model):
