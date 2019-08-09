@@ -71,6 +71,11 @@
             weight: 1,
             opacity: 1,
             fillOpacity: .8,
+        }, 
+        roadStyle = {
+            color: 'red',
+            weight: 2,
+            dashArray: '5,10'
         }
 
     function otherLayers() {
@@ -198,20 +203,46 @@
             }
         }).addTo(map);
         //sanitary junction point
-    $.getJSON("{% url 'sanitaryjunctionpoint' %}", function (data) {
-        let sanitaryjunctionpoint = L.geoJSON(data, {
-            pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, sanitaryjunctionpointStyle);
-            }
-        }).addTo(map);
-        sanitaryjunctionpoint.addTo(sanitary)
-        var layer = new L.layerGroup().addLayer(sanitary),
-            selector = $('.sanitary')
-        layerToggler(selector, layer)
-    })
+        $.getJSON("{% url 'sanitaryjunctionpoint' %}", function (data) {
+            let sanitaryjunctionpoint = L.geoJSON(data, {
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng, sanitaryjunctionpointStyle);
+                }
+            }).addTo(map);
+            sanitaryjunctionpoint.addTo(sanitary)
+            var layer = new L.layerGroup().addLayer(sanitary),
+                selector = $('.sanitary')
+            layerToggler(selector, layer)
+        })
     })
 
-    
+//Road Network
+    $.getJSON("{% url 'road' %}", function (data) {
+        var road = L.geoJSON(data, {
+            style: roadStyle,
+            onEachFeature: function (feature, layer) {
+                layer.on({
+                    click: function (e) {
+                        popupContents(e);
+                        $('.sidebar-info').html(`<h4>Road</h4>
+                            <div class="container"><table class="table table-striped">
+                            <thead><tr><th>Properties</th><th>Value</th></tr></thead>
+                            <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
+                            <tr><td> Current Road Type </td><td>${feature.properties.road_type}</td></tr>
+                            <tr><td> Road Segment </td><td>${feature.properties.road_typ_1}</td></tr>`)
+
+                    }
+                })
+            }
+        }).addTo(map);
+        var layer = new L.layerGroup().addLayer(road),
+            selector = $('.road-network')
+        layerToggler(selector, layer)
+    })
+
+
+
+
 
     // layer layerToggler
     function layerToggler(selector, layer) {
