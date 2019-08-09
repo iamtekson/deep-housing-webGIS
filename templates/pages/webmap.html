@@ -180,7 +180,7 @@
         removeAllUtilitiesLayer(layer)
     })
 
-    //house dataset
+    //street light
     $.getJSON("{% url 'street' %}", function (data) {
         var street = L.geoJSON(data, {
             onEachFeature: function (feature, layer) {
@@ -201,7 +201,7 @@
                 return L.circleMarker(latlng, streetStyle);
             }
         });
-        var layer = new L.layerGroup().addLayer(street),
+        var layer = new L.markerClusterGroup().addLayer(street),
             selector = $('.street-light')
         layerToggler(selector, layer)
         removeAllUtilitiesLayer(layer)
@@ -254,7 +254,6 @@
                             <tr><td> Pipe Material </td><td>${feature.properties.pipe_mat}</td></tr>
                             <tr><td> Diameter of Pipe (cm) </td><td>${feature.properties.diamr_mm_field}</td></tr>
                             <tr><td> Trench Depth </td><td>${feature.properties.trench_dep}</td></tr>`)
-
                     }
                 })
             }

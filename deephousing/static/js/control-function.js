@@ -253,24 +253,6 @@ $(".dark").click(function () {
    mapBox.remove()
 });
 
-//sidebar-layer-control ::street light
-$(".street-light").click(function () {
-   if ($(this).prop('checked') == true) {
-      map.addLayer(light);
-   } else if ($(this).prop('checked') == false) {
-      map.removeLayer(light);
-   }
-});
-
-//layer control : street light
-$(".street-light").click(function () {
-   if ($(this).prop('checked') == true) {
-      map.addLayer(light);
-   } else if ($(this).prop('checked') == false) {
-      map.removeLayer(light);
-   }
-});
-
 //show coordinate in footer
 function latlng() {
    map.on('mousemove', function (e) {
