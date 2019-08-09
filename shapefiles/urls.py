@@ -14,6 +14,6 @@ urlpatterns = [
     path('temple', views.temple, name="temple"),
     path('waternetwork', views.waterNetwork, name="waternetwork"),
     path('house', views.house, name="house"),
-    path('electrical', views.house, name='elecctrical'),
+    path('electrical', views.electrical, name='electrical'),
     path('telephoneinternet', views.telephoneInternet, name='telephoneinternet')
 ]

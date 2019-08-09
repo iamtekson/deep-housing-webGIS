@@ -132,7 +132,7 @@ class Electrical(models.Model):
     phase_c = models.FloatField(blank=True, null=True)
     c_dia_mm = models.IntegerField(blank=True, null=True)
     c_material = models.CharField(max_length=50, blank=True, null=True)
-    geom = models.MultiLineStringField(blank=True, null=True)
+    geom = gis_model.MultiLineStringField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -158,7 +158,7 @@ class TelephoneInternet(models.Model):
     cabel_type = models.CharField(max_length=50, blank=True, null=True)
     p_material = models.CharField(max_length=50, blank=True, null=True)
     p_dia_mm = models.IntegerField(blank=True, null=True)
-    geom = models.MultiLineStringField(blank=True, null=True)
+    geom = gis_model.MultiLineStringField(blank=True, null=True)
 
     class Meta:
         managed = False

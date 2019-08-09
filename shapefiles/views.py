@@ -56,7 +56,7 @@ def house(request):
     return HttpResponse(houseData, content_type='geojson')
 
 def electrical(request):
-    electricalData = serialize('geojson', electrical.objects.all())
+    electricalData = serialize('geojson', Electrical.objects.all())
     return HttpResponse(electricalData, content_type='geojson')
 
 def telephoneInternet(request):
