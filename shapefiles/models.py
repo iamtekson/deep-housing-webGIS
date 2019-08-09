@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.gis.db import models as gis_model
 
 # Create your models here.
+
+
 class Boundary(models.Model):
     gid = models.AutoField(primary_key=True)
     area = models.FloatField(blank=True, null=True)
@@ -19,6 +21,7 @@ class Boundarybuilding(models.Model):
     class Meta:
         managed = False
         db_table = 'boundarybuilding'
+
 
 class Drainage(models.Model):
     gid = models.AutoField(primary_key=True)
@@ -63,7 +66,9 @@ class Sanitary(models.Model):
     gid = models.AutoField(primary_key=True)
     type = models.CharField(max_length=30, blank=True, null=True)
     pipe_mat = models.CharField(max_length=50, blank=True, null=True)
-    diamr_mm_field = models.IntegerField(db_column='diamr_mm_', blank=True, null=True)  # Field renamed because it ended with '_'.
+    # Field renamed because it ended with '_'.
+    diamr_mm_field = models.IntegerField(
+        db_column='diamr_mm_', blank=True, null=True)
     trench_dep = models.CharField(max_length=50, blank=True, null=True)
     geom = gis_model.MultiLineStringField(blank=True, null=True)
 
@@ -80,6 +85,7 @@ class SanitaryJunctionPoint(models.Model):
     class Meta:
         managed = False
         db_table = 'sanitary_junction_point'
+
 
 class Street(models.Model):
     gid = models.AutoField(primary_key=True)
@@ -142,7 +148,9 @@ class Electrical(models.Model):
 class House(models.Model):
     gid = models.AutoField(primary_key=True)
     house_type = models.CharField(max_length=50, blank=True, null=True)
-    area_sq_m_field = models.BigIntegerField(db_column='area_sq_m_', blank=True, null=True)  # Field renamed because it ended with '_'.
+    # Field renamed because it ended with '_'.
+    area_sq_m_field = models.BigIntegerField(
+        db_column='area_sq_m_', blank=True, null=True)
     curr_resid = models.CharField(max_length=50, blank=True, null=True)
     permanent = models.CharField(max_length=50, blank=True, null=True)
     plot_no = models.BigIntegerField(blank=True, null=True)
@@ -160,9 +168,10 @@ class TelephoneInternet(models.Model):
     p_dia_mm = models.IntegerField(blank=True, null=True)
     geom = gis_model.MultiLineStringField(blank=True, null=True)
 
-class Meta:
-    managed = False
-    db_table = 'telephone_internet'
+    class Meta:
+        managed = False
+        db_table = 'telephone_internet'
+
 
 class Drainage(models.Model):
     gid = models.AutoField(primary_key=True)
@@ -174,6 +183,7 @@ class Drainage(models.Model):
         managed = False
         db_table = 'drainage'
 
+
 class ManHole(models.Model):
     gid = models.AutoField(primary_key=True)
     geom = gis_model.PointField(blank=True, null=True)
@@ -182,13 +192,13 @@ class ManHole(models.Model):
         managed = False
         db_table = 'man hole'
 
+
 class OutletValve(models.Model):
     gid = models.AutoField(primary_key=True)
-    field_gid = models.IntegerField(db_column='__gid', blank=True, null=True)  # Field renamed because it contained more than one '_' in a row. Field renamed because it started with '_'.
+    # Field renamed because it contained more than one '_' in a row. Field renamed because it started with '_'.
+    field_gid = models.IntegerField(db_column='__gid', blank=True, null=True)
     geom = gis_model.PointField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'outlet_valve'
-
-        
