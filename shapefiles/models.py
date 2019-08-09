@@ -131,7 +131,7 @@ class Electrical(models.Model):
     phase_c_field = models.FloatField(db_column='phase_c_', blank=True, null=True)  # Field renamed because it ended with '_'.
     diameter_c = models.IntegerField(blank=True, null=True)
     material_c = models.CharField(max_length=50, blank=True, null=True)
-    geom = models.MultiLineStringField(blank=True, null=True)
+    geom = gis_model.MultiLineStringField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -145,7 +145,7 @@ class House(models.Model):
     curr_resid = models.CharField(max_length=50, blank=True, null=True)
     permanent = models.CharField(max_length=50, blank=True, null=True)
     plot_no = models.IntegerField(blank=True, null=True)
-    geom = models.MultiPolygonField(dim=4, blank=True, null=True)
+    geom = gis_model.MultiPolygonField(dim=4, blank=True, null=True)
 
     class Meta:
         managed = False
