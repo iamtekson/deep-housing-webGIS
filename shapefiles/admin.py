@@ -10,6 +10,11 @@ admin.site.site_header = 'Utility Management System'
 
 class BoundaryAdmin(LeafletGeoAdmin):
     list_display = ('gid', 'area')
+
+class SanitaryAdmin(LeafletGeoAdmin):
+    list_display = ('gid', 'type', 'pipe_mat', 'trench_dep')
+    list_display_links = ('gid', 'type', 'pipe_mat')
+
     
 admin.site.register(Boundary, BoundaryAdmin)
 admin.site.register(Boundarybuilding, LeafletGeoAdmin)
@@ -18,7 +23,7 @@ admin.site.register(OutletValve, LeafletGeoAdmin)
 admin.site.register(ManHole, LeafletGeoAdmin)
 admin.site.register(Park, LeafletGeoAdmin)
 admin.site.register(Road,LeafletGeoAdmin)
-admin.site.register(Sanitary, LeafletGeoAdmin)
+admin.site.register(Sanitary, SanitaryAdmin)
 admin.site.register(SanitaryJunctionPoint, LeafletGeoAdmin)
 admin.site.register(Street, LeafletGeoAdmin)
 admin.site.register(Swimmingpool, LeafletGeoAdmin)
