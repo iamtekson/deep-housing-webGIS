@@ -3,15 +3,14 @@
 {% block title %} About {% endblock title %}
 {% block css %}
 <style>
-    .parent {
-        position: relative;
-    }
 
-    .center-hr {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    .center {
+        padding: 150px 0 0 50px;
+    }
+    .building{
+        background: #ccc;
+        padding: 30px;
+        color: #111;
     }
 </style>
 {% endblock css %}
@@ -51,17 +50,15 @@
         <a href="{% url 'webmap' %}"><button class="btn btn-info p-2">View Map</button></a>
     </div>
 </section>
-<div class="container-fluid">
-    <div class="row parent">
-        <div class="col-6">
-            <div class="center-hr">
+<div class="container-fluid building">
+    <div class="row">
+        <div class="col-6 center">
                 <h3>Deep Housing</h3>
                 <p>In developing countries like ours where cities are not properly planned and organized, mapping of
                     utilities sector can play a major role in the development of that country or place. Utilities like
                     water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
                     even if they are properly documented, they are in low quality maps. Reliable information regarding
                     them can be of great help which can help in efficient service delivery.</p>
-            </div>
         </div>
         <div class="col-6">
             <div id="housing-pie-chart" style="width: 100%; height: 500px;"></div>
