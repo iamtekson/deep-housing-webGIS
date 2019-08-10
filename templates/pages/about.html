@@ -3,12 +3,12 @@
 {% block title %} About {% endblock title %}
 {% block css %}
 <style>
-
     .center {
         padding: 150px 50px 0 50px;
         text-align: center;
     }
-    .parent{
+
+    .parent {
         padding: 30px;
         margin-top: 100px;
     }
@@ -20,12 +20,12 @@
 <div class="container-fluid parent">
     <div class="row">
         <div class="col-6 center">
-                <h3>Area Covered (sq m)</h3>
-                <p>In developing countries like ours where cities are not properly planned and organized, mapping of
-                    utilities sector can play a major role in the development of that country or place. Utilities like
-                    water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
-                    even if they are properly documented, they are in low quality maps. Reliable information regarding
-                    them can be of great help which can help in efficient service delivery.</p>
+            <h3>Area Covered (sq m)</h3>
+            <p>In developing countries like ours where cities are not properly planned and organized, mapping of
+                utilities sector can play a major role in the development of that country or place. Utilities like
+                water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
+                even if they are properly documented, they are in low quality maps. Reliable information regarding
+                them can be of great help which can help in efficient service delivery.</p>
         </div>
         <div class="col-6">
             <div id="housing-pie-chart" style="width: 100%; height: 500px;"></div>
@@ -34,21 +34,21 @@
 </div>
 
 <div class="container-fluid parent">
-        <div class="row">
-                <div class="col-6">
-                        <div id="housing-bar-chart" style="width: 100%; height: 500px;"></div>
-                    </div>
-            <div class="col-6 center">
-                    <h3>Building Type</h3>
-                    <p>In developing countries like ours where cities are not properly planned and organized, mapping of
-                        utilities sector can play a major role in the development of that country or place. Utilities like
-                        water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
-                        even if they are properly documented, they are in low quality maps. Reliable information regarding
-                        them can be of great help which can help in efficient service delivery.</p>
-            </div>
-            
+    <div class="row">
+        <div class="col-6">
+            <div id="housing-bar-chart" style="width: 100%; height: 500px;"></div>
         </div>
+        <div class="col-6 center">
+            <h3>Building Type</h3>
+            <p>In developing countries like ours where cities are not properly planned and organized, mapping of
+                utilities sector can play a major role in the development of that country or place. Utilities like
+                water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
+                even if they are properly documented, they are in low quality maps. Reliable information regarding
+                them can be of great help which can help in efficient service delivery.</p>
+        </div>
+
     </div>
+</div>
 
 {% include "partials/_footer.html" %}
 {% endblock content %}
@@ -58,88 +58,88 @@
     // Area covered : Pie Chart
     var myChart = echarts.init(document.getElementById('housing-pie-chart'));
     var option = {
-        title : {
-        text: 'Deep-housing Area Covered (Sq m)',
-        subtext: 'All the area inside housing',
-        x:'center'
-    },
-    tooltip : {
-        trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
-    },
-    legend: {
-        orient: 'vertical',
-        left: 'right',
-        data: ['Saleable Plot', 'Road Network', 'Open Space', 'Community Plot', 'Grocery / Guard House', 'Other']
-    },
-    series : [
-        {
-            name: 'Deep-housing Area Covered (Sq m)',
-            type: 'pie',
-            radius : '55%',
-            center: ['50%', '60%'],
-            data:[
-                {value:21023.86, name:'Saleable Plot'},
-                {value:6302.79, name:'Road Network'},
-                {value:1346.05, name:'Open Space'},
-                {value:649.16, name:'Community Plot'},
-                {value:230, name:'Grocery / Guard House'},
-                {value:1594.47, name:'Other'},
+        title: {
+            text: 'Deep-housing Area Covered (Sq m)',
+            subtext: 'All the area inside housing',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'right',
+            data: ['Saleable Plot', 'Road Network', 'Open Space', 'Community Plot', 'Grocery / Guard House', 'Other']
+        },
+        series: [
+            {
+                name: 'Deep-housing Area Covered (Sq m)',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    { value: 21023.86, name: 'Saleable Plot' },
+                    { value: 6302.79, name: 'Road Network' },
+                    { value: 1346.05, name: 'Open Space' },
+                    { value: 649.16, name: 'Community Plot' },
+                    { value: 230, name: 'Grocery / Guard House' },
+                    { value: 1594.47, name: 'Other' },
 
-            ],
-            itemStyle: {
-                emphasis: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
                 }
             }
-        }
-    ]
+        ]
     };
     myChart.setOption(option);
 
 
-// Building types : bar chart
+    // Building types : bar chart
     var myChart = echarts.init(document.getElementById('housing-bar-chart'));
-bar1 = {
-    color: ['#3398DB'],
-    tooltip : {
-        trigger: 'axis',
-        axisPointer : {           
-            type : 'shadow'        
-        }
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    xAxis : [
-        {
-            type : 'category',
-            data : ['Type 1', 'Type 2', 'Type 3', 'Type 4', 'Type 5', 'Type 6', 'Type 7', 'Type 8', 'Type 9', 'Type 10', 'Type 11', 'Type 12', 'Not Assigned'],
-            axisTick: {
-                alignWithLabel: true
+    bar1 = {
+        color: ['#3398DB'],
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
             }
-        }
-    ],
-    yAxis : [
-        {
-            type : 'value'
-        }
-    ],
-    series : [
-        {
-            name:'Building Type',
-            type:'bar',
-            barWidth: '60%',
-            data:[14, 17, 30, 2, 10, 11, 1, 1, 1, 8, 1, 1, 5]
-        }
-    ]
-};
-myChart.setOption(bar1)
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: ['Type 1', 'Type 2', 'Type 3', 'Type 4', 'Type 5', 'Type 6', 'Type 7', 'Type 8', 'Type 9', 'Type 10', 'Type 11', 'Type 12', 'Not Assigned'],
+                axisTick: {
+                    alignWithLabel: true
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: 'Building Type',
+                type: 'bar',
+                barWidth: '60%',
+                data: [14, 17, 30, 2, 10, 11, 1, 1, 1, 8, 1, 1, 5]
+            }
+        ]
+    };
+    myChart.setOption(bar1)
 
 </script>
 {% endblock js %}
