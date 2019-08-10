@@ -1,12 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %} Home {% endblock title %}
-
+{% block css %}
+  <style>
+  .main-body{
+      text-align: center;
+  }
+  .padding{
+      padding: 30px;
+  }
+  </style>
+{% endblock css %}
 {% block content %}
 {% include "partials/_navindex.html" %}
 <section class="main-body container-fluid margin">
     <div class="row">
-        <div class="col-7">
+        <div class="col-6">
             <h3>Utility Management System</h3>
             <i>"Smartness Comes with proper management of utility"</i>
             <div class="padding">
@@ -14,29 +23,20 @@
                 utilities sector can play a major role in the development of that country or place. Utilities like
                 water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
                 even if they are properly documented, they are in low quality maps. Reliable information regarding
-                them can be of great help which can help in efficient service delivery.
+                them can be of great help which can help in efficient service delivery. are not properly documented and
+                even if they are properly documented, they are in low quality maps. Reliable information regarding
+                them can be of great help which can help in efficient service delivery. Reliable information regarding
+                them can be of great help which can help in efficient service delivery. 
             </div>
-            <div class="padding">
-                With the help of Geographic Information System (GIS) and other digital techniques, data can be
-                visualized easily which can make tasks easy. Repairing and maintaining of utility lines can be
-                carried efficiently in short period of time. Web based GIS contains information like building
-                boundaries, electric lines, solar lines, etc. and with the help of proper tools, it can be used to
-                visualize and maintain those information.
-                areas.
-            </div>
-            <div class="padding">
-                Deep Housing, located at Pokhara, Kaski Nepal. It has 36 apartments, 4 pent houses and 108 bangalows
-                in about 61 ropanis land. It has 7,200 liters of loft tank for each unit and 175,000 liters of
-                underground tank. It has eco-friendly environment about 25% open area.
-            </div>
+            <div>
+                    <a href="{% url 'webmap' %}"><button class="btn btn-info">View Map</button></a>
+                </div>
         </div>
-        <div class="col-5">
-            <img src="{% static 'img/deephousing.JPG' %}" alt="">
+        <div class="col-6">
+            <img src="{% static 'img/housing_deep.jpg' %}" alt="">
         </div>
     </div>
-    <div class="padding">
-        <a href="{% url 'webmap' %}"><button class="btn btn-info p-2">View Map</button></a>
-    </div>
+    
 </section>
 
 {% include "partials/_footer.html" %}
