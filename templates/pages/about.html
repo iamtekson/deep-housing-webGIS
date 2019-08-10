@@ -8,52 +8,18 @@
         padding: 150px 0 0 50px;
     }
     .building{
-        background: #ccc;
         padding: 30px;
-        color: #111;
+        margin-top: 100px;
     }
 </style>
 {% endblock css %}
 {% block content %}
 {% include "partials/_navindex.html" %}
-<section class="main-body container-fluid margin">
-    <div class="row">
-        <div class="col-7">
-            <h3>Utility Management System</h3>
-            <i>"Smartness Comes with proper management of utility"</i>
-            <div class="padding">
-                In developing countries like ours where cities are not properly planned and organized, mapping of
-                utilities sector can play a major role in the development of that country or place. Utilities like
-                water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
-                even if they are properly documented, they are in low quality maps. Reliable information regarding
-                them can be of great help which can help in efficient service delivery.
-            </div>
-            <div class="padding">
-                With the help of Geographic Information System (GIS) and other digital techniques, data can be
-                visualized easily which can make tasks easy. Repairing and maintaining of utility lines can be
-                carried efficiently in short period of time. Web based GIS contains information like building
-                boundaries, electric lines, solar lines, etc. and with the help of proper tools, it can be used to
-                visualize and maintain those information.
-                areas.
-            </div>
-            <div class="padding">
-                Deep Housing, located at Pokhara, Kaski Nepal. It has 36 apartments, 4 pent houses and 108 bangalows
-                in about 61 ropanis land. It has 7,200 liters of loft tank for each unit and 175,000 liters of
-                underground tank. It has eco-friendly environment about 25% open area.
-            </div>
-        </div>
-        <div class="col-5">
-            <img src="{% static 'img/deephousing.JPG' %}" alt="">
-        </div>
-    </div>
-    <div class="padding">
-        <a href="{% url 'webmap' %}"><button class="btn btn-info p-2">View Map</button></a>
-    </div>
-</section>
+
 <div class="container-fluid building">
     <div class="row">
         <div class="col-6 center">
-                <h3>Deep Housing</h3>
+                <h3>Area Covered (sq m)</h3>
                 <p>In developing countries like ours where cities are not properly planned and organized, mapping of
                     utilities sector can play a major role in the development of that country or place. Utilities like
                     water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
@@ -63,6 +29,13 @@
         <div class="col-6">
             <div id="housing-pie-chart" style="width: 100%; height: 500px;"></div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h3 align='center'>Building Types</h3>
+        <div id="housing-bar-chart" style="width: 100%; height: 500px;"></div>
     </div>
 </div>
 
@@ -77,8 +50,8 @@
     // specify chart configuration item and data
     var option = {
         title : {
-        text: 'Deep-housing Building Information',
-        subtext: 'Number of house',
+        text: 'Deep-housing Area Covered (Sq m)',
+        subtext: 'All the area inside housing',
         x:'center'
     },
     tooltip : {
@@ -88,20 +61,22 @@
     legend: {
         orient: 'vertical',
         left: 'right',
-        data: ['Building Type 1', 'Building Type 2', 'Building Type 3', 'Building Type 4', 'Building Type 5']
+        data: ['Saleable Plot', 'Road Network', 'Open Space', 'Community Plot', 'Grocery / Guard House', 'Other']
     },
     series : [
         {
-            name: 'Building',
+            name: 'Deep-housing Area Covered (Sq m)',
             type: 'pie',
             radius : '55%',
             center: ['50%', '60%'],
             data:[
-                {value:335, name:'Building Type 1'},
-                {value:310, name:'Building Type 2'},
-                {value:234, name:'Building Type 3'},
-                {value:135, name:'Building Type 4'},
-                {value:1548, name:'Building Type 5'}
+                {value:21023.86, name:'Saleable Plot'},
+                {value:6302.79, name:'Road Network'},
+                {value:1346.05, name:'Open Space'},
+                {value:649.16, name:'Community Plot'},
+                {value:230, name:'Grocery / Guard House'},
+                {value:1594.47, name:'Other'},
+
             ],
             itemStyle: {
                 emphasis: {
@@ -116,5 +91,26 @@
 
     // use configuration item and data specified to show chart
     myChart.setOption(option);
+
+
+
+    var myChart = echarts.init(document.getElementById('housing-bar-chart'));
+
+    bar1 = {
+    xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [120, 200, 150, 80, 70, 110, 130],
+        type: 'bar'
+    }]
+};
+
+myChart.setOption(bar1)
+
 </script>
 {% endblock js %}
