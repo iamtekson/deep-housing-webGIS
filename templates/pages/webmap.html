@@ -82,7 +82,7 @@
         roadStyle = {
             color: 'black',
             weight: 2,
-            dashArray: '5,10'
+            dashArray: '10,3'
         },
         electricalLine = {
             color: 'red',
@@ -94,7 +94,7 @@
         },
         drainageStyle = {
             color: '#0f16f2',
-            weight: 1,
+            weight: 2,
         },
         outletValveStyle = {
             color: 'green',
@@ -170,7 +170,8 @@
                         $('.sidebar-info').html(`<h4>Water Network</h4>
                             <div class="container"><table class="table table-striped">
                             <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> Type </td><td> ${feature.properties.line_type}</td></tr>
+                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
+                            <tr><td> Type </td><td> ${feature.properties.line_type}</td></tr>
                             <tr><td> Pipe diameter (mm) </td><td>${feature.properties.pip_dia_in}</td></tr>`)
                     }
                 })
@@ -192,7 +193,7 @@
                         $('.sidebar-info').html(`<h4>Street Light</h4>
                             <div class="container"><table class="table table-striped">
                             <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
+                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
                                 <tr><td> Name </td><td>${feature.properties.name}</td></tr>
                             <tr><td> Pole Height (m) </td><td>${feature.properties.pol_height}</td></tr>
                             <tr><td> Power (Watt) </td><td>${feature.properties.power_watt}</td></tr>`)
@@ -221,7 +222,7 @@
                         $('.sidebar-info').html(`<h4>Building</h4>
                             <div class="container"><table class="table table-striped">
                             <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
+                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
                             <tr><td> Current Resident </td><td>${feature.properties.curr_resid}</td></tr>
                             <tr><td> House type </td><td>${feature.properties.house_type}</td></tr>
                             <tr><td> Area (sq.m) </td><td>${feature.properties.area_sq_m_field}</td></tr>
@@ -251,11 +252,11 @@
                         $('.sidebar-info').html(`<h4>Sanitary</h4>
                             <div class="container"><table class="table table-striped">
                             <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
+                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
                             <tr><td> Type </td><td>${feature.properties.type}</td></tr>
                             <tr><td> Pipe Material </td><td>${feature.properties.pipe_mat}</td></tr>
                             <tr><td> Diameter of Pipe (mm) </td><td>${feature.properties.diamr_mm_field}</td></tr>
-                            <tr><td> Trench Depth </td><td>${feature.properties.trench_dep}</td></tr>`)
+                            <tr><td> Trench Depth (mm)</td><td>${feature.properties.trench_dep}</td></tr>`)
                     }
                 })
             }
@@ -288,7 +289,7 @@
                         $('.sidebar-info').html(`<h4>Drainage</h4>
                             <div class="container"><table class="table table-striped">
                             <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
+                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
                             <tr><td> Type </td><td>${feature.properties.line_type}</td></tr>
                             <tr><td> Diameter of Pipe (mm) </td><td>${feature.properties.p_dia_mm}</td></tr>`)
                     }
@@ -331,7 +332,7 @@
                         $('.sidebar-info').html(`<h4>Road</h4>
                             <div class="container"><table class="table table-striped">
                             <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
+                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
                             <tr><td> Current Road Type </td><td>${feature.properties.road_type}</td></tr>
                             <tr><td> Road Segment </td><td>${feature.properties.road_typ_1}</td></tr>`)
 
@@ -357,7 +358,7 @@
                         $('.sidebar-info').html(`<h4>Electrical Line</h4>
                             <div class="container"><table class="table table-striped">
                             <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
+                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
                             <tr><td> Line Type </td><td>${feature.properties.line_type}</td></tr>
                             <tr><td> Cable Type </td><td>${feature.properties.cable_type}</td></tr>
                             <tr><td> Pipe Cons. Material </td><td>${feature.properties.p_material}</td></tr>
@@ -388,7 +389,7 @@
                         $('.sidebar-info').html(`<h4>Telephone and Televison</h4>
                             <div class="container"><table class="table table-striped">
                             <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> id </td><td> ${feature.properties.pk}</td></tr>
+                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
                             <tr><td> Line Type </td><td>${feature.properties.line_type}</td></tr>
                             <tr><td> Cable Type </td><td>${feature.properties.cable_type}</td></tr>
                             <tr><td> Pipe Material </td><td>${feature.properties.p_material}</td></tr>
