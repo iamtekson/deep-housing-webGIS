@@ -22,26 +22,6 @@ class Boundarybuilding(models.Model):
         managed = False
         db_table = 'boundarybuilding'
 
-
-class Drainage(models.Model):
-    gid = models.AutoField(primary_key=True)
-    geom = gis_model.MultiLineStringField(blank=True, null=True)
-    widht_mm = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'drainage'
-
-
-class DrainageOutletValve(models.Model):
-    gid = models.AutoField(primary_key=True)
-    geom = gis_model.PointField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'drainage_outlet_valve'
-
-
 class Park(models.Model):
     gid = models.AutoField(primary_key=True)
     geom = gis_model.MultiPolygonField(blank=True, null=True)
