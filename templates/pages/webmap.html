@@ -452,5 +452,30 @@
         })
     }
 
+
+    //buffer area
+    var bufferStyle = {
+        radius: 30,
+            fillColor: "#ff7800",
+            color: "#000",
+            weight: 3,
+            opacity: .7,
+            fillOpacity: 0.5
+    }
+var useMarker = true
+$('.fa-cubes').click(function () {
+   if (useMarker) {
+      map.on('click', function (e) {
+        var popup = `<b>Lat: ${e.latlng.lat}</b> </br> <b> Lng: ${e.latlng.lng}</b>`,
+            marker = new L.circleMarker([e.latlng.lat, e.latlng.lng], bufferStyle),
+            m = marker.bindPopup(popup).openPopup().addTo(map);
+                
+      })
+   } else {
+      map.off('click')
+   }
+   useMarker = !useMarker
+});
+
 </script>
 {% endblock js %}
