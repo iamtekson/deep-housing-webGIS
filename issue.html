@@ -33,6 +33,9 @@
         .issue {
             margin-top: 120px;
         }
+        .issue-body{
+            padding-right: 50px;
+        }
 
         .sidebar-issue {
             padding: 20px 10px;
@@ -79,7 +82,7 @@
 
     <section class="container issue">
         <div class="row">
-            <div class="col-8">
+            <div class="col-8 issue-body">
                 <h1>Issue on pipeline</h1>
                 <p> <i>Issue Publish on: 2019-07-23</i></p>
                 <p>In developing countries like ours where cities are not properly planned and organized, mapping of
@@ -87,11 +90,11 @@
                     water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
                     even if they are properly documented, they are in low quality maps. Reliable information regarding
                     them can be of great help which can help in efficient service delivery.</p>
-                <div id='issue-map' style="width: 100%; height:300px"></div>
+                <div id='map' style="width: 100%; height:300px"></div>
                 <a href="webmap.html"><button class="btn-info mt-3">Goto Web-map</button></a>
             </div>
             <div class="col-4 sidebar-issue">
-                <h3>Top most issues</h3>
+                <h3 class="sidebar-header">Top most issues</h3>
                 <ul>
                     <a href="#">
                         <li>Issue on pipeline</li>
@@ -151,13 +154,42 @@
     <!-- Leaflet-Measure -->
     <script src="dist/leaflet-measure.js"></script>
     <script>
-        var map = L.map('issue-map').setView([[28.2521, 83.9774], 18]),
+
+        //issue-map
+        var map = L.map('map').setView([28.2521, 83.9774], 18);
+
+        //map scale
             scale = L.control.scale().addTo(map),
+
+            //osm baselayer
             osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-            var issueMarker = L.Marker([28.2521, 83.9774]).addTo(map);
+
+
+            // circle marker style
+            mystyle = {
+            radius: 30,
+            fillColor: "#ff7800",
+            color: "#000",
+            weight: 3,
+            opacity: .7,
+            fillOpacity: 0.5
+            }
+            //marker
+            var issueMarker = L.marker([28.2521, 83.9774]).addTo(map),
+                issueMarkerCircle = L.circleMarker([28.2521, 83.9774], mystyle).addTo(map)
+
+            userMarker = false
+            function addIssue(){
+                $('.sidebar-header').click(function(){
+                    map.on('click', function() {
+                        marker = new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map)
+                    })
+                })
+            }
+
     </script>
 </body>
 </html>
