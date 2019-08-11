@@ -99,7 +99,7 @@
                             even if they are properly documented, they are in low quality maps. Reliable information regarding
                             them can be of great help which can help in efficient service delivery.</p>
                         <div class='map' id="map" style="width: 100%; height:300px"></div>
-                        <a href="webmap.html"><button class="btn-info mt-3">Goto Web-map</button></a>
+                        <a href="#" class="btn"><button class="btn-info mt-3">Goto Web-map</button></a>
                 </div>
                 
                 <div class="issue-1">
@@ -111,15 +111,15 @@
                             even if they are properly documented, they are in low quality maps. Reliable information regarding
                             them can be of great help which can help in efficient service delivery.</p>
                         <div class='map' style="width: 100%; height:300px"></div>
-                        <a href="webmap.html"><button class="btn-info mt-3">Goto Web-map</button></a>
+                        <a href="#" class="btn"utton class="btn-info mt-3">Goto Web-map</button></a>
                 </div>
                     
                 </div>
             <div class="col-4 sidebar-issue">
                 <h3 class="sidebar-header">Top most issues</h3>
                 <ul>
-                    <a href="#">
-                        <li>Issue on pipeline</li>
+                    <a href="#" class="sidebar-issue">
+                        <li>Issue on pipeline 1 </li>
                     </a>
                     <a href="#">
                         <li>Issue on pipeline</li>
@@ -200,17 +200,20 @@
             fillOpacity: 0.5
         }
         //marker
-        var issueMarker = L.marker([28.2521, 83.9774]).addTo(map),
+        var issueMarker = L.marker([28.2521, 83.9774]).addTo(map).bindPopup('Issue on Pipe network').openPopup(),
             issueMarkerCircle = L.circleMarker([28.2521, 83.9774], mystyle).addTo(map)
 
         userMarker = false
         function addIssue() {
-            $('.sidebar-header').click(function () {
-                map.on('click', function () {
-                    marker = new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map)
+            $('.btn').click(function () {
+                console.log('run')
+                map.on('click', function (e) {
+                    var marker = new L.Marker([e.latlng.lat, e.latlng.lng], {draggable: true, title: 'hover text'}).addTo(map).bindPopup('popup').openPopup(),
+                    circleMarkr = new L.circleMarker([e.latlng.lat, e.latlng.lng], mystyle).addTo(map)
                 })
             })
         }
+        addIssue()
 
     </script>
 </body>
