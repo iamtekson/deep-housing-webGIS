@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utility Management System</title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- leaflet css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <link rel="stylesheet" href="dist/MarkerCluster.css">
+    <link rel="stylesheet" href="dist/MarkerCluster.Default.css">
+
+    <!-- Leaflet-measure css -->
+    <link rel="stylesheet" href="dist/leaflet-measure.css">
+
+    <!-- jquery css -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+        integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .nav-bar{
+            z-index:1100 !important;
+        }
+        .issue {
+            margin-top: 120px;
+        }
+
+        .issue-body {
+            padding-right: 50px;
+        }
+        .issue-1 {
+            padding: 30px 0;
+        }
+
+        .sidebar-issue {
+            padding: 20px 10px;
+            background: #eee;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="index.html"><i class="fas fa-users-cog"></i> <span class="nav-header">Utility
+                Management
+                System</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto nav-button">
+                <li class="nav-item pr-2">
+                    <button type="button" class="btn btn-info btn-web-map"><a class="nav-link" href="webmap.html">View
+                            Web-Map</a></button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-outline-info btn-log-in"><a class="nav-link"
+                            href="login.html">Log
+                            In</a></button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <section class="container issue">
+        <div class="row">
+            <div class="col-8 issue-body">
+                <div class="issue-1">
+                        <h1>Issue on pipeline</h1>
+                        <p> <i>Issue Publish on: 2019-07-23</i></p>
+                        <p>In developing countries like ours where cities are not properly planned and organized, mapping of
+                            utilities sector can play a major role in the development of that country or place. Utilities like
+                            water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
+                            even if they are properly documented, they are in low quality maps. Reliable information regarding
+                            them can be of great help which can help in efficient service delivery.</p>
+                        <div class='map' id="map" style="width: 100%; height:300px"></div>
+                        <a href="#" class="btn"><button class="btn-info mt-3">Goto Web-map</button></a>
+                </div>
+                
+                <div class="issue-1">
+                        <h1>Issue on pipeline</h1>
+                        <p> <i>Issue Publish on: 2019-07-23</i></p>
+                        <p>In developing countries like ours where cities are not properly planned and organized, mapping of
+                            utilities sector can play a major role in the development of that country or place. Utilities like
+                            water lines, sewage system, telephone lines, internet lines, etc. are not properly documented and
+                            even if they are properly documented, they are in low quality maps. Reliable information regarding
+                            them can be of great help which can help in efficient service delivery.</p>
+                        <div class='map' style="width: 100%; height:300px"></div>
+                        <a href="#" class="btn"utton class="btn-info mt-3">Goto Web-map</button></a>
+                </div>
+                    
+                </div>
+            <div class="col-4 sidebar-issue">
+                <h3 class="sidebar-header">Top most issues</h3>
+                <ul>
+                    <a href="#" class="sidebar-issue">
+                        <li>Issue on pipeline 1 </li>
+                    </a>
+                    <a href="#">
+                        <li>Issue on pipeline</li>
+                    </a>
+                    <a href="#">
+                        <li>Issue on pipeline</li>
+                    </a>
+                    <a href="#">
+                        <li>Issue on pipeline</li>
+                    </a>
+                    <a href="#">
+                        <li>Issue on pipeline</li>
+                    </a>
+                    <a href="#">
+                        <li>Issue on pipeline</li>
+                    </a>
+                    <a href="#">
+                        <li>Issue on pipeline</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            All the contents are copyright by &copy; <a href="index.html">Utility Management System</a> | Designed and
+            Developed by: <a href="http://tekkshetri.com.np"><i>Tekson</i></a></div>
+    </footer>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- bootstrap js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <!-- leaflet js -->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+        integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+        crossorigin=""></script>
+
+    <!-- marker cluster -->
+    <script src="dist/leaflet.markercluster.js"></script>
+
+    <!-- leaflet browser print js -->
+    <script src="dist/leaflet.browser.print.min.js"></script>
+
+    <!-- Leaflet-Omnivore -->
+    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+
+    <!-- Leaflet-Measure -->
+    <script src="dist/leaflet-measure.js"></script>
+    <script>
+
+        //issue-map
+        var map = L.map('map').setView([28.2521, 83.9774], 18);
+
+        //map scale
+        scale = L.control.scale().addTo(map),
+
+            //osm baselayer
+            osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+
+        // circle marker style
+        mystyle = {
+            radius: 30,
+            fillColor: "#ff7800",
+            color: "#000",
+            weight: 3,
+            opacity: .7,
+            fillOpacity: 0.5
+        }
+        //marker
+        var issueMarker = L.marker([28.2521, 83.9774]).addTo(map).bindPopup('Issue on Pipe network').openPopup(),
+            issueMarkerCircle = L.circleMarker([28.2521, 83.9774], mystyle).addTo(map)
+
+        userMarker = false
+        function addIssue() {
+            $('.btn').click(function () {
+            if(userMarker){
+                
+                console.log('run')
+                map.on('click', function (e) {
+                    var marker = new L.Marker([e.latlng.lat, e.latlng.lng], {draggable: true, title: 'hover text'}).addTo(map).bindPopup('popup').openPopup(),
+                    circleMarkr = new L.circleMarker([e.latlng.lat, e.latlng.lng], mystyle).addTo(map)
+                })
+            }
+            else{
+                map.off('click')
+            }
+            userMarker = !userMarker
+    });
+}
+addIssue()
+
+    </script>
+</body>
+</html>
