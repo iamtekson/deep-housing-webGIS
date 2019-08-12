@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %} Webmap {% endblock title %}
+{% block css %}
+<style>
+  .leaflet-popup-content{
+      width: 500px !important;
+  }
+</style>
+{% endblock css %}
 
 {% block content %}
 <!-- map view -->
@@ -482,17 +489,11 @@ $('.fa-cubes').click(function () {
         </div>
     </div>
 
-    <!-- E-mail -->
-    <input type="email" id="defaultRegisterFormEmail" class="email" class="form-control mb-4" placeholder="E-mail">
-
+    <!-- Issue header -->
+    <input type="text" id="defaultRegisterPhonePassword" class="form-control mb-2" placeholder="Input your issue header" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+    <br>
     <!-- Password -->
     <input type="text" id="defaultRegisterFormPassword" class="form-control" placeholder="Your issue in detail" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-        At least 8 characters and 1 digit
-    </small>
-
-    <!-- Phone number -->
-    <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
 
     <!-- Sign up button -->
     <button class="btn btn-info my-4 btn-block" type="submit">Submit your issue</button>
