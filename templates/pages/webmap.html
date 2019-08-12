@@ -410,7 +410,7 @@
                     }
                 })
             }
-        }).addTo(map);
+        });
         var layer = new L.layerGroup().addLayer(telephone),
             selector = $('.telephone')
         layerToggler(selector, layer);
@@ -466,7 +466,7 @@
     }
 
     //The client service function
-    $('.fa-cubes').click(function () {
+    $('.client-support-btn').click(function () {
         map.on('click', function (e) {
             var lat = e.latlng.lat,
                 lng = e.latlng.lng,
