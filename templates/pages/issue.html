@@ -39,8 +39,10 @@
 <section class="container issue">
     <div class="row">
         <div class="col-8 issue-body">
+            {% if issue %}
+            {% for f in issue %}
             <div class="issue-1">
-                <h1>Issue on pipeline</h1>
+                <h1>{{ f.first_name }}</h1>
                 <p> <i>Issue Publish on: 2019-07-23</i></p>
                 <p>In developing countries like ours where cities are not properly planned and organized, mapping of
                     utilities sector can play a major role in the development of that country or place. Utilities like
@@ -50,6 +52,8 @@
                 <div class='map' id="map" style="width: 100%; height:300px"></div>
                 <a href="#" class="btn"><button class="btn-info mt-3">Goto Web-map</button></a>
             </div>
+            {% endfor %}
+            {% endif %}
 
             <div class="issue-1">
                 <h1>Issue on pipeline</h1>

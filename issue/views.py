@@ -3,13 +3,9 @@ from .models import Issue
 
 # Create your views here.
 def issue(request):
-    if request.method == 'POST':
-        first_name = request.POST['firstname']
-        last_name = request.POST['lastname']
-        issue_header = request.POST['issue_header']
-        issue_body = request.POST['issue_body']
-
-        issue = Issue(first_name=first_name, last_name=last_name, issue_header=issue_header, issue_body=issue_body)
-        issue.save()
+    selector = Issue.objects.all()
+    context = {
+        'issue': selector
+    }
         
-    return render(request, 'pages/issue.html')
+    return render(request, 'pages/issue.html', context)
