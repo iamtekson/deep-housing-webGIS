@@ -14,8 +14,10 @@ def webmap(request):
         last_name = request.POST['lastname']
         issue_header = request.POST['issue_header']
         issue_body = request.POST['issue_body']
+        lat = request.POST['lat']
+        lng = request.POST['lng']
 
-        issue = Issue(first_name=first_name, last_name=last_name, issue_header=issue_header, issue_body=issue_body)
+        issue = Issue(first_name=first_name, last_name=last_name, issue_header=issue_header, issue_body=issue_body, lat=lat, lng=lng)
         issue.save()
 
         return render(request, 'pages/webmap.html')
