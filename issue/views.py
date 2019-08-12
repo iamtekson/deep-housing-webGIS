@@ -3,7 +3,7 @@ from .models import Issue
 
 # Create your views here.
 def issue(request):
-    selector = Issue.objects.all()
+    selector = Issue.objects.all().reverse()[0]
     context = {
         'issue': selector
     }

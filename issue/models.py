@@ -7,7 +7,7 @@ class Issue(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     issue_header = models.CharField(max_length=50)
-    issue_body = models.CharField(max_length=500)
+    issue_body = models.CharField(max_length=5000)
     issue_date = models.DateTimeField(auto_now_add=True)
     lat = models.FloatField()
     lng = models.FloatField()
