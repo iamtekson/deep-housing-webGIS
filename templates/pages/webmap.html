@@ -467,9 +467,8 @@ $('.fa-cubes').click(function () {
    if (useMarker) {
       map.on('click', function (e) {
         var popup = `<b>Lat: ${e.latlng.lat}</b> </br> <b> Lng: ${e.latlng.lng}</b>`,
-            marker = new L.circleMarker([e.latlng.lat, e.latlng.lng], bufferStyle),
-            m = marker.bindPopup(popup).openPopup().addTo(map);
-                
+            marker = new L.circleMarker([e.latlng.lat, e.latlng.lng], bufferStyle, {draggable: true}),
+            m = marker.addTo(map).bindPopup(popup).openPopup();        
       })
    } else {
       map.off('click')
