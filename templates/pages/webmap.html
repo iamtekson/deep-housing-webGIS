@@ -462,44 +462,45 @@
 
     //buffer area
     var bufferStyle = {
-        radius: 30,
+            radius: 30,
             fillColor: "#ff7800",
             color: "#000",
             weight: 3,
-            opacity: .7,
-            fillOpacity: 0.5
+            opacity: .5,
+            fillOpacity: 0.4
     }
 var useMarker = true
 $('.fa-cubes').click(function () {
    if (useMarker) {
       map.on('click', function (e) {
         var popup = `<!-- Default form register -->
-<form class="text-center border border-light p-5" action="#!">
+<form class="text-center border border-light p-5" action="#!" method="POST">
 
     <p class="h4 mb-4">Issue Form</p>
 
     <div class="form-row mb-4">
         <div class="col">
             <!-- First name -->
-            <input type="text" name="firstname" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+            <input type="text" name="firstname" id="defaultRegisterFormFirstName" class="form-control" placeholder="Your First Name">
         </div>
         <div class="col">
             <!-- Last name -->
-            <input type="text" name="lastname" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+            <input type="text" name="lastname" id="defaultRegisterFormLastName" class="form-control" placeholder="Your Last Name">
         </div>
     </div>
 
     <!-- Issue header -->
     <input type="text" id="defaultRegisterPhonePassword" class="form-control mb-2" placeholder="Input your issue header" aria-describedby="defaultRegisterFormPhoneHelpBlock">
     <br>
+
     <!-- Password -->
     <input type="text" id="defaultRegisterFormPassword" class="form-control" placeholder="Your issue in detail" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 
     <!-- Sign up button -->
     <button class="btn btn-info my-4 btn-block" type="submit">Submit your issue</button>
 </form>`,
-            marker = new L.circleMarker([e.latlng.lat, e.latlng.lng], bufferStyle, {draggable: true}),
-            m = marker.addTo(map).bindPopup(popup).openPopup();        
+            marker = new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map).bindPopup(popup).openPopup(),
+            circleMarker = new L.circleMarker([e.latlng.lat, e.latlng.lng], bufferStyle, {draggable: true}).addTo(map);          
       })
    } else {
       map.off('click')
