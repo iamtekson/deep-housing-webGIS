@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Issue
 
 # Create your views here.
 def issue(request):
@@ -8,6 +9,7 @@ def issue(request):
         issue_header = request.POST['issue_header']
         issue_body = request.POST['issue_body']
 
-        issue = Issue()
+        issue = Issue(first_name=first_name, last_name=last_name, issue_header=issue_header, issue_body=issue_body)
+        issue.save()
         
     return render(request, 'pages/issue.html')
