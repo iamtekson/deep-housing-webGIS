@@ -38,8 +38,8 @@
         weight: 2
     },
         streetStyle = {
-            radius: 3,
-            fillColor: "#ff7800",
+            radius: 5,
+            fillColor: "#ebd454",
             color: "#000",
             weight: 1,
             opacity: 1,
@@ -71,7 +71,7 @@
         },
         houseStyle = {
             color: 'gray',
-            fill: 'gray',
+            fill: '#fff',
             weight: 1,
         },
         sanitaryStyle = {
@@ -219,7 +219,7 @@
                 return L.circleMarker(latlng, streetStyle);
             }
         });
-        var layer = new L.markerClusterGroup().addLayer(street),
+        var layer = new L.markerClusterGroup().addLayer(street).addTo(map),
             selector = $('.street-light')
         layerToggler(selector, layer)
         removeAllUtilitiesLayer(layer)
@@ -246,7 +246,7 @@
                     }
                 })
             }
-        });
+        }).addTo(map);
         var layer = new L.layerGroup().addLayer(houselayer1),
             selector = $('.building')
         layerToggler(selector, layer)
@@ -352,7 +352,7 @@
                     }
                 })
             }
-        });
+        }).addTo(map);
         var layer = new L.layerGroup().addLayer(road),
             selector = $('.road-network')
         layerToggler(selector, layer)
@@ -382,7 +382,7 @@
                     }
                 })
             }
-        });
+        }).addTo(map);
         var layer = new L.layerGroup().addLayer(electrical),
             selector = $('.electrical-line')
         layerToggler(selector, layer)
