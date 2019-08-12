@@ -121,23 +121,4 @@
         {% endif %}
         ], mystyle).addTo(map)
 
-    userMarker = false
-    function addIssue() {
-        $('.btn').click(function () {
-            if (userMarker) {
-
-                console.log('run')
-                map.on('click', function (e) {
-                    var marker = new L.Marker([e.latlng.lat, e.latlng.lng], { draggable: true, title: 'hover text' }).addTo(map).bindPopup('popup').openPopup(),
-                        circleMarkr = new L.circleMarker([e.latlng.lat, e.latlng.lng], mystyle).addTo(map)
-                })
-            }
-            else {
-                map.off('click')
-            }
-            userMarker = !userMarker
-        });
-    }
-    addIssue()
-
 </script>
