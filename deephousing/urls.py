@@ -21,5 +21,5 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('login/', include('account.urls')),
     path('data/', include('shapefiles.urls')),
-    
+    path('issue/', include('issue.urls')),
 ]
