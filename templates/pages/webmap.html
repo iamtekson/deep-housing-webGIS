@@ -3,9 +3,9 @@
 {% block title %} Webmap {% endblock title %}
 {% block css %}
 <style>
-  .leaflet-popup-content{
-      width: 500px !important;
-  }
+    .leaflet-popup-content {
+        width: 500px !important;
+    }
 </style>
 {% endblock css %}
 
@@ -115,6 +115,14 @@
             radius: 3,
             opacity: 1,
             fillOpacity: 1
+        },
+        bufferStyle = {
+            radius: 30,
+            fillColor: "#ff7800",
+            color: "#000",
+            weight: 3,
+            opacity: .5,
+            fillOpacity: 0.4
         }
 
     function otherLayers() {
@@ -217,7 +225,6 @@
         removeAllUtilitiesLayer(layer)
     })
 
-
     //house dataset
     $.getJSON("{% url 'house' %}", function (data) {
         var houselayer1 = L.geoJSON(data, {
@@ -246,7 +253,6 @@
         removeAllUtilitiesLayer(layer)
         addDefaultUtilitiesLayer(layer)
     })
-
 
     //sanitary layer
     $.getJSON("{% url 'sanitary' %}", function (data) {
@@ -284,7 +290,6 @@
         })
     })
 
-
     //drainage layer
     $.getJSON("{% url 'drainage' %}", function (data) {
         var drainage = L.geoJSON(data, {
@@ -303,6 +308,7 @@
                 })
             }
         });
+
         //sanitary junction point
         $.getJSON("{% url 'outletvalve' %}", function (data) {
             let outletvalve = L.geoJSON(data, {
@@ -404,7 +410,7 @@
                     }
                 })
             }
-        });
+        }).addTo(map);
         var layer = new L.layerGroup().addLayer(telephone),
             selector = $('.telephone')
         layerToggler(selector, layer);
@@ -459,23 +465,12 @@
         })
     }
 
-
-    //buffer area
-    var bufferStyle = {
-            radius: 30,
-            fillColor: "#ff7800",
-            color: "#000",
-            weight: 3,
-            opacity: .5,
-            fillOpacity: 0.4
-    }
-var useMarker = true
-$('.fa-cubes').click(function () {
-   if (useMarker) {
-      map.on('click', function (e) {
-          var lat = e.latlng.lat,
-          lng = e.latlng.lng,
-        popup = `<!-- Default form register -->
+    //The client service function
+    $('.fa-cubes').click(function () {
+        map.on('click', function (e) {
+            var lat = e.latlng.lat,
+                lng = e.latlng.lng,
+                popup = `<!-- Default form register -->
 <form class="text-center border border-light p-5" action="{% url 'webmap' %}" method="POST">
     {% csrf_token %}
 
@@ -504,15 +499,12 @@ $('.fa-cubes').click(function () {
 
     <!-- Sign up button -->
     <button class="btn btn-info my-4 btn-block issue-submit" type="submit">Submit your issue</button>
-</form>`,
-            marker = new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map).bindPopup(popup).openPopup(),
-            circleMarker = new L.circleMarker([e.latlng.lat, e.latlng.lng], bufferStyle, {draggable: true}).addTo(map);          
-      })
-   } else {
-      map.off('click')
-   }
-   useMarker = !useMarker
-});
+</form>`;
+            var marker = new L.Marker([lat, lng]).addTo(map).bindPopup(popup).openPopup(),
+                circleMarker = new L.circleMarker([lat, lng], bufferStyle, { draggable: true }).addTo(map);
+            map.off('click')
+        })
+    });
 
 </script>
 {% endblock js %}
