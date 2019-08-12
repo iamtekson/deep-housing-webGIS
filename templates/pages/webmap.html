@@ -474,7 +474,8 @@ $('.fa-cubes').click(function () {
    if (useMarker) {
       map.on('click', function (e) {
         var popup = `<!-- Default form register -->
-<form class="text-center border border-light p-5" action="#!" method="POST">
+<form class="text-center border border-light p-5" action="{% url 'webmap' %}" method="POST">
+    {% csrf_token %}
 
     <p class="h4 mb-4">Issue Form</p>
 
@@ -497,7 +498,7 @@ $('.fa-cubes').click(function () {
     <input type="text" id="defaultRegisterFormPassword" class="form-control" placeholder="Your issue in detail" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 
     <!-- Sign up button -->
-    <button class="btn btn-info my-4 btn-block" type="submit">Submit your issue</button>
+    <button class="btn btn-info my-4 btn-block issue-submit" type="submit">Submit your issue</button>
 </form>`,
             marker = new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map).bindPopup(popup).openPopup(),
             circleMarker = new L.circleMarker([e.latlng.lat, e.latlng.lng], bufferStyle, {draggable: true}).addTo(map);          
