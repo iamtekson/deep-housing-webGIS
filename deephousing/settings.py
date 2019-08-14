@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'shapefiles',
     'suit',
     'issue',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
