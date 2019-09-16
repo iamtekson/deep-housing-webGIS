@@ -1,0 +1,103 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800');
+html, body {
+    width: 100%;
+    height: 100%;
+    font: 14px/1.85em 'Open Sans', Arial, Helvetice Neue, sans-serif;
+    color: #888888;
+    font-weight: 300;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    /* Fix for webkit rendering */
+    -webkit-text-size-adjust: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans', Arial, Helvetice Neue, sans-serif;
+    color: #087aa3;
+}
+
+h1 {
+    text-transform: uppercase;
+    width: 100%;
+    border-bottom: 1px solid #3cb04a;
+    font-size: 24px;
+    color: #333333;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.margin{
+    margin-top: 100px;
+}
+.padding{
+    padding-top: 30px;
+}
+img{
+    width: 100%;
+}
+/*--------------------------------------------------------------
+# Links
+--------------------------------------------------------------*/
+a{
+    color: #087aa3;
+}
+a:hover, a:active, a:focus{
+    color: #056172;
+}
+a, a:hover, a:focus { 
+	text-decoration: none; 
+	-webkit-transition: all 150ms ease-in; 
+	-moz-transition: all 150ms ease-in; 
+	-o-transition: all 150ms ease-in; 
+	transition: all 150ms ease-in;
+}
+
+/* ------------------------------------------------------------------
+main body
+------------------------------------------------------------------ */
+
+/* NavBar */
+.navbar{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background: #fff;
+    box-shadow: 0 5px 20px#000;
+    font-size: 1.2rem;
+    z-index: 100;
+}
+.navbar-brand{
+    font-size: 1.5rem;
+}
+
+/* nav button */
+.nav-button .btn-web-map a{
+    color:#fff !important;
+}
+.nav-button .btn-log-in a:hover{
+    color: #fff;
+}
+
+/* main body */
+.main-body{
+    padding-bottom: 50px;
+    text-align: justify;
+}
+
+/* footer */
+.footer{
+    width: 100%;
+    height: 30px;  
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    /* box-shadow: 0 -2px 8px #777; */
+    padding-bottom: 10px;
+}
+.footer div{
+    text-align: center;    
+}
