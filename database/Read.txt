@@ -1,0 +1,3 @@
+database name: utilities
+
+code to setup database: >>> psql -h localhost -p 5432 -d utilities -U postgres -P admin -f utilities.sql
