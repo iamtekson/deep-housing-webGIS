@@ -1,510 +1,411 @@
-{% extends "base.html" %}
-{% load static %}
-{% block title %} Webmap {% endblock title %}
-{% block css %}
+{% extends "base.html" %} {% load static %} {% block title %} Webmap {% endblock
+title %} {% block css %}
 <style>
-    .leaflet-popup-content {
-        width: 500px !important;
-    }
+  .leaflet-popup-content {
+    width: 500px !important;
+  }
 </style>
-{% endblock css %}
-
-{% block content %}
+{% endblock css %} {% block content %}
 <!-- map view -->
-<h1 class="title" leaflet-browser-print-content style="display: none;">Utility Management System: Deep Housing</h1>
+<h1 class="title" leaflet-browser-print-content style="display: none;">
+  Utility Management System: Deep Housing
+</h1>
 <div id="map"></div>
 
-{% include "map-control/_navbar.html" %}
-
-{% include "map-control/functions.html" %}
-
-{% include "map-control/add-vector.html" %}
-
-{% include "map-control/share.html" %}
-
-{% include "map-control/about.html" %}
-
-{% include "map-control/side-control.html" %}
-
-{% include "map-control/coordinate.html" %}
-
-{% endblock content %}
-
-{% block js %}
+{% include "map-control/_navbar.html" %} {% include "map-control/functions.html"
+%} {% include "map-control/add-vector.html" %} {% include
+"map-control/share.html" %} {% include "map-control/about.html" %} {% include
+"map-control/side-control.html" %} {% include "map-control/coordinate.html" %}
+{% endblock content %} {% block js %}
 <script>
-
-    var waterNetworkStyle = {
-        color: '#07b9d9',
-        weight: 2
+  var waterNetworkStyle = {
+      color: "#07b9d9",
+      weight: 2,
     },
-        streetStyle = {
-            radius: 5,
-            fillColor: "#ebd454",
-            color: "#000",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 0.8
-        },
-        boundaryStyle = {
-            color: '#777',
-            weight: .7,
-            fill: false
-        },
-        boundarybuildingStyle = {
-            color: 'red',
-            weight: 0.5,
-        },
-        parkStyle = {
-            color: 'green',
-            weight: 1,
-            fill: 'green',
-        },
-        swimmingpollStyle = {
-            color: 'blue',
-            weight: .5,
-            fill: 'blue'
-        },
-        templeStyle = {
-            color: 'red',
-            weight: .5,
-            fill: 'red',
-        },
-        houseStyle = {
-            color: 'gray',
-            fill: '#fff',
-            weight: 1,
-        },
-        sanitaryStyle = {
-            color: '#823e1b',
-            weight: 2
-        },
-        sanitaryjunctionpointStyle = {
-            radius: 4,
-            color: 'black',
-            fillColor: 'red',
-            weight: 1,
-            opacity: 1,
-            fillOpacity: .8,
-        },
-        roadStyle = {
-            color: 'black',
-            weight: 2,
-            dashArray: '10,3'
-        },
-        electricalLine = {
-            color: 'red',
-            weight: 1,
-        },
-        telephoneStyle = {
-            color: 'green',
-            weight: 1
-        },
-        drainageStyle = {
-            color: '#0f16f2',
-            weight: 2,
-        },
-        outletValveStyle = {
-            color: 'green',
-            weight: 1,
-            radius: 2,
-        },
-        manholeStyle = {
-            color: '#e07014',
-            weight: .7,
-            fill: '#e07014',
-            radius: 3,
-            opacity: 1,
-            fillOpacity: 1
-        },
-        bufferStyle = {
-            radius: 30,
-            fillColor: "#ff7800",
-            color: "#000",
-            weight: 3,
-            opacity: .5,
-            fillOpacity: 0.4
-        }
+    streetStyle = {
+      radius: 5,
+      fillColor: "#ebd454",
+      color: "#000",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8,
+    },
+    boundaryStyle = {
+      color: "#777",
+      weight: 0.7,
+      fill: false,
+    },
+    boundarybuildingStyle = {
+      color: "red",
+      weight: 0.5,
+    },
+    parkStyle = {
+      color: "green",
+      weight: 1,
+      fill: "green",
+    },
+    swimmingpollStyle = {
+      color: "blue",
+      weight: 0.5,
+      fill: "blue",
+    },
+    templeStyle = {
+      color: "red",
+      weight: 0.5,
+      fill: "red",
+    },
+    houseStyle = {
+      color: "gray",
+      fill: "#fff",
+      weight: 1,
+    },
+    sanitaryStyle = {
+      color: "#823e1b",
+      weight: 2,
+    },
+    sanitaryjunctionpointStyle = {
+      radius: 4,
+      color: "black",
+      fillColor: "red",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8,
+    },
+    roadStyle = {
+      color: "black",
+      weight: 2,
+      dashArray: "10,3",
+    },
+    electricalLine = {
+      color: "red",
+      weight: 1,
+    },
+    telephoneStyle = {
+      color: "green",
+      weight: 1,
+    },
+    drainageStyle = {
+      color: "#0f16f2",
+      weight: 2,
+    },
+    outletValveStyle = {
+      color: "green",
+      weight: 1,
+      radius: 2,
+    },
+    manholeStyle = {
+      color: "#e07014",
+      weight: 0.7,
+      fill: "#e07014",
+      radius: 3,
+      opacity: 1,
+      fillOpacity: 1,
+    },
+    bufferStyle = {
+      radius: 30,
+      fillColor: "#ff7800",
+      color: "#000",
+      weight: 3,
+      opacity: 0.5,
+      fillOpacity: 0.4,
+    };
 
-    function otherLayers() {
-        $.getJSON("{% url 'boundary' %}", function (data) {
-            var boundary1 = L.geoJSON(data, {
-                style: boundaryStyle,
-            });
-            var layer = new L.layerGroup().addLayer(boundary1),
-                selector = $('.boundary')
-            layerToggler(selector, layer)
-            removeAllUtilitiesLayer(layer)
+  //   function call for adding layers
+  layerHandler("boundary", boundaryStyle, "boundary");
+  layerHandler("boundarybuilding", boundarybuildingStyle, "boundary-building");
+  layerHandler("park", parkStyle, "park");
+  layerHandler("swimmingpool", swimmingpollStyle, "swimming-pool");
+  layerHandler("temple", templeStyle, "temple");
+
+  // Water layer function call
+  popupContent = `<tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
+                              <tr><td> Type </td><td> ${feature.properties.line_type}</td></tr>
+                              <tr><td> Pipe diameter (mm) </td><td>${feature.properties.pip_dia_in}</td></tr>`;
+  utilityLayerHandler(
+    "waternetwork",
+    waterNetworkStyle,
+    popupContent,
+    "water-supply"
+  );
+
+  // house data function call
+  popupContent = `<tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
+                              <tr><td> Current Resident </td><td>${feature.properties.curr_resid}</td></tr>
+                              <tr><td> House type </td><td>${feature.properties.house_type}</td></tr>
+                              <tr><td> Area (sq.m) </td><td>${feature.properties.area_sq_m_field}</td></tr>
+                              <tr><td> Permanent </td><td>${feature.properties.permanent}</td></tr>
+                              <tr><td> Plot number </td><td>${feature.properties.plot_no}</td></tr>`;
+
+  utilityLayerHandler("house", houseStyle, popupContent, "building");
+
+  //street light
+  $.getJSON("{% url 'street' %}", function (data) {
+    var street = L.geoJSON(data, {
+      onEachFeature: function (feature, layer) {
+        layer.on({
+          click: function (e) {
+            popupContents(e);
+            $(".sidebar-info").html(`<h4>Street Light</h4>
+                              <div class="container"><table class="table table-striped">
+                              <thead><tr><th>Properties</th><th>Value</th></tr></thead>
+                              <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
+                                  <tr><td> Name </td><td>${feature.properties.name}</td></tr>
+                              <tr><td> Pole Height (m) </td><td>${feature.properties.pol_height}</td></tr>
+                              <tr><td> Power (Watt) </td><td>${feature.properties.power_watt}</td></tr>`);
+          },
         });
-        $.getJSON("{% url 'boundarybuilding' %}", function (data) {
-            var boundarybuilding1 = L.geoJSON(data, {
-                style: boundarybuildingStyle
-            });
-            var layer = new L.layerGroup().addLayer(boundarybuilding1)
-            selector = $('.boundary-building')
-            layerToggler(selector, layer)
-            removeAllUtilitiesLayer(layer)
+      },
+      pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, streetStyle);
+      },
+    });
+    var layer = new L.markerClusterGroup().addLayer(street).addTo(map),
+      selector = $(".street-light");
+    layerToggler(selector, layer);
+    removeAllUtilitiesLayer(layer);
+  });
+
+  //sanitary layer
+  $.getJSON("{% url 'sanitary' %}", function (data) {
+    var sanitary = L.geoJSON(data, {
+      style: sanitaryStyle,
+      onEachFeature: function (feature, layer) {
+        layer.on({
+          click: function (e) {
+            popupContents(e);
+            $(".sidebar-info").html(`<h4>Sanitary</h4>
+                              <div class="container"><table class="table table-striped">
+                              <thead><tr><th>Properties</th><th>Value</th></tr></thead>
+                              <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
+                              <tr><td> Type </td><td>${feature.properties.type}</td></tr>
+                              <tr><td> Pipe Material </td><td>${feature.properties.pipe_mat}</td></tr>
+                              <tr><td> Diameter of Pipe (mm) </td><td>${feature.properties.diamr_mm_field}</td></tr>
+                              <tr><td> Trench Depth (mm)</td><td>${feature.properties.trench_dep}</td></tr>`);
+          },
         });
-        $.getJSON("{% url 'park' %}", function (data) {
-            let park = L.geoJSON(data, {
-                style: parkStyle
-            });
-            let selector = $('.park'),
-                layer = new L.layerGroup().addLayer(park)
-            layerToggler(selector, layer)
-            removeAllUtilitiesLayer(layer)
+      },
+    });
+    //sanitary junction point
+    $.getJSON("{% url 'sanitaryjunctionpoint' %}", function (data) {
+      let sanitaryjunctionpoint = L.geoJSON(data, {
+        pointToLayer: function (feature, latlng) {
+          return L.circleMarker(latlng, sanitaryjunctionpointStyle);
+        },
+      });
+      sanitaryjunctionpoint.addTo(sanitary);
+      var layer = new L.layerGroup().addLayer(sanitary),
+        selector = $(".sanitary");
+      layerToggler(selector, layer);
+      removeAllUtilitiesLayer(layer);
+      addDefaultUtilitiesLayer(layer);
+    });
+  });
+
+  //drainage layer
+  $.getJSON("{% url 'drainage' %}", function (data) {
+    var drainage = L.geoJSON(data, {
+      style: drainageStyle,
+      onEachFeature: function (feature, layer) {
+        layer.on({
+          click: function (e) {
+            popupContents(e);
+            $(".sidebar-info").html(`<h4>Drainage</h4>
+                              <div class="container"><table class="table table-striped">
+                              <thead><tr><th>Properties</th><th>Value</th></tr></thead>
+                              <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
+                              <tr><td> Type </td><td>${feature.properties.line_type}</td></tr>
+                              <tr><td> Diameter of Pipe (mm) </td><td>${feature.properties.p_dia_mm}</td></tr>`);
+          },
         });
-        $.getJSON("{% url 'swimmingpool' %}", function (data) {
-            let swimmingpool = L.geoJSON(data, {
-                style: swimmingpollStyle
-            });
-            let selector = $('.swimming-pool'),
-                layer = new L.layerGroup().addLayer(swimmingpool)
-            layerToggler(selector, layer)
-            removeAllUtilitiesLayer(layer)
-        });
-        $.getJSON("{% url 'temple' %}", function (data) {
-            let temple = L.geoJSON(data, {
-                style: templeStyle
-            });
-            let selector = $('.temple'),
-                layer = new L.layerGroup().addLayer(temple)
-            layerToggler(selector, layer)
-            removeAllUtilitiesLayer(layer)
-        });
-    }
-    otherLayers()
-
-    // Water layer manage
-    $.getJSON("{% url 'waternetwork' %}", function (data) {
-        var waterNetwork1 = L.geoJSON(data, {
-            style: waterNetworkStyle,
-            onEachFeature: function (feature, layer) {
-                layer.on({
-                    click: function (e) {
-                        popupContents(e);
-                        $('.sidebar-info').html(`<h4>Water Network</h4>
-                            <div class="container"><table class="table table-striped">
-                            <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
-                            <tr><td> Type </td><td> ${feature.properties.line_type}</td></tr>
-                            <tr><td> Pipe diameter (mm) </td><td>${feature.properties.pip_dia_in}</td></tr>`)
-                    }
-                })
-            },
-        });
-        var layer = new L.layerGroup().addLayer(waterNetwork1),
-            selector = $('.water-supply')
-        layerToggler(selector, layer)
-        removeAllUtilitiesLayer(layer)
-    })
-
-    //street light
-    $.getJSON("{% url 'street' %}", function (data) {
-        var street = L.geoJSON(data, {
-            onEachFeature: function (feature, layer) {
-                layer.on({
-                    click: function (e) {
-                        popupContents(e);
-                        $('.sidebar-info').html(`<h4>Street Light</h4>
-                            <div class="container"><table class="table table-striped">
-                            <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
-                                <tr><td> Name </td><td>${feature.properties.name}</td></tr>
-                            <tr><td> Pole Height (m) </td><td>${feature.properties.pol_height}</td></tr>
-                            <tr><td> Power (Watt) </td><td>${feature.properties.power_watt}</td></tr>`)
-                    }
-                })
-            },
-            pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, streetStyle);
-            }
-        });
-        var layer = new L.markerClusterGroup().addLayer(street).addTo(map),
-            selector = $('.street-light')
-        layerToggler(selector, layer)
-        removeAllUtilitiesLayer(layer)
-    })
-
-    //house dataset
-    $.getJSON("{% url 'house' %}", function (data) {
-        var houselayer1 = L.geoJSON(data, {
-            style: houseStyle,
-            onEachFeature: function (feature, layer) {
-                layer.on({
-                    click: function (e) {
-                        popupContents(e);
-                        $('.sidebar-info').html(`<h4>Building</h4>
-                            <div class="container"><table class="table table-striped">
-                            <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
-                            <tr><td> Current Resident </td><td>${feature.properties.curr_resid}</td></tr>
-                            <tr><td> House type </td><td>${feature.properties.house_type}</td></tr>
-                            <tr><td> Area (sq.m) </td><td>${feature.properties.area_sq_m_field}</td></tr>
-                            <tr><td> Permanent </td><td>${feature.properties.permanent}</td></tr>
-                            <tr><td> Plot number </td><td>${feature.properties.plot_no}</td></tr>`)
-
-                    }
-                })
-            }
-        }).addTo(map);
-        var layer = new L.layerGroup().addLayer(houselayer1),
-            selector = $('.building')
-        layerToggler(selector, layer)
-        removeAllUtilitiesLayer(layer)
-        addDefaultUtilitiesLayer(layer)
-    })
-
-    //sanitary layer
-    $.getJSON("{% url 'sanitary' %}", function (data) {
-        var sanitary = L.geoJSON(data, {
-            style: sanitaryStyle,
-            onEachFeature: function (feature, layer) {
-                layer.on({
-                    click: function (e) {
-                        popupContents(e);
-                        $('.sidebar-info').html(`<h4>Sanitary</h4>
-                            <div class="container"><table class="table table-striped">
-                            <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
-                            <tr><td> Type </td><td>${feature.properties.type}</td></tr>
-                            <tr><td> Pipe Material </td><td>${feature.properties.pipe_mat}</td></tr>
-                            <tr><td> Diameter of Pipe (mm) </td><td>${feature.properties.diamr_mm_field}</td></tr>
-                            <tr><td> Trench Depth (mm)</td><td>${feature.properties.trench_dep}</td></tr>`)
-                    }
-                })
-            }
-        });
-        //sanitary junction point
-        $.getJSON("{% url 'sanitaryjunctionpoint' %}", function (data) {
-            let sanitaryjunctionpoint = L.geoJSON(data, {
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, sanitaryjunctionpointStyle);
-                }
-            });
-            sanitaryjunctionpoint.addTo(sanitary)
-            var layer = new L.layerGroup().addLayer(sanitary),
-                selector = $('.sanitary')
-            layerToggler(selector, layer)
-            removeAllUtilitiesLayer(layer)
-            addDefaultUtilitiesLayer(layer)
-        })
-    })
-
-    //drainage layer
-    $.getJSON("{% url 'drainage' %}", function (data) {
-        var drainage = L.geoJSON(data, {
-            style: drainageStyle,
-            onEachFeature: function (feature, layer) {
-                layer.on({
-                    click: function (e) {
-                        popupContents(e);
-                        $('.sidebar-info').html(`<h4>Drainage</h4>
-                            <div class="container"><table class="table table-striped">
-                            <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
-                            <tr><td> Type </td><td>${feature.properties.line_type}</td></tr>
-                            <tr><td> Diameter of Pipe (mm) </td><td>${feature.properties.p_dia_mm}</td></tr>`)
-                    }
-                })
-            }
-        });
-
-        //sanitary junction point
-        $.getJSON("{% url 'outletvalve' %}", function (data) {
-            let outletvalve = L.geoJSON(data, {
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, outletValveStyle);
-                }
-            });
-
-            //man hole
-            $.getJSON("{% url 'manhole' %}", function (data) {
-                let manhole = L.geoJSON(data, {
-                    pointToLayer: function (feature, latlng) {
-                        return L.circleMarker(latlng, manholeStyle);
-                    }
-                });
-                manhole.addTo(drainage)
-                outletvalve.addTo(drainage)
-                var layer = new L.layerGroup().addLayer(drainage),
-                    selector = $('.drainage-line')
-                layerToggler(selector, layer)
-                removeAllUtilitiesLayer(layer)
-            })
-        })
-    })
-
-    //Road Network
-    $.getJSON("{% url 'road' %}", function (data) {
-        var road = L.geoJSON(data, {
-            style: roadStyle,
-            onEachFeature: function (feature, layer) {
-                layer.on({
-                    click: function (e) {
-                        popupContents(e);
-                        $('.sidebar-info').html(`<h4>Road</h4>
-                            <div class="container"><table class="table table-striped">
-                            <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
-                            <tr><td> Current Road Type </td><td>${feature.properties.road_type}</td></tr>
-                            <tr><td> Road Segment </td><td>${feature.properties.road_typ_1}</td></tr>`)
-
-                    }
-                })
-            }
-        }).addTo(map);
-        var layer = new L.layerGroup().addLayer(road),
-            selector = $('.road-network')
-        layerToggler(selector, layer)
-        removeAllUtilitiesLayer(layer)
-        addDefaultUtilitiesLayer(layer)
-    })
-
-    //electrical line
-    $.getJSON("{% url 'electrical' %}", function (data) {
-        var electrical = L.geoJSON(data, {
-            style: electricalLine,
-            onEachFeature: function (feature, layer) {
-                layer.on({
-                    click: function (e) {
-                        popupContents(e);
-                        $('.sidebar-info').html(`<h4>Electrical Line</h4>
-                            <div class="container"><table class="table table-striped">
-                            <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
-                            <tr><td> Line Type </td><td>${feature.properties.line_type}</td></tr>
-                            <tr><td> Cable Type </td><td>${feature.properties.cable_type}</td></tr>
-                            <tr><td> Pipe Cons. Material </td><td>${feature.properties.p_material}</td></tr>
-                            <tr><td> Pipe Diameter (mm) </td><td>${feature.properties.p_dia_mm}</td></tr>
-                            <tr><td> Phase Line </td><td>${feature.properties.phase_c}</td></tr>
-                            <tr><td> Diameter of Electrical Conductor (mm)</td><td>${feature.properties.c_dia_mm}</td></tr>
-                            <tr><td> Electrical Conductor Material </td><td>${feature.properties.c_material}</td></tr>`)
-                    }
-                })
-            }
-        }).addTo(map);
-        var layer = new L.layerGroup().addLayer(electrical),
-            selector = $('.electrical-line')
-        layerToggler(selector, layer)
-        removeAllUtilitiesLayer(layer)
-        addDefaultUtilitiesLayer(layer)
-    })
-
-
-    //telephone Internet layer
-    $.getJSON("{% url 'telephoneinternet' %}", function (data) {
-        var telephone = L.geoJSON(data, {
-            style: telephoneStyle,
-            onEachFeature: function (feature, layer) {
-                layer.on({
-                    click: function (e) {
-                        popupContents(e);
-                        $('.sidebar-info').html(`<h4>Telephone and Televison</h4>
-                            <div class="container"><table class="table table-striped">
-                            <thead><tr><th>Properties</th><th>Value</th></tr></thead>
-                            <tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
-                            <tr><td> Line Type </td><td>${feature.properties.line_type}</td></tr>
-                            <tr><td> Cable Type </td><td>${feature.properties.cable_type}</td></tr>
-                            <tr><td> Pipe Material </td><td>${feature.properties.p_material}</td></tr>
-                            <tr><td> Pipe Diameter (mm) </td><td>${feature.properties.p_dia_mm}</td></tr>`)
-                    }
-                })
-            }
-        });
-        var layer = new L.layerGroup().addLayer(telephone),
-            selector = $('.telephone')
-        layerToggler(selector, layer);
-        removeAllUtilitiesLayer(layer)
-        addDefaultUtilitiesLayer(layer)
-    })
-
-
-
-
-    // layer layerToggler
-    function layerToggler(selector, layer) {
-        selector.click(function () {
-            if ($(this).prop('checked') === true) {
-                map.addLayer(layer);
-            } else if ($(this).prop('checked') === false) {
-                map.removeLayer(layer);
-            }
-        });
-    }
-
-    //Clear utilities layers
-    function removeAllUtilitiesLayer(layer) {
-        $('.remove-all-utilities-layers').click(function () {
-            map.removeLayer(layer)
-            $('.street-light').prop('checked', false)
-            $('.road-network').prop('checked', false)
-            $('.drainage-line').prop('checked', false)
-            $('.water-supply').prop('checked', false)
-            $('.electrical-line').prop('checked', false)
-            $('.telephone').prop('checked', false)
-            $('.building').prop('checked', false)
-            $('.sanitary').prop('checked', false)
-            $('.boundary-building').prop('checked', false)
-            $('.boundary').prop('checked', false)
-            $('.swimming-pool').prop('checked', false)
-            $('.park').prop('checked', false)
-            $('.temple').prop('checked', false)
-        })
-    }
-
-    // add default utilities layers
-    function addDefaultUtilitiesLayer(layer) {
-        $('.add-default-utilities-layer').click(function () {
-            $('.building').prop('checked', true)
-            $('.road-network').prop('checked', true)
-            $('.water-supply').prop('checked', true)
-            $('.sanitary').prop('checked', true)
-            $('.electrical-line').prop('checked', true)
-            $('.telephone').prop('checked', true)
-            layer.addTo(map)
-        })
-    }
-
-    //The client service function
-    $('.client-support-btn').click(function () {
-        map.on('click', function (e) {
-            var lat = e.latlng.lat,
-                lng = e.latlng.lng,
-                popup = `<!-- Default form register -->
-<form class="text-center border border-light p-5" action="{% url 'webmap' %}" method="POST">
-    {% csrf_token %}
-
-    <p class="h4 mb-4">Issue Form</p>
-
-    <div class="form-row mb-4">
-        <div class="col">
-            <!-- First name -->
-            <input type="text" name="firstname" id="defaultRegisterFormFirstName" class="form-control" placeholder="Your First Name">
-        </div>
-        <div class="col">
-            <!-- Last name -->
-            <input type="text" name="lastname" id="defaultRegisterFormLastName" class="form-control" placeholder="Your Last Name">
-        </div>
-    </div>
-
-    <!-- Issue header -->
-    <input type="text" name="issue_header" id="defaultRegisterPhonePassword" class="form-control mb-2" placeholder="Input your issue header" aria-describedby="defaultRegisterFormPhoneHelpBlock">
-    <br>
-
-    <input type="hidden" name="lat" value="${lat}">
-    <input type="hidden" name="lng" value = "${lng}">
-    
-    <!-- Password -->
-    <input type="text" name="issue_body" id="defaultRegisterFormPassword" class="form-control" placeholder="Your issue in detail" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-
-    <!-- Sign up button -->
-    <button class="btn btn-info my-4 btn-block issue-submit" type="submit">Submit your issue</button>
-</form>`;
-            var marker = new L.Marker([lat, lng]).addTo(map).bindPopup(popup).openPopup(),
-                circleMarker = new L.circleMarker([lat, lng], bufferStyle, { draggable: true }).addTo(map);
-            map.off('click')
-        })
+      },
     });
 
+    //sanitary junction point
+    $.getJSON("{% url 'outletvalve' %}", function (data) {
+      let outletvalve = L.geoJSON(data, {
+        pointToLayer: function (feature, latlng) {
+          return L.circleMarker(latlng, outletValveStyle);
+        },
+      });
+
+      //man hole
+      $.getJSON("{% url 'manhole' %}", function (data) {
+        let manhole = L.geoJSON(data, {
+          pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, manholeStyle);
+          },
+        });
+        manhole.addTo(drainage);
+        outletvalve.addTo(drainage);
+        var layer = new L.layerGroup().addLayer(drainage),
+          selector = $(".drainage-line");
+        layerToggler(selector, layer);
+        removeAllUtilitiesLayer(layer);
+      });
+    });
+  });
+
+  //road network
+  popupContent = `<tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
+                              <tr><td> Current Road Type </td><td>${feature.properties.road_type}</td></tr>
+                              <tr><td> Road Segment </td><td>${feature.properties.road_typ_1}</td></tr>`;
+  utilityLayerHandler("road", roadStyle, popupContent, "road-network");
+
+  //electrical line
+  popupContent = `<tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
+                              <tr><td> Line Type </td><td>${feature.properties.line_type}</td></tr>
+                              <tr><td> Cable Type </td><td>${feature.properties.cable_type}</td></tr>
+                              <tr><td> Pipe Cons. Material </td><td>${feature.properties.p_material}</td></tr>
+                              <tr><td> Pipe Diameter (mm) </td><td>${feature.properties.p_dia_mm}</td></tr>
+                              <tr><td> Phase Line </td><td>${feature.properties.phase_c}</td></tr>
+                              <tr><td> Diameter of Electrical Conductor (mm)</td><td>${feature.properties.c_dia_mm}</td></tr>
+                              <tr><td> Electrical Conductor Material </td><td>${feature.properties.c_material}</td></tr>`;
+  utilityLayerHandler(
+    "electrical",
+    electricalLine,
+    popupContent,
+    "electrical-line"
+  );
+
+  //telephone Internet layer
+  popupContent = `<tbody><tr><td> Id </td><td> ${feature.properties.pk}</td></tr>
+                              <tr><td> Line Type </td><td>${feature.properties.line_type}</td></tr>
+                              <tr><td> Cable Type </td><td>${feature.properties.cable_type}</td></tr>
+                              <tr><td> Pipe Material </td><td>${feature.properties.p_material}</td></tr>
+                              <tr><td> Pipe Diameter (mm) </td><td>${feature.properties.p_dia_mm}</td></tr>`;
+  utilityLayerHandler(
+    "telephoneinternet",
+    telephoneStyle,
+    popupContent,
+    "telephone"
+  );
+
+  // layer layerToggler
+  function layerToggler(selector, layer) {
+    selector.click(function () {
+      if ($(this).prop("checked") === true) {
+        map.addLayer(layer);
+      } else if ($(this).prop("checked") === false) {
+        map.removeLayer(layer);
+      }
+    });
+  }
+
+  //Clear utilities layers
+  function removeAllUtilitiesLayer(layer) {
+    $(".remove-all-utilities-layers").click(function () {
+      map.removeLayer(layer);
+      $(".street-light").prop("checked", false);
+      $(".road-network").prop("checked", false);
+      $(".drainage-line").prop("checked", false);
+      $(".water-supply").prop("checked", false);
+      $(".electrical-line").prop("checked", false);
+      $(".telephone").prop("checked", false);
+      $(".building").prop("checked", false);
+      $(".sanitary").prop("checked", false);
+      $(".boundary-building").prop("checked", false);
+      $(".boundary").prop("checked", false);
+      $(".swimming-pool").prop("checked", false);
+      $(".park").prop("checked", false);
+      $(".temple").prop("checked", false);
+    });
+  }
+
+  // add default utilities layers
+  function addDefaultUtilitiesLayer(layer) {
+    $(".add-default-utilities-layer").click(function () {
+      $(".building").prop("checked", true);
+      $(".road-network").prop("checked", true);
+      $(".water-supply").prop("checked", true);
+      $(".sanitary").prop("checked", true);
+      $(".electrical-line").prop("checked", true);
+      $(".telephone").prop("checked", true);
+      layer.addTo(map);
+    });
+  }
+
+  //The client service function
+  $(".client-support-btn").click(function () {
+    map.on("click", function (e) {
+      var lat = e.latlng.lat,
+        lng = e.latlng.lng,
+        popup = `<!-- Default form register -->
+  <form class="text-center border border-light p-5" action="{% url 'webmap' %}" method="POST">
+      {% csrf_token %}
+
+      <p class="h4 mb-4">Issue Form</p>
+
+      <div class="form-row mb-4">
+          <div class="col">
+              <!-- First name -->
+              <input type="text" name="firstname" id="defaultRegisterFormFirstName" class="form-control" placeholder="Your First Name">
+          </div>
+          <div class="col">
+              <!-- Last name -->
+              <input type="text" name="lastname" id="defaultRegisterFormLastName" class="form-control" placeholder="Your Last Name">
+          </div>
+      </div>
+
+      <!-- Issue header -->
+      <input type="text" name="issue_header" id="defaultRegisterPhonePassword" class="form-control mb-2" placeholder="Input your issue header" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+      <br>
+
+      <input type="hidden" name="lat" value="${lat}">
+      <input type="hidden" name="lng" value = "${lng}">
+
+      <!-- Password -->
+      <input type="text" name="issue_body" id="defaultRegisterFormPassword" class="form-control" placeholder="Your issue in detail" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+
+      <!-- Sign up button -->
+      <button class="btn btn-info my-4 btn-block issue-submit" type="submit">Submit your issue</button>
+  </form>`;
+      var marker = new L.Marker([lat, lng])
+          .addTo(map)
+          .bindPopup(popup)
+          .openPopup(),
+        circleMarker = new L.circleMarker([lat, lng], bufferStyle, {
+          draggable: true,
+        }).addTo(map);
+      map.off("click");
+    });
+  });
+
+  //Function main layer handler
+  function utilityLayerHandler(url, style, popupContent, selectorClass) {
+    // Water layer manage
+    $.getJSON(`{% url ${url} %}`, function (data) {
+      var waterNetwork1 = L.geoJSON(data, {
+        style: style,
+        onEachFeature: function (feature, layer) {
+          layer.on({
+            click: function (e) {
+              popupContents(e);
+              $(".sidebar-info").html(`<h4>Water Network</h4>
+                              <div class="container"><table class="table table-striped">
+                              <thead><tr><th>Properties</th><th>Value</th></tr></thead>
+                              ${popupContent}`);
+            },
+          });
+        },
+      });
+      var layer = new L.layerGroup().addLayer(waterNetwork1),
+        selector = $(`.${selectorClass}`);
+      layerToggler(selector, layer);
+      removeAllUtilitiesLayer(layer);
+    });
+  }
+
+  // default layers
+  function layerHandler(url, style, selectorClass) {
+    $.getJSON(`{% url ${url} %}`, function (data) {
+      var boundary = L.geoJSON(data, {
+        style: style,
+      });
+      var layer = new L.layerGroup().addLayer(boundary),
+        selector = $(`.${selectorClass}`);
+      layerToggler(selector, layer);
+      removeAllUtilitiesLayer(layer);
+    });
+  }
 </script>
 {% endblock js %}
